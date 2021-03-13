@@ -10,6 +10,7 @@ class PythonOrgSearch(unittest.TestCase):
     def test_get_heading_content(self):
         driver = self.driver
         driver.get("http://localhost:5000")
+        self.assertIn('Milestone Three', driver.title)
         heading_one_text = (driver.find_element_by_tag_name('h1').text)
         self.assertEqual("Welcome", heading_one_text )
 

@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 
 if os.path.exists("env.py"):
     import env
@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 
-    return "<h1>Welcome</h1>"
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
