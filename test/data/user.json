@@ -1,0 +1,6 @@
+{
+  "id": "random Id",
+  "username": "Name",
+  "password": "randomHashed Pass",
+  "moderator": "boolean value to allow User extra operations"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "random Id",
+  "feedback": "User liked the book so much he stopped to add some comments",
+  "user": " user name or id that left Comment",
+  "book": "book Title or id being reviewed",
+  "rate": "number to decide rate"
+}

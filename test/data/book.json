@@ -1,0 +1,9 @@
+{
+  "title": "MockBook",
+  "author": "Jon Doe",
+  "coverImage": "http:/somePLace with ImageStored",
+  "publisher": "O'My",
+  "description": "This is a Text Area that tells all about the book in a shorter sentence",
+  "id": "Unique random Id created by Data Storage",
+  "moderated": "Boolean value to tell if moderator reviewed the book"
+}
