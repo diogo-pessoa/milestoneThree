@@ -3,14 +3,12 @@ The Bookshelf
 
 The Bookshelf site: [visit here](#the-bookshelf).
 
+A project to review books you read, leave reviews, rate your best reads. Share your favourite choices.
+
 #### Description
 
 
 ## UX
-
-Description in progress
-
-
 
 ### color Scheme & Typography 
 
@@ -30,19 +28,17 @@ Using Materilize for a responsive front-end.
 
 #### Mobile view 
 
-1. [Home]()
-2. [Login]()
-3. [Register]()
-4. [Book]()
-5. [Profile]()
+- [Login](wireframes/Mobile/Login_Mobile.png)
+- [Register](wireframes/Mobile/Register_Mobile.png)
+- [Book](wireframes/Mobile/Book_Mobile.png)
+- [Profile](wireframes/Mobile/Profile_Mobile.png)
 
 #### Desktop view 
 
-1. [Home]()
-2. [Login]()
-3. [Register]()
-4. [Book]()
-5. [Profile]()
+- [Login](wireframes/Desktop/Login.png) 
+- [Register](wireframes/Desktop/Register.png)
+- [Book](wireframes/Desktop/Book.png)
+- [Profile](wireframes/Desktop/Profile.png)
 
 ## Features 
 
