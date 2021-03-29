@@ -1,12 +1,7 @@
 Features & User Stories
 ---
 
-
-## UX
-
-
 ## Features
-
 
 ## Features left to implement 
 
