@@ -28,17 +28,17 @@ Using Materilize for a responsive front-end.
 
 #### Mobile view 
 
-- [Login](wireframes/Mobile/Login_Mobile.png)
-- [Register](wireframes/Mobile/Register_Mobile.png)
-- [Book](wireframes/Mobile/Book_Mobile.png)
-- [Profile](wireframes/Mobile/Profile_Mobile.png)
+- [Login](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Mobile/Login_Mobile.png)
+- [Register](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Mobile/Register_Mobile.png)
+- [Book](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Mobile/Book_Mobile.png)
+- [Profile](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Mobile/Profile_Mobile.png)
 
 #### Desktop view 
 
-- [Login](wireframes/Desktop/Login.png) 
-- [Register](wireframes/Desktop/Register.png)
-- [Book](wireframes/Desktop/Book.png)
-- [Profile](wireframes/Desktop/Profile.png)
+- [Login](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Desktop/Login.png) 
+- [Register](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Desktop/Register.png)
+- [Book](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Desktop/Book.png)
+- [Profile](https://github.com/diogo-pessoa/the-bookshelf/blob/master/wireframes/Desktop/Profile.png)
 
 ## Features 
 
