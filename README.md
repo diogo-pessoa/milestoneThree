@@ -16,13 +16,18 @@ Using Materilize for a responsive front-end.
 
 - Color Scheme from [materializecss color Scheme](https://materializecss.com/color.html)
 
-    - [lighter](#readme-content/colorScheme/Lighter.png)
-    - [brown](#readme-content/colorScheme/darker.png)
+    - Lighter
+        
+        ![lighter](https://github.com/diogo-pessoa/the-bookshelf/blob/master/readme-content/colorScheme/Lighter.png)
+
+    - Darker
+    
+        ![brown](https://github.com/diogo-pessoa/the-bookshelf/blob/master/readme-content/colorScheme/darker.png)
 
 
 ### Entity Relationship Model
 
-- [Diagram](#readme-content/er_diagram.png)
+- [Diagram](https://github.com/diogo-pessoa/the-bookshelf/blob/master/readme-content/er_diagram.png)
 
 ### Wireframes
 
