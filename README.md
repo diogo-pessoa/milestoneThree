@@ -127,7 +127,7 @@ Required to run the local development environment.
     
             pip install -r requirements_dev.txt 
         
-    (requirements_dev has extra dependecies for seleniums, not needed on production App.)
+    (requirements_dev has extra dependecies for selenium, not needed on production App.)
 
 - create env.py file
 

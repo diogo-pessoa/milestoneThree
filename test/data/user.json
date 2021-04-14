@@ -1,6 +1,7 @@
 {
-  "id": "random Id",
+  "id": 123,
   "username": "Name",
   "password": "randomHashed Pass",
-  "moderator": "boolean value to allow User extra operations"
+  "moderator": "True",
+  "favoriteBooks": ["A book", "another Book"]
 }

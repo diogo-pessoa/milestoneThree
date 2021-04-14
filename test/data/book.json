@@ -1,9 +1,35 @@
-{
-  "title": "MockBook",
-  "author": "Jon Doe",
-  "coverImage": "http:/somePLace with ImageStored",
-  "publisher": "O'My",
-  "description": "This is a Text Area that tells all about the book in a shorter sentence",
-  "id": "Unique random Id created by Data Storage",
-  "moderated": "Boolean value to tell if moderator reviewed the book"
-}
+[
+  {
+    "id": "1",
+    "title": "MockBook",
+    "author": "Jon Doe",
+    "coverImage": "http:/somePLace with ImageStored",
+    "publisher": "O'My",
+    "description": "This is a Text Area that tells all about the book in a shorter sentence",
+    "released": "2016",
+    "edition": "1",
+    "moderated": "True"
+  },
+  {
+    "title": "MockBook2",
+    "author": "Jon Doe",
+    "coverImage": "http:/somePLace with ImageStored",
+    "publisher": "O'My",
+    "description": "This is a Text Area that tells all about the book in a shorter sentence",
+    "id": "1",
+    "moderated": "Boolean value to tell if moderator reviewed the book",
+    "edition": "2",
+    "released": "2016"
+  },
+  {
+    "title": "MockBook3",
+    "author": "Jon Doe",
+    "coverImage": "http:/somePLace with ImageStored",
+    "publisher": "O'My",
+    "description": "This is a Text Area that tells all about the book in a shorter sentence",
+    "id": "3",
+    "moderated": "Boolean value to tell if moderator reviewed the book",
+    "edition": "1",
+    "released": "2016"
+  }
+]

@@ -16,17 +16,17 @@
     <div class="col s12 m7">
         <h3 class="header">Books</h3>
         <div class="card horizontal">
-            <div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-            </div>
             <div class="card-stacked">
                 <div class="card-content">
                     <p>
-                        This is a placeholder for content
+                          {% for book in books %}
+                        <hr>
+                            <span>Book titile:</span> {{ book.title }}<br>
+                            <span>Book author:</span> {{ book.author }}<br>
+                            <span>Book publisher:</span>{{ book.publisher }}<br>
+                            <span>Book publisher:</span>{{ book.released }}<br>
+                        {% endfor %}
                     </p>
-                </div>
-                <div class="card-action">
-                    <a href="#">This is a link</a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,13 @@
         <div class="card">
             <h3 class="header">Reviews</h3>
             <div class="card-content">
-                
+                  {% for review in reviews %}
+                        <hr>
+                            <span>Book titile:</span> {{ review.user }}<br>
+                            <p><span>Book author:</span> {{ review.feedback }}</p>
+                            <span>Book publisher:</span>{{ review.rate }}<br>
+                            <span>Book publisher:</span>{{ review.book }}<br>
+                        {% endfor %}
             </div>
         </div>
     </div>
