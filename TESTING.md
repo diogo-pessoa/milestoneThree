@@ -20,3 +20,7 @@ With the local Application Running
 **Error** `The "dnspython" module must be installed to use mongodb+srv:// URIs`
 
 **Fix** [GitHub issue](https://github.com/getredash/redash/issues/2603)
+
+- **Problem** the basic `app.py` caused a few problems with circular dependencies when running flaks locally. [The Flask mega-tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+suggests an alternative app structure to exactly to avoid this problem. 
+  **Fix** breaking down the `app.py` file into a routes.py and `__init__.py` loading the packages in the right order. This is to save time in later, as I plan to break down the code in to a few different modules.

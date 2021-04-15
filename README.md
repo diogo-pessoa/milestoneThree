@@ -85,7 +85,7 @@ For User Stories and Features
     
 App is deployed using heroku.
 
-I have linked the github repository to The heroku and enabled automatice deploys. Hence when a commit reaches master. It will automatically release a new version. 
+I have linked the github repository to The heroku and enabled automatic deploys. Hence, when a commit reaches master. It will automatically release a new version. 
 
 #### Steps:
 - `Login` to heroku [login](https://id.heroku.com/login)
@@ -127,27 +127,28 @@ Required to run the local development environment.
     
             pip install -r requirements_dev.txt 
         
-    (requirements_dev has extra dependecies for selenium, not needed on production App.)
+    (requirements_dev has extra dependencies for selenium, not needed on production App.)
 
-- create env.py file
+- create `.flaskenv` file
+  
+The project uses `python-dotenv` to load environment variables, set the variable on a local `.flaskenv`
+    make sure to add this file to `.gitignore` as it may eventually hold sensitive data
 
-        os.environ.setdefault("IP", "0.0.0.0")
-        os.environ.setdefault("PORT", "")
-        os.environ.setdefault("SECRET_KEY", "")
-        # Ideally you setup a separate Database to store DevContent
-        os.environ.setdefault("MONGO_URI", "mongodb+srv://<url>")
-        os.environ.setdefault("MONGO_DBNAME", "")
+        FLASK_APP=thebookshelf.py
+        DEBUG=True
+        IP=0.0.0.0
+        PORT=5000
 
 - Run app
   
 
         #run flask app
-        python3 app.py
+        flask run 
         open http://http://127.0.0.1:5000/
 
 ## Testing
 
-Once you have your local environment setup follow the steps on the Testing document to avoid regression during development
+Once you have your local environment setup follow the steps on the Testing document to run tests frequently and avoid regression.
 
 - [TESTING.md](/TESTING.md)
 
@@ -156,4 +157,6 @@ Once you have your local environment setup follow the steps on the Testing docum
 ### Content 
 
 ### Acknowledgements
+
+Constantly used recommendations from the miguel Grinberg's [flask mega-tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
