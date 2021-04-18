@@ -14,12 +14,13 @@
         </div>
     </div>  
     <div class="col s12 m7">
+        <h3 class="header">Hello, {{user}}</h3>
         <h3 class="header">Books</h3>
         <div class="card horizontal">
             <div class="card-stacked">
                 <div class="card-content">
                     <p>
-                          {% for book in books %}
+                        {% for book in books %}
                         <hr>
                             <span>Book titile:</span> {{ book.title }}<br>
                             <span>Book author:</span> {{ book.author }}<br>
