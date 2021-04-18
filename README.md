@@ -79,7 +79,10 @@ For User Stories and Features
 - Deployment
   - [heroku](dashboard.heroku.com)
 - Data Storage
-    - [MongoDb](https://www.mongodb.com/)
+    - [MongoDb](https://www.mongodb.com/) 
+        - Data storage techonology of choice
+    - [flask-pymongo](https://flask-pymongo.readthedocs.io/en/latest/) 
+        - package to support mongo data manipulation.
     
 ## Deployment 
     
@@ -98,12 +101,13 @@ I have linked the github repository to The heroku and enabled automatic deploys.
     - or CLI: `#heroku logs --tail --app the-bookshelf-milestone-three`
     - content should be similar to the following
 
-            2021-04-12T19:52:15.000000+00:00 app[api]: Build started by user
-            2021-04-12T19:52:41.897820+00:00 app[api]: Deploy 76b4e2a6 by user com
-            2021-04-12T19:52:41.918465+00:00 app[api]: Scaled to web@1:Free by user 
-            2021-04-12T19:52:41.897820+00:00 app[api]: Release v9 created by user 
-            2021-04-12T19:52:48.856622+00:00 heroku[web.1]: Starting process with command `python app.py`
-            2021-04-12T19:52:51.000000+00:00 app[api]: Build succeeded
+
+                2021-04-12T19:52:15.000000+00:00 app[api]: Build started by user
+                2021-04-12T19:52:41.897820+00:00 app[api]: Deploy 76b4e2a6 by user com
+                2021-04-12T19:52:41.918465+00:00 app[api]: Scaled to web@1:Free by user 
+                2021-04-12T19:52:41.897820+00:00 app[api]: Release v9 created by user 
+                2021-04-12T19:52:48.856622+00:00 heroku[web.1]: Starting process with command `python app.py`
+                2021-04-12T19:52:51.000000+00:00 app[api]: Build succeeded
 
 - On `Deploy` tab Enable auto deploy from master branch [image](https://github.com/diogo-pessoa/the-bookshelf/blob/master/readme-content/heroku-deploy/automatic_deploy.png)
 
@@ -134,14 +138,15 @@ Required to run the local development environment.
 The project uses `python-dotenv` to load environment variables, set the variable on a local `.flaskenv`
     make sure to add this file to `.gitignore` as it may eventually hold sensitive data
 
-        FLASK_APP=thebookshelf.py
         DEBUG=True
-        IP=0.0.0.0
-        PORT=5000
+        FLASK_RUN_PORT=5000
+        FLASK_RUN_HOST=0.0.0.0
+        Environment=Development
+        FLASK_APP=thebookshelf.py
 
 - Run app
   
-
+#https://flask-pymongo.readthedocs.io/en/latest/
         #run flask app
         flask run 
         open http://http://127.0.0.1:5000/
@@ -158,5 +163,5 @@ Once you have your local environment setup follow the steps on the Testing docum
 
 ### Acknowledgements
 
-Constantly used recommendations from the miguel Grinberg's [flask mega-tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+Ideas in app structure and data management inspired by the miguel Grinberg's [flask mega-tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
