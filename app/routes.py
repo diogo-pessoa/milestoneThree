@@ -10,3 +10,8 @@ def index():
     reviews = Data().find_all_books()
     user = Data().find_user_by_name("Name")
     return render_template('index.html', books=books, reviews=reviews, user=user)
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
