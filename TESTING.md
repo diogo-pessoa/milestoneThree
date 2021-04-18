@@ -37,3 +37,6 @@ suggests an alternative app structure to exactly to avoid this problem.
       FLASK_APP=thebookshelf.py
   
   
+- **Problem** moving menu on smaller screen to right side. 
+  - **Fix** from [CodeInstitute class](https://github.com/Code-Institute-Solutions/TaskManagerAuth/blob/main/02-UserAuthenticationAndAuthorization/02-register_page/static/js/script.js) included attribute `edge: right`
+    to `js` file. 
