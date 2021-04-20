@@ -8,7 +8,7 @@ class TheBookShelfMainPage(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
 
-    def test_get_log_text_from_index(self):
+    def test_get_index_page(self):
         driver = self.driver
         driver.get("http://localhost:5000")
         self.assertIn('Bookshelf', driver.title)
@@ -17,6 +17,7 @@ class TheBookShelfMainPage(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
+
 
 if __name__ == "__main__":
     unittest.main()

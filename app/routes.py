@@ -1,5 +1,6 @@
 from flask import (render_template, request,
                    flash, redirect, url_for)
+
 from app import app
 from app.model.book_model import Book
 from app.model.review_model import Review
@@ -30,3 +31,8 @@ def register():
                                password)
         flash("Registration Successful!")
     return render_template("register.html")
+
+
+@app.route("/login", methods=["GET"])
+def login():
+    return render_template("login.html")
