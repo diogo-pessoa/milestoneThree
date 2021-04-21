@@ -1,7 +1,7 @@
 Tests
 ---
 
-## Techonologies used:
+## Technologies used:
 
 ## Selenium 
 With the local Application Running
@@ -40,3 +40,12 @@ suggests an alternative app structure to exactly to avoid this problem.
 - **Problem** moving menu on smaller screen to right side. 
   - **Fix** from [CodeInstitute class](https://github.com/Code-Institute-Solutions/TaskManagerAuth/blob/main/02-UserAuthenticationAndAuthorization/02-register_page/static/js/script.js) included attribute `edge: right`
     to `js` file. 
+    
+
+### Automated Test
+
+- [test/html_test](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test)
+  - [links_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/links_test.py)
+    
+    This test the links on Nav_bar, by loading the index page and clicking on the link, defined on each test. Test then waits for the page to load and checking for an HTML element on target page.
+    

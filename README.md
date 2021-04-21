@@ -155,7 +155,7 @@ The project uses `python-dotenv` to load environment variables, set the variable
 
 Once you have your local environment setup follow the steps on the Testing document to run tests frequently and avoid regression.
 
-- [TESTING.md](/TESTING.md)
+- [TESTING.md](https://github.com/diogo-pessoa/the-bookshelf/blob/master/TESTING.md)
 
 ## Credits 
 
