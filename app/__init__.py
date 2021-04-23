@@ -7,4 +7,8 @@ app = Flask(__name__)
 app.config.from_object(Config)
 mongo = PyMongo(app)
 
-from app import routes, model
+from app.auth.views import auth
+from app.main.views import main
+
+app.register_blueprint(auth)
+app.register_blueprint(main)

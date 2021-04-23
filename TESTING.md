@@ -48,4 +48,4 @@ suggests an alternative app structure to exactly to avoid this problem.
   - [links_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/links_test.py)
     
     This test the links on Nav_bar, by loading the index page and clicking on the link, defined on each test. Test then waits for the page to load and checking for an HTML element on target page.
-    
+  

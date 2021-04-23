@@ -63,7 +63,9 @@ For User Stories and Features
     - [pip](https://pypi.org/project/pip/)
       - installs project dependencies
     - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-      - Python http micro framework  
+      - Python http micro framework
+    - [Flask_blueprints](https://flask.palletsprojects.com/en/1.1.x/blueprints/)
+      - to improve code organization, by build a more module structure on the project
     - [venv](https://docs.python.org/3/library/venv.html)
         - For a clean local development environment
 - Front-End
