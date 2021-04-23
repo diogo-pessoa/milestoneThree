@@ -1,4 +1,5 @@
-from flask import Blueprint, request, flash, redirect, url_for, render_template
+from flask import Blueprint, request, flash, redirect, url_for, render_template, session
+from werkzeug.security import check_password_hash
 
 from app.model.user_model import User
 
@@ -22,6 +23,25 @@ def register():
     return render_template("register.html")
 
 
-@auth.route("/login", methods=["GET"])
+@auth.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        # check if username exists in db
+        existing_user = User().find_user_by_name(username)
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
+                    existing_user.get("password"), password):
+                session["user"] = username
+                flash("Welcome, {}".format(username))
+            else:
+                # invalid password match
+                flash("Invalid Credentials")
+                return redirect(url_for("auth.login"))
+        else:
+            # username doesn't exist
+            flash("Invalid Credentials")
+            return redirect(url_for("auth.login"))
     return render_template("login.html")

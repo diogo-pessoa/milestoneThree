@@ -22,14 +22,13 @@
     <header>
         <nav>
             <div class="nav-wrapper brown darken-1">
-                <a href="{{ url_for('main.index') }}" class="brand-logo">Bookshelf</a>
+                <a href="{{ url_for('main.index') }}" class="brand-logo center">Bookshelf</a>
                 <a href="#" data-target="mobile" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#">Books</a></li>
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                    <li><a href="{{ url_for('auth.register') }}">Sign-up</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Sign-up</a></li>
                 </ul>
             </div>
         </nav>
@@ -38,9 +37,8 @@
         <ul class="sidenav brown lighten-4" id="mobile">
             <li><a href="#">Books</a></li>
             <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+            <li><a href="{{ url_for('auth.register') }}">Sign-up</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Sign-up</a></li>
         </ul>
     </header>
     <main>

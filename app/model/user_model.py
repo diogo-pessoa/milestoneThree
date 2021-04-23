@@ -16,7 +16,7 @@ class User(object):
         try:
             user = mongo.db.users.find_one({"username": name.lower()})
             if user:
-                return user.get("username")
+                return user
 
         except IOError as e:
             errno, strerror = e.args
