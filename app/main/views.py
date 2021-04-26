@@ -12,5 +12,4 @@ main = Blueprint('main', __name__, template_folder='templates')
 def index():
     books = Book().find_all_books()
     reviews = Review().find_all_reviews()
-    user = User().find_user_by_name("Name")
-    return render_template('index.html', books=books, reviews=reviews, user=user.get("username"))
+    return render_template('index.html', books=books, reviews=reviews)

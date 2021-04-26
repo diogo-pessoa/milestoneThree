@@ -9,6 +9,8 @@ mongo = PyMongo(app)
 
 from app.auth.views import auth
 from app.main.views import main
+from app.user.views import user
 
 app.register_blueprint(auth)
 app.register_blueprint(main)
+app.register_blueprint(user)
