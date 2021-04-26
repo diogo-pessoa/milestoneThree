@@ -49,3 +49,13 @@ suggests an alternative app structure to exactly to avoid this problem.
     
     This test the links on Nav_bar, by loading the index page and clicking on the link, defined on each test. Test then waits for the page to load and checking for an HTML element on target page.
   
+
+- [test/html_test](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test)
+  - [login_page_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/login_page_test.py)
+  
+    This automates basic checks on Login page.
+      - Fills and submits Login form
+      - Check if NavBar is updates with conditional `Log out` link
+      - Clicks Log out navbar link
+      - Asserts `Login` link is available on NavBar
+  

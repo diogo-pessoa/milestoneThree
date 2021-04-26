@@ -22,7 +22,7 @@ class NavBarLinks(unittest.TestCase):
                 (By.TAG_NAME, "h2"), "Hello, name")
         )
 
-    def test_links_on_navbar(self):
+    def test_register_on_navbar(self):
         self.driver.find_element_by_link_text("Sign-up").click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
@@ -37,7 +37,7 @@ class NavBarLinks(unittest.TestCase):
         )
 
     def test_go_to_register_from_login(self):
-        self.driver.get("http://localhost:5000/login")
+        self.driver.find_element_by_link_text("Login").click()
         self.driver.find_element_by_link_text("Register now").click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
@@ -45,7 +45,7 @@ class NavBarLinks(unittest.TestCase):
         )
 
     def test_go_to_login_from_register(self):
-        self.driver.get("http://localhost:5000/register")
+        self.driver.find_element_by_link_text("Sign-up").click()
         self.driver.find_element_by_link_text("Log In").click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(

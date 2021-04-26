@@ -36,6 +36,7 @@ def login():
                     existing_user.get("password"), password):
                 session["user"] = username
                 flash("Welcome, {}".format(username))
+                return redirect(url_for("main.index"))
             else:
                 # invalid password match
                 flash("Invalid Credentials")
@@ -45,3 +46,11 @@ def login():
             flash("Invalid Credentials")
             return redirect(url_for("auth.login"))
     return render_template("login.html")
+
+
+@auth.route("/logout")
+def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("main.index"))
