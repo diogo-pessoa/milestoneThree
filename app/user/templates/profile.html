@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row">
-    <h3 class="header center-align">{{ user }} space</h3>
+    <h3 class="header center-align">{{ user.get_first_name() }} space</h3>
 </div>
 <div class="col s12 m8 offset-m2 brown">
     <div class="card">
@@ -17,9 +17,15 @@
             </ul>
         </div>
         <div class="card-content brown lighten-4">
-            <div id="personal">User Information</div>
-            <div id="favorite-books">Book1</div>
-            <div id="reviews">My Reviews</div>
+            <div id="personal">
+                {% include "personal_info.html" %}
+            </div>
+            <div id="favorite-books">
+                {% include "favorite_books.html" %}
+            </div>
+            <div id="reviews">
+                {% include "my_reviews.html" %}
+            </div>
         </div>
     </div>
 </div>

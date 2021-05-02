@@ -1,0 +1,19 @@
+<table class="responsive-table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Rate</th>
+    </tr>
+    </thead>
+
+    <tbody>
+     {% for book_name in user.get_favorite_books() %}
+     <tr>
+        <td>{{book_name}}</td>
+        <td>author</td>
+        <td>author</td>
+     </tr>
+    {% endfor %}
+    </tbody>
+</table>
