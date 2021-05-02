@@ -35,27 +35,39 @@ suggests an alternative app structure to exactly to avoid this problem.
       FLASK_RUN_HOST=0.0.0.0
       Environment=Development
       FLASK_APP=thebookshelf.py
-  
-  
-- **Problem** moving menu on smaller screen to right side. 
-  - **Fix** from [CodeInstitute class](https://github.com/Code-Institute-Solutions/TaskManagerAuth/blob/main/02-UserAuthenticationAndAuthorization/02-register_page/static/js/script.js) included attribute `edge: right`
-    to `js` file. 
-    
+
+- **Problem** moving menu on smaller screen to right side.
+  - **Fix**
+    from [CodeInstitute class](https://github.com/Code-Institute-Solutions/TaskManagerAuth/blob/main/02-UserAuthenticationAndAuthorization/02-register_page/static/js/script.js)
+    included attribute `edge: right`
+    to `js` file.
 
 ### Automated Test
 
 - [test/html_test](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test)
   - [links_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/links_test.py)
-    
-    This test the links on Nav_bar, by loading the index page and clicking on the link, defined on each test. Test then waits for the page to load and checking for an HTML element on target page.
-  
+
+    This test the links on Nav_bar, by loading the index page and clicking on the link, defined on each test. Test then
+    waits for the page to load and checking for an HTML element on target page.
+
 
 - [test/html_test](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test)
   - [login_page_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/login_page_test.py)
-  
+
     This automates basic checks on Login page.
-      - Fills and submits Login form
-      - Check if NavBar is updates with conditional `Log out` link
-      - Clicks Log out navbar link
-      - Asserts `Login` link is available on NavBar
-  
+    - Fills and submits Login form
+    - Check if NavBar is updates with conditional `Log out` link
+    - Clicks Log out navbar link
+    - Asserts `Login` link is available on NavBar
+
+- [test/src/bookshelf](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf)
+
+  This Directory has all Unittests:
+
+
+        python -m unittest discover -s test/src/bookshelf -p "*_test.py" -v
+        test_get_favorite_books (user_test.UserTest) ... ok
+        test_get_user_first_name (user_test.UserTest) ... ok
+        test_get_user_last_name (user_test.UserTest) ... ok
+        test_get_username (user_test.UserTest) ... ok
+        ----------------------------------------------------------------------

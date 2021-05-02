@@ -49,7 +49,7 @@ Using Materilize for a responsive front-end.
 
 For User Stories and Features 
 
-- [FEATURES.md](/FEATURES.md)
+- [FEATURES.md](/UserStories.md)
 
 ## Technologies Used 
 
@@ -79,7 +79,7 @@ For User Stories and Features
     - [selenium](https://selenium-python.readthedocs.io/locating-elements.html#locating-elements)
     - [unittest](https://docs.python.org/3/library/unittest.html)
 - Deployment
-  - [heroku](dashboard.heroku.com)
+  - [heroku](http://heroku.com)
 - Data Storage
     - [MongoDb](https://www.mongodb.com/) 
         - Data storage techonology of choice
