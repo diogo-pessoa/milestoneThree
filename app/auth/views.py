@@ -1,5 +1,4 @@
 from flask import Blueprint, request, flash, redirect, url_for, render_template, session
-from werkzeug.security import check_password_hash
 
 from app.model.user_model import UserModel
 from src.bookshelf.user import User
@@ -26,16 +25,17 @@ def register():
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        # check if username exists in db
-        existing_user = UserModel().find_user_by_name(username)
+        form_details = {"username": request.form.get("username"),
+                        "password": request.form.get("password")
+                        }
+        # check if username exists
+        existing_user = UserModel().find_user_by_name(form_details['username'])
         if existing_user:
+            logged_user = User(existing_user)
             # ensure hashed password matches user input
-            if check_password_hash(
-                    existing_user.get("password"), password):
-                session["user"] = username
-                flash("Welcome, {}".format(username))
+            if logged_user.check_password(form_details["password"]):
+                session["user"] = logged_user.get_username()
+                flash("Welcome, {}".format(logged_user.get_first_name()))
                 return redirect(url_for("main.index"))
             else:
                 # invalid password match

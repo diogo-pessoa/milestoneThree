@@ -28,7 +28,11 @@ class UserTest(unittest.TestCase):
     def test_is_moderator(self):
         self.assertFalse(self.user.is_moderator())
 
-    def test_get_repr(self):
+    def test_check_password(self):
+        given_password = "randomHashed Pass"
+        self.assertTrue(self.user.check_password(given_password))
+
+    def test_get_instance(self):
         user_repr = self.user.get_instance()
         self.assertEqual("willfarnaby", user_repr['username'])
         self.assertEqual("0", user_repr['moderator'])

@@ -40,7 +40,7 @@ class LoginPage(unittest.TestCase):
         self.driver.find_element_by_tag_name('button').click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h4"), "Welcome, NewUser"),
+                (By.TAG_NAME, "h4"), "Welcome, New"),
             # checks if NavBar is updated with conditional Log Out element
             expected_conditions.text_to_be_present_in_element(
                 (By.TAG_NAME, "a"), "Log out")
