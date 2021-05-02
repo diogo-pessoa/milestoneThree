@@ -8,9 +8,9 @@ class UserTest(unittest.TestCase):
 
     def setUp(self):
         file = open('test/data/user.json')
-        self.user = User(json.load(file))
+        user_data = json.load(file)
         file.close()
-
+        self.user = User(user_data)
     def test_get_username(self):
         self.assertEqual('willfarnaby', self.user.get_username())
 
@@ -24,6 +24,15 @@ class UserTest(unittest.TestCase):
         favorite_books = self.user.get_favorite_books()
         self.assertIn("A book", favorite_books)
         self.assertEqual(2, len(favorite_books))
+
+    def test_is_moderator(self):
+        self.assertFalse(self.user.is_moderator())
+
+    def test_get_repr(self):
+        user_repr = self.user.get_instance()
+        self.assertEqual("willfarnaby", user_repr['username'])
+        self.assertEqual("0", user_repr['moderator'])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,9 +1,8 @@
 {
-  "id": 123,
   "username": "willfarnaby",
   "first": "will",
   "last": "farnaby",
   "password": "randomHashed Pass",
-  "moderator": "True",
+  "moderator": "0",
   "favorite_books": ["A book", "another Book"]
 }

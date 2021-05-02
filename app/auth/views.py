@@ -2,6 +2,7 @@ from flask import Blueprint, request, flash, redirect, url_for, render_template,
 from werkzeug.security import check_password_hash
 
 from app.model.user_model import UserModel
+from src.bookshelf.user import User
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
@@ -9,16 +10,15 @@ auth = Blueprint('auth', __name__, template_folder='templates')
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        existing_user = UserModel().find_user_by_name(username)
-        if existing_user:
+        user = User({"username": request.form.get("username"),
+                     "password": request.form.get("password")
+                     })
+        is_new_user = UserModel().find_user_by_name(user.get_username())
+        if is_new_user:
             flash("username already in use")
             return redirect(url_for("auth.register"))
-
         # Insert new user
-        UserModel().insert_new_user(username,
-                                    password)
+        UserModel().save(user.get_instance())
         flash("Registration Successful!")
     return render_template("register.html")
 
