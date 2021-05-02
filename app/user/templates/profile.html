@@ -1,7 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="row">
-        <h3 class="header center-align"> {{ user }}'s Profile</h3>
+<div class="row">
+    <h3 class="header center-align">{{ user }} space</h3>
+</div>
+<div class="col s12 m8 offset-m2 brown">
+    <div class="card">
+        <div class="card-content">
+            <p></p>
+        </div>
+        <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width brown darken-1">
+                <li class="tab"><a class="active white-text" href="#personal">Details</a></li>
+                <li class="tab"><a href="#favorite-books" class="white-text">Books</a></li>
+                <li class="tab"><a href="#reviews" class="white-text">Reviews</a></li>
+            </ul>
+        </div>
+        <div class="card-content brown lighten-4">
+            <div id="personal">User Information</div>
+            <div id="favorite-books">Book1</div>
+            <div id="reviews">My Reviews</div>
+        </div>
     </div>
+</div>
+
 {% endblock %}

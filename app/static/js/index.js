@@ -1,9 +1,9 @@
 $(document).ready(function () {
+    //Enable Sidebar
     $(".sidenav").sidenav({edge: "right"});
-});
+    //Enable tabs
+    $('.tabs').tabs();
 
-
-$(document).ready(function(){
     $('input.autocomplete').autocomplete({
       data: {
         "Apple": null,
@@ -11,4 +11,4 @@ $(document).ready(function(){
         "Google": 'https://placehold.it/250x250'
       },
     });
-  });
+});

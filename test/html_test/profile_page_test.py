@@ -25,7 +25,7 @@ class ProfilePage(unittest.TestCase):
         self.driver.find_element_by_link_text('Profile').click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h3"), "newuser's Profile")
+                (By.TAG_NAME, "h3"), "Newuser")
         )
 
 
