@@ -18,14 +18,14 @@ class ProfilePage(unittest.TestCase):
         self.driver.get("http://localhost:5000/login")
         # Login
         username_tested = self.driver.find_element_by_id("username")
-        username_tested.send_keys("newuser")
+        username_tested.send_keys("willfarnaby")
         password_tested = self.driver.find_element_by_id("password")
-        password_tested.send_keys("123")
+        password_tested.send_keys("12345")
         self.driver.find_element_by_tag_name('button').click()
         self.driver.find_element_by_link_text('Profile').click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h3"), "New space")
+                (By.TAG_NAME, "h3"), "willfarnaby space")
         )
 
 

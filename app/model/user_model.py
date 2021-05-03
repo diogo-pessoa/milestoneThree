@@ -1,4 +1,6 @@
 from app import mongo
+from src.bookshelf.user import User
+
 
 class UserModel(object):
 
@@ -11,21 +13,24 @@ class UserModel(object):
         try:
             user = mongo.db.users.find_one({"username": name.lower()})
             if user:
-                return user
+                returned_user = User(user)
+                return returned_user
 
         except IOError as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to get user, {errno}: {strerror}.")
 
-    def save(self, user_data):
+    def create(self, username: str, password: str):
         """
         Create New object in users collection
-        :param user_data: User info on first login only user & password
+        :param user_data: User info on first login only user & passwordw
         :return: None
         """
         try:
-
-            mongo.db.users.insert_one(user_data)
+            user_data = User({"username": username,
+                              "password": password
+                              })
+            mongo.db.users.insert_one(user_data.get_dict())
         except Exception as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to Insert user:, {errno}: {strerror}.")

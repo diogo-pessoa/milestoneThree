@@ -35,7 +35,7 @@ class UserTest(unittest.TestCase):
     def test_get_dict(self):
         user_repr = self.user.get_dict()
         self.assertEqual("willfarnaby", user_repr['username'])
-        self.assertEqual("0", user_repr['moderator'])
+        self.assertFalse(user_repr['moderator'])
 
 
 if __name__ == "__main__":

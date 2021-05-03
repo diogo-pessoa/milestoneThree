@@ -3,14 +3,14 @@
     <tr>
         <th>Book</th>
         <th>Rate</th>
-        <th>My Review Body</th>
+        <th>My comment</th>
     </tr>
     </thead>
 
     <tbody>
         {% for review in reviews %}
      <tr>
-        <td>{{ review.get_reviewer() }}</td>
+        <td>{{ review.get_book() }}</td>
         <td>{{ review.get_rate() }}</td>
         <td><td>{{ review.get_feedback() }}</td></td>
      </tr>

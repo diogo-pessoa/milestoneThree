@@ -9,15 +9,15 @@ auth = Blueprint('auth', __name__, template_folder='templates')
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        user = User({"username": request.form.get("username"),
-                     "password": request.form.get("password")
-                     })
-        is_new_user = UserModel().find_user_by_name(user.get_username())
-        if is_new_user:
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        new_user = UserModel().find_user_by_name(username)
+        if new_user:
             flash("username already in use")
             return redirect(url_for("auth.register"))
-        # Insert new user
-        UserModel().save(user.get_instance())
+
+        UserModel().create(username, password)
         flash("Registration Successful!")
     return render_template("register.html")
 
@@ -31,11 +31,10 @@ def login():
         # check if username exists
         existing_user = UserModel().find_user_by_name(form_details['username'])
         if existing_user:
-            logged_user = User(existing_user)
             # ensure hashed password matches user input
-            if logged_user.check_password(form_details["password"]):
-                session["user"] = logged_user.get_username()
-                flash("Welcome, {}".format(logged_user.get_first_name()))
+            if existing_user.check_password(form_details["password"]):
+                session["user"] = existing_user.get_username()
+                flash("Welcome, {}".format(existing_user.get_first_name()))
                 return redirect(url_for("main.index"))
             else:
                 # invalid password match
