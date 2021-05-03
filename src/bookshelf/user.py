@@ -40,7 +40,7 @@ class User:
     def check_password(self, password_given: str):
         return check_password_hash(self.password, password_given)
 
-    def get_instance(self):
+    def get_dict(self):
         return {
             "username": self.username.lower(),
             "first": self.first_name.lower(),

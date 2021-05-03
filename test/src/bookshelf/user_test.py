@@ -32,8 +32,8 @@ class UserTest(unittest.TestCase):
         given_password = "randomHashed Pass"
         self.assertTrue(self.user.check_password(given_password))
 
-    def test_get_instance(self):
-        user_repr = self.user.get_instance()
+    def test_get_dict(self):
+        user_repr = self.user.get_dict()
         self.assertEqual("willfarnaby", user_repr['username'])
         self.assertEqual("0", user_repr['moderator'])
 
