@@ -10,5 +10,4 @@ main = Blueprint('main', __name__, template_folder='templates')
 @main.route('/index')
 def index():
     books = BookModel().find_all_books()
-    reviews = ReviewModel().find_all_user_reviews("willfarnaby")
-    return render_template('index.html', books=books, reviews=reviews)
+    return render_template('index.html', books=books)
