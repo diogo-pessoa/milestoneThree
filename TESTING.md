@@ -66,8 +66,29 @@ suggests an alternative app structure to exactly to avoid this problem.
 
 
         python -m unittest discover -s test/src/bookshelf -p "*_test.py" -v
-        test_get_favorite_books (user_test.UserTest) ... ok
-        test_get_user_first_name (user_test.UserTest) ... ok
-        test_get_user_last_name (user_test.UserTest) ... ok
-        test_get_username (user_test.UserTest) ... ok
-        ----------------------------------------------------------------------
+          test_get_object_dict (review_test.ReviewTest) ... ok
+          test_check_password (user_test.UserTest) ... ok
+          test_get_dict (user_test.UserTest) ... ok
+          test_get_favorite_books (user_test.UserTest) ... ok
+          test_get_user_first_name (user_test.UserTest) ... ok
+          test_get_user_last_name (user_test.UserTest) ... ok
+          test_get_username (user_test.UserTest) ... ok
+          test_is_moderator (user_test.UserTest) ... ok
+          
+          ----------------------------------------------------------------------
+          Ran 8 tests in 0.169s
+          
+          OK
+
+
+
+- [test/html_test/profile_page_test](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/profile_page_test.py)
+  
+extended test to look for tabs on Profile Page Body 
+  - After Login Action clicks on different tabs and confirm table content was loaded from DB with test user content
+    - while running test It exposed the bugs listed:
+      - **Bugfix** for My favorite_books.html page, missing Books object
+        - Due to the refactoring on User() and model, changes were need on the page `my_favorite_books` template to properly load the book name
+        - Adding books variable to profile page view and looping through that variable on the page template
+      - **BugFix** for my_reviews.html removing extra td from comment column 
+        - Noticed content was dislocated to the right due to extra td element on template for loop

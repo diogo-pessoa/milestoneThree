@@ -3,8 +3,6 @@ Features & User Stories
 
 ## Features
 
-## Features left to implement
-
 - As a Developer I want the site to have a responsive interface with a sensible colorScheme
   - Using Materilize framework with a brown color-scheme listed
     on [UX section of README](https://github.com/diogo-pessoa/the-bookshelf#ux)
@@ -40,6 +38,20 @@ Features & User Stories
             python -m unittest discover -s test/html_test -p "*_test.py" -v
       fi
 
+- As a User I want to Check My Personal Details on my profile Page
+  - Profile Page has a Tab on `Books`, where User get a chance to review all his favorite Books and Rates left
+
+- As a User I have a profile page with my details and reviews I left.
+  - Profile Page has a Tab on `Reviews`, with a List of books listed with the rate, Book Name and comment
+
+- As a User I want to have a list with my favorite books, and I want to see that on my profile page
+  - Profile Page has a Tab on `Books`, where User get a chance to review all his favorite Books and Rates left
+
+## Features Left to Implement
+  
+- **Follow-up** from the BOOKS table I want to sort and order books
+
+- **Follow-up** Allow User to Update personal Details
 
 - As a User I want to search for books without having to create a user.
 
@@ -49,7 +61,7 @@ Features & User Stories
 
 - As a user I can Edit book details
 
-- As a Moderator I can review book information and tag is a validated
+- As a Moderator I can review book information and tag when it is validated
 
 - As a Moderator I can delete books
 
@@ -57,10 +69,6 @@ Features & User Stories
 
 - As a User I can share/recommend this book to a friend
 
-- As a User I can edit or delete My own review 
-
-- As a User I have a profile page with my details and reviews I left.
-
-- As a User I want to have a list with my favorite books, and I want to see that on my profile page
+- As a User I can edit or delete My own review
 
 -  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
