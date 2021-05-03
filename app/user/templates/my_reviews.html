@@ -8,10 +8,12 @@
     </thead>
 
     <tbody>
+        {% for review in reviews %}
      <tr>
-        <td>Book Name</td>
-        <td>Rate</td>
-        <td>My Review paragraph</td>
+        <td>{{ review.get_reviewer() }}</td>
+        <td>{{ review.get_rate() }}</td>
+        <td><td>{{ review.get_feedback() }}</td></td>
      </tr>
+        {% endfor %}
     </tbody>
 </table>
