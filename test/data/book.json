@@ -3,33 +3,36 @@
     "id": "1",
     "title": "MockBook",
     "author": "Jon Doe",
-    "coverImage": "http:/somePLace with ImageStored",
+    "cover_image": "http:/somePLace with ImageStored",
     "publisher": "O'My",
     "description": "This is a Text Area that tells all about the book in a shorter sentence",
-    "released": "2016",
+    "release_date": "2016",
     "edition": "1",
-    "moderated": "True"
+    "reviewed": "1",
+    "category": "science"
   },
   {
     "title": "MockBook2",
     "author": "Jon Doe",
-    "coverImage": "http:/somePLace with ImageStored",
+    "cover_image": "http:/somePLace with ImageStored",
     "publisher": "O'My",
     "description": "This is a Text Area that tells all about the book in a shorter sentence",
     "id": "1",
-    "moderated": "Boolean value to tell if moderator reviewed the book",
+    "reviewed": "0",
     "edition": "2",
-    "released": "2016"
+    "release_date": "2016",
+    "category": "religion"
   },
   {
     "title": "MockBook3",
     "author": "Jon Doe",
-    "coverImage": "http:/somePLace with ImageStored",
+    "cover_image": "http:/somePLace with ImageStored",
     "publisher": "O'My",
     "description": "This is a Text Area that tells all about the book in a shorter sentence",
     "id": "3",
-    "moderated": "Boolean value to tell if moderator reviewed the book",
+    "reviewed": "1",
     "edition": "1",
-    "released": "2016"
+    "release_date": "2016",
+    "category": "self-help"
   }
 ]
