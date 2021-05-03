@@ -23,11 +23,21 @@ class ProfilePage(unittest.TestCase):
         password_tested.send_keys("12345")
         self.driver.find_element_by_tag_name('button').click()
         self.driver.find_element_by_link_text('Profile').click()
+        # Assert Details Page
+
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h3"), "willfarnaby space")
+                (By.TAG_NAME, "h3"), "willfarnaby space"),
+            expected_conditions.text_to_be_present_in_element(
+                (By.ID, "username"), "willfarnaby")
         )
 
+        self.driver.find_element_by_link_text('BOOKS').click()
+        # Assert BOOKS Page
+        WebDriverWait(self.driver, 3).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.TAG_NAME, "td"), "Island")
+        )
 
-if __name__ == "__main__":
-    unittest.main()
+    if __name__ == "__main__":
+        unittest.main()

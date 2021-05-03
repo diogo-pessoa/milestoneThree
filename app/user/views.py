@@ -10,4 +10,5 @@ user = Blueprint('user', __name__, template_folder='templates')
 def profile(user):
     logged_user = UserModel().find_user_by_name(user)
     reviews = ReviewModel().find_all_user_reviews(logged_user.get_username())
-    return render_template("profile.html", user=logged_user, reviews=reviews)
+    books = logged_user.get_favorite_books()
+    return render_template("profile.html", user=logged_user, reviews=reviews, books=books)
