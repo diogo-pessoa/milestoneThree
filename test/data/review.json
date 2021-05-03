@@ -1,7 +1,16 @@
-{
-  "id": "random Id",
-  "feedback": "User liked the book so much he stopped to add some comments",
-  "user": " user name or id that left Comment",
-  "book": "book Title or id being reviewed",
-  "rate": "number to decide rate"
-}
+[
+  {
+    "id": "1",
+    "feedback": "User liked the book so much he stopped to add some comments",
+    "reviewer": "willfarnaby",
+    "book": "Book1",
+    "rate": "4"
+  },
+  {
+    "id": "2",
+    "feedback": "User liked the book so much he stopped to add some comments",
+    "reviewer": "willfarnaby",
+    "book": "Book2",
+    "rate": "3"
+  }
+]
