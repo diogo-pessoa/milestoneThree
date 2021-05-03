@@ -8,13 +8,12 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">search</i>
                     <input type="text" id="search-bar" name="search-bar" class="autocomplete">
-                    <label for="search-bar">Autocomplete</label>
+                    <label for="search-bar">Search for book</label>
                 </div>
             </div>
         </div>
     </div>  
     <div class="col s12 m7">
-        <h2 class="header">Hello, {{user}}</h2>
         <h3 class="header center-align">Books</h3>
         <div class="card horizontal">
             <div class="card-stacked">
@@ -22,10 +21,10 @@
                     <p>
                         {% for book in books %}
                         <hr>
-                            <span>Book tile:</span> {{ book.title }}<br>
-                            <span>Book author:</span> {{ book.author }}<br>
-                            <span>Book publisher:</span>{{ book.publisher }}<br>
-                            <span>Book publisher:</span>{{ book.released }}<br>
+                            <span>Tile:</span> {{ book.get_title() }}<br>
+                            <span>Author:</span> {{ book.get_author() }}<br>
+                            <span>Publisher:</span> {{ book.get_publisher() }}<br>
+                            <span>Released:</span> {{ book.get_released_date() }}<br>
                         {% endfor %}
                     </p>
                 </div>
@@ -39,10 +38,10 @@
             <div class="card-content">
                   {% for review in reviews %}
                         <hr>
-                            <span>Book titile:</span> {{ review.user }}<br>
-                            <p><span>Book author:</span> {{ review.feedback }}</p>
-                            <span>Book publisher:</span>{{ review.rate }}<br>
-                            <span>Book publisher:</span>{{ review.book }}<br>
+                            <span>Reviewer:</span> {{ review.get_reviewer() }}<br>
+                            <span>User Comment:</span><p> {{ review.get_feedback() }}</p>
+                            <span>Book rate:</span> {{ review.get_rate() }}<br>
+                            <span>Book Title:</span> {{ review.get_book() }}<br>
                         {% endfor %}
             </div>
         </div>

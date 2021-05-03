@@ -48,10 +48,6 @@ Features & User Stories
   - Profile Page has a Tab on `Books`, where User get a chance to review all his favorite Books and Rates left
 
 ## Features Left to Implement
-  
-- **Follow-up** from the BOOKS table I want to sort and order books
-
-- **Follow-up** Allow User to Update personal Details
 
 - As a User I want to search for books without having to create a user.
 
@@ -72,3 +68,7 @@ Features & User Stories
 - As a User I can edit or delete My own review
 
 -  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
+
+- **Follow-up** from the BOOKS table I want to sort and order books
+
+- **Follow-up** Allow User to Update personal Details

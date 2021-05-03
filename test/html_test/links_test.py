@@ -19,7 +19,7 @@ class NavBarLinks(unittest.TestCase):
         self.driver.find_element_by_link_text("Bookshelf").click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h2"), "Hello,")
+                (By.TAG_NAME, "h3"), "Books")
         )
 
     def test_register_on_navbar(self):

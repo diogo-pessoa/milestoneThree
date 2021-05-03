@@ -117,6 +117,7 @@ I have linked the github repository to The heroku and enabled automatic deploys.
 
 - [python3](https://www.python.org/downloads/) 
 - [pip](https://pip.pypa.io/en/stable/installing/) 
+- IDE [PyCharm](https://www.jetbrains.com/pycharm/)
 
 Required to run the local development environment.
 
