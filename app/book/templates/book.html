@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col s12 m4 l3">
+        <div class="card brown lighten-5">
+            <div class="card-image">
+                <img src="{{ book.get_cover_image()}}">
+                <span class="card-title">Book Cover</span>
+            </div>
+            <ul class="collection">
+                <li class="collection-item brown lighten-4">Rate *****</li>
+                <li class="collection-item brown lighten-4">Author: {{ book.get_author() }}</li>
+                <li class="collection-item brown lighten-4">Publisher: {{ book.get_publisher() }}</li>
+                <li class="collection-item brown lighten-4">Release Date: {{ book.get_release_date() }}</li>
+                <li class="collection-item brown lighten-4">Edition: {{ book.get_edition() }}</li>
+                <li class="collection-item brown lighten-4">Verified: {{ book.get_reviewed() }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+
+        <div class="card brown darken-1">
+            <h3 class="header center white-text">{{ book.get_title() }}</h3>
+            <div class="card-content brown lighten-4">
+                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">send</i>share</a>
+                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">rate_review</i>Review this book</a>
+                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">local_library</i>find_in_store</a>
+                <h5>About This Book</h5>
+                <p>{{ book.get_description() }}</p>
+            </div>
+        </div>
+        <div class="card brown darken-1">
+            <h2 class="header center white-text">Placeholder for reviews</h2>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
