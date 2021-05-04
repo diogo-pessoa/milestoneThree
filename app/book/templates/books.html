@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'search_bar.html' %}
+<div class="row">
+    <div class="col s12">
+        <h3 class="center"> Books</h3>
+        <ul class="collection">
+            {% for book in books %}
+            <li class="collection-item avatar brown lighten-5">
+                <i class="material-icons circle">folder</i>
+                <span class="title">{{ book.get_title() }}</span>
+                <p>By {{ book.get_author() }} <br>
+                    Published from {{ book.get_publisher() }} <br>
+                    <span>Edition:</span> {{ book.get_edition() }}<br>
+                </p>
+                <a href="#" class="secondary-content"><i class="material-icons">local_library</i>
+                    <p>Go to Book</p></a>
+            </li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+{% endblock %}

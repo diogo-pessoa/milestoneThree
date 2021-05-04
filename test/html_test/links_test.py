@@ -36,6 +36,13 @@ class NavBarLinks(unittest.TestCase):
                 (By.TAG_NAME, "h3"), "Login")
         )
 
+    def test_books_link_on_navbar(self):
+        self.driver.find_element_by_link_text("Books").click()
+        WebDriverWait(self.driver, 3).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.TAG_NAME, "h3"), "Books")
+        )
+
     def test_go_to_register_from_login(self):
         self.driver.find_element_by_link_text("Login").click()
         self.driver.find_element_by_link_text("Register now").click()
