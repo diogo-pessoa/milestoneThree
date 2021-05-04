@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template
 
 from app.model.book_model import BookModel
-from app.model.review_model import ReviewModel
 
 main = Blueprint('main', __name__, template_folder='templates')
 
