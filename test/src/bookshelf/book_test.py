@@ -16,7 +16,7 @@ class ReviewTest(unittest.TestCase):
 
     def test_get_object_dict(self):
         book = self.books[0].get_dict()
-        self.assertEqual("Mock Book", book['title'])
+        self.assertEqual("Mock book", book['title'])
         self.assertEqual("Jon Doe", book['author'])
         self.assertTrue(book['reviewed'])
 

@@ -13,7 +13,8 @@ class Book:
             self.__description = book.get("description")
 
     def get_title(self):
-        return self.__title
+        title = self.__title
+        return title.capitalize()
 
     def get_title_for_url(self):
         title = self.__title.replace(" ", "")
@@ -25,7 +26,7 @@ class Book:
     def get_publisher(self):
         return self.__publisher
 
-    def get_released_date(self):
+    def get_release_date(self):
         return self.__release_date
 
     def get_reviewed(self):
@@ -50,7 +51,7 @@ class Book:
             "title": self.get_title(),
             "author": self.get_author(),
             "publisher": self.get_publisher(),
-            "released_date": self.get_released_date(),
+            "released_date": self.get_release_date(),
             "reviewed": self.get_reviewed(),
             "edition": self.get_edition(),
             "category": self.get_category(),
