@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "title": "MockBook",
+    "title": "Mock Book",
     "author": "Jon Doe",
     "cover_image": "http:/somePLace with ImageStored",
     "publisher": "O'My",
@@ -24,7 +24,7 @@
     "category": "religion"
   },
   {
-    "title": "MockBook3",
+    "title": " MockBook3",
     "author": "Jon Doe",
     "cover_image": "http:/somePLace with ImageStored",
     "publisher": "O'My",

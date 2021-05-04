@@ -14,7 +14,7 @@
                     Published from {{ book.get_publisher() }} <br>
                     <span>Edition:</span> {{ book.get_edition() }}<br>
                 </p>
-                <a href="#" class="secondary-content"><i class="material-icons">local_library</i>
+                <a href="{{url_for( 'book.book_page', book_name=book.get_title_for_url()) }}" class="secondary-content"><i class="material-icons">local_library</i>
                     <p>Go to Book</p></a>
             </li>
 

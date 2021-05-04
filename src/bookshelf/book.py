@@ -15,6 +15,10 @@ class Book:
     def get_title(self):
         return self.__title
 
+    def get_title_for_url(self):
+        title = self.__title.replace(" ", "")
+        return title.lower()
+
     def get_author(self):
         return self.__author
 

@@ -16,7 +16,7 @@ class ReviewTest(unittest.TestCase):
 
     def test_get_object_dict(self):
         book = self.books[0].get_dict()
-        self.assertEqual("MockBook", book['title'])
+        self.assertEqual("Mock Book", book['title'])
         self.assertEqual("Jon Doe", book['author'])
         self.assertTrue(book['reviewed'])
 
@@ -24,6 +24,11 @@ class ReviewTest(unittest.TestCase):
         book = self.books[1].get_dict()
         self.assertFalse(book['reviewed'])
 
+    def test_get_title_for_url(self):
+        book1 = self.books[0].get_title_for_url()
+        book3 = self.books[2].get_title_for_url()
+        self.assertEqual("mockbook", book1)
+        self.assertEqual("mockbook3", book3)
 
 if __name__ == "__main__":
     unittest.main()
