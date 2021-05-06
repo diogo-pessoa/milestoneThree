@@ -8,13 +8,13 @@ class Review:
             self.__rate = review.get('rate')
 
     def get_rate(self):
-        return self.__rate
+        return int(self.__rate)
 
     def get_book(self):
         return self.__book
 
     def get_reviewer(self):
-        return self.__reviewer
+        return self.__reviewer.capitalize()
 
     def get_feedback(self):
         return self.__feedback

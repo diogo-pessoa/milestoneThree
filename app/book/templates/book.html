@@ -3,38 +3,66 @@
 {% block content %}
 <div class="row">
 
-    <div class="col s12 m4 l3">
+    <div class="col s12 m4 l2">
         <div class="card brown lighten-5">
             <div class="card-image">
-                <img src="{{ book.get_cover_image()}}">
-                <span class="card-title">Book Cover</span>
+                {% if book.get_cover_image() %}
+                    <img  class="responsive-img" src="{{ book.get_cover_image()}}">
+                {% else %}
+
+                    <img class="responsive-img" src="{{ url_for('static', filename='/images/book_cover.png')  }}">
+                {% endif %}
             </div>
             <ul class="collection">
-                <li class="collection-item brown lighten-4">Rate *****</li>
-                <li class="collection-item brown lighten-4">Author: {{ book.get_author() }}</li>
-                <li class="collection-item brown lighten-4">Publisher: {{ book.get_publisher() }}</li>
-                <li class="collection-item brown lighten-4">Release Date: {{ book.get_release_date() }}</li>
-                <li class="collection-item brown lighten-4">Edition: {{ book.get_edition() }}</li>
-                <li class="collection-item brown lighten-4">Verified: {{ book.get_reviewed() }}</li>
+                <li class="collection-item brown lighten-4">
+                    <span class="flow-text">Rate:</span>
+                    {% if book_rate == 0 %}
+                    <span>No rates yet</span>
+                    {% else %}
+                    {% for star in range(0, book_rate) %}
+                    <i class="material-icons">star</i>
+                    {% endfor %}
+                    {% if not review %}
+                    {%endif%}
+                    {%endif%}
+                </li>
+                <li class="collection-item brown lighten-4"><span class="flow-text">Author:</span> {{ book.get_author()
+                    }}
+                </li>
+                <li class="collection-item brown lighten-4"><span class="flow-text">Publisher:</span> {{
+                    book.get_publisher() }}
+                </li>
+                <li class="collection-item brown lighten-4"><span class="flow-text">Release Date:</span> {{
+                    book.get_release_date() }}
+                </li>
+                <li class="collection-item brown lighten-4"><span class="flow-text">Edition:</span> {{
+                    book.get_edition() }}
+                </li>
+                <li class="collection-item brown lighten-4"><span class="flow-text">Content moderated:</span>
+                    {% if book.get_reviewed() %}
+                    <i class="material-icons green-text">check_box</i>
+                    {% else %}
+                     <i class="material-icons red-text">report</i>
+                    {% endif %}
             </ul>
         </div>
     </div>
 
-    <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
-
+    <div class="col s12 m8 l10">
         <div class="card brown darken-1">
             <h3 class="header center white-text">{{ book.get_title() }}</h3>
             <div class="card-content brown lighten-4">
                 <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">send</i>share</a>
-                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">rate_review</i>Review this book</a>
-                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">local_library</i>Find in Store</a>
+                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">rate_review</i>Review
+                    this book</a>
+                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">local_library</i>Find
+                    in Store</a>
                 <h5>About This Book</h5>
                 <p>{{ book.get_description() }}</p>
             </div>
         </div>
         <div class="card brown darken-1">
-            <h2 class="header center white-text">Placeholder for reviews</h2>
-
+            {% include 'reviews_section.html' %}
         </div>
     </div>
 </div>
