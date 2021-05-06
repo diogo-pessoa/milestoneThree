@@ -18,8 +18,8 @@ class LoginPage(unittest.TestCase):
 
     def test_login_page(self):
         # Assert Login heading matches
-        logo_text = self.driver.find_element_by_tag_name('h3').text
-        self.assertEqual("Login", logo_text)
+        login_heading = self.driver.find_element_by_tag_name('h3').text
+        self.assertEqual("Login", login_heading)
         # Interact with the form
         username = self.driver.find_element_by_id("username")
         username.send_keys("NewUser")
