@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-class LoginPage(unittest.TestCase):
+class BooksPage(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()

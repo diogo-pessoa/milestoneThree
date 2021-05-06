@@ -51,5 +51,13 @@ class LoginPage(unittest.TestCase):
         # checks if Element Login is once again added to Navbar after logout
         self.assertEqual(login.text, "Login")
 
+    def test_go_to_register_from_login(self):
+        self.driver.find_element_by_link_text("Login").click()
+        self.driver.find_element_by_link_text("Register now").click()
+        WebDriverWait(self.driver, 3).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.TAG_NAME, "h3"), "Register")
+        )
+
         if __name__ == "__main__":
             unittest.main()

@@ -3,7 +3,7 @@ import unittest
 from selenium import webdriver
 
 
-class LoginPage(unittest.TestCase):
+class BookPage(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()

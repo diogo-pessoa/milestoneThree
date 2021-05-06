@@ -3,15 +3,40 @@ Tests
 
 ## Technologies used:
 
-## Selenium 
-With the local Application Running
 
+### database for Test
+
+All Integration tests(selenium Tests), were written based on collections on [/dump](https://github.com/diogo-pessoa/the-bookshelf/blob/master/dump) folder. If you are running this for the first time, Install mongo `database-tools` [installation_doc](https://docs.mongodb.com/database-tools/installation/installation/) 
+
+and run a mongo restore as described below. 
+
+
+
+```
+ creates a new database or adds data to an existing database. By default, mongorestore reads the database dump in the dump/ sub-directory 
+ of the current directory; to restore from a different directory, pass in the path to the directory as a final argument.
+```
+
+
+    mongorestore --uri mongodb+srv://milestoneUser:<PASSWORD>@cluster0.09hrz.mongodb.net 
+     
+
+### Selenium tests 
+
+With the local Application Running and [.flaskenv](https://github.com/diogo-pessoa/the-bookshelf/blob/master/flaskenv.sample) setting the proper credentials see [local Development](https://github.com/diogo-pessoa/the-bookshelf/blob/master/TESTING.md##local-development) to setup flask locally 
+    
+    
     flask run
-    python -m unittest discover -s test/html_test -p "*_test.py" -v
+    # to test each view individually
+    python -m unittest discover -s test/html_test/main -p "*_test.py" -v 
+    python -m unittest discover -s test/html_test/auth_view -p "*_test.py" -v 
+    python -m unittest discover -s test/html_test/book_view -p "*_test.py" -v 
+    python -m unittest discover -s test/html_test/user_view -p "*_test.py" -v 
+
 
 ## UnitTest
 
-    python -m unittest discover -s test/ -p "*_test.py" -v
+    python -m unittest discover -s test/src/bookshelf -p "*_test.py" -v
 
 
 ## Tests

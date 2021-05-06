@@ -1,0 +1,8 @@
+FLASK_APP=thebookshelf.py
+FLASK_ENV=development
+DEBUG=True
+FLASK_RUN_HOST=0.0.0.0
+FLASK_RUN_PORT=5000
+SECRET_KEY=<Add your Key>
+MONGO_URI=mongodb+srv://<User>:<password>><mongoInstance>/<DATABASE_NAME>?retryWrites=true&w=majority
+MONGOALCHEMY_DATABASE=<DATABASE_NAME>

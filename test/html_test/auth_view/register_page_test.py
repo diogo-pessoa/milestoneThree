@@ -10,27 +10,34 @@ class RegisterPage(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
+        self.driver.get("http://localhost:5000/register")
+
+    def tearDown(self):
+        self.driver.close()
 
     def test_register_page(self):
-        driver = self.driver
-        driver.get("http://localhost:5000/register")
-
         # Assert Register heading matches
-        logo_text = driver.find_element_by_tag_name('h3').text
+        logo_text = self.driver.find_element_by_tag_name('h3').text
         self.assertEqual("Register", logo_text)
 
         # Interact with the Register form
-        username = driver.find_element_by_id("username")
+        username = self.driver.find_element_by_id("username")
         username.send_keys("NewUser")
-        password = driver.find_element_by_id("password")
+        password = self.driver.find_element_by_id("password")
         password.send_keys("123")
-        driver.find_element_by_tag_name('button').click()
-        WebDriverWait(driver, 3).until(
+        self.driver.find_element_by_tag_name('button').click()
+        WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
                 (By.TAG_NAME, "h4"), "username already in use")
         )
-        driver.close()
 
+    def test_go_to_login_from_register(self):
+        self.driver.find_element_by_link_text("Sign-up").click()
+        self.driver.find_element_by_link_text("Log In").click()
+        WebDriverWait(self.driver, 3).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.TAG_NAME, "h3"), "Login")
+        )
 
 if __name__ == "__main__":
     unittest.main()
