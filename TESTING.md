@@ -92,3 +92,8 @@ extended test to look for tabs on Profile Page Body
         - Adding books variable to profile page view and looping through that variable on the page template
       - **BugFix** for my_reviews.html removing extra td from comment column 
         - Noticed content was dislocated to the right due to extra td element on template for loop
+
+- **Bug**
+  At Profile Page if user has not left a review yet footer was going ove table.
+  - Fix added a div `row` to wrap include My_review.html template now even when table is empty space is in page is preserved
+  - Test Login, navigate to profile, click on tab Reviews. 

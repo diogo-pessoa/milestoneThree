@@ -72,3 +72,5 @@ Features & User Stories
 - **Follow-up** from the BOOKS table I want to sort and order books
 
 - **Follow-up** Allow User to Update personal Details
+
+- As a user I want to update my password 

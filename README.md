@@ -164,6 +164,10 @@ Once you have your local environment setup follow the steps on the Testing docum
 
 ### Content 
 
+#### Images:
+
+[default_book_cover_image](https://pixabay.com/vectors/book-cover-education-layout-page-307045/) from [pixabay](https://pixabay.com/) 
+
 ### Acknowledgements
 
 Ideas in app structure and data management inspired by the miguel Grinberg's [flask mega-tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
