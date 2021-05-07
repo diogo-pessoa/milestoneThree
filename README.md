@@ -172,3 +172,4 @@ Once you have your local environment setup follow the steps on the Testing docum
 
 Ideas in app structure and data management inspired by the miguel Grinberg's [flask mega-tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
+- [login_required decorator](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)

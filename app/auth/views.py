@@ -1,7 +1,8 @@
+from functools import wraps
+
 from flask import Blueprint, request, flash, redirect, url_for, render_template, session
 
 from app.model.user_model import UserModel
-from src.bookshelf.user import User
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
@@ -11,6 +12,7 @@ def register():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+        # TODO validate password
 
         new_user = UserModel().find_user_by_name(username)
         if new_user:
@@ -53,3 +55,14 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("main.index"))
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        print(session)
+        if not session:
+            return redirect(url_for('auth.login'))
+        return f(*args, **kwargs)
+
+    return decorated_function

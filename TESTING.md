@@ -121,4 +121,10 @@ extended test to look for tabs on Profile Page Body
 - **Bug**
   At Profile Page if user has not left a review yet footer was going ove table.
   - Fix added a div `row` to wrap include My_review.html template now even when table is empty space is in page is preserved
-  - Test Login, navigate to profile, click on tab Reviews. 
+  - Test Login, navigate to profile, click on tab Reviews.
+  
+- **Bug** If a user tried know the profile path `/profile/user` he can see anybody's profile page. 
+  - **Fix** Created new flask decorator that checks if session cookie exists `login_required` If user does not have a session he is redirected to the login page
+  - **Test** try to reach endpoint `http://0.0.0.0:5000/profile/willfarnaby` straight though url, with decorator request is redirected to login page. 
+  
+- **Bug** `Sign-up` page does not ask user to repeat password. 
