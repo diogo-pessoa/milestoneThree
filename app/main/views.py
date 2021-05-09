@@ -8,5 +8,5 @@ main = Blueprint('main', __name__, template_folder='templates')
 @main.route('/')
 @main.route('/index')
 def index():
-    books = BookModel().find_all_books()
+    books = BookModel().find_all()
     return render_template('index.html', books=books)

@@ -60,8 +60,8 @@ def logout():
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        print(session)
         if not session:
+            flash("Login to execute this operation")
             return redirect(url_for('auth.login'))
         return f(*args, **kwargs)
 

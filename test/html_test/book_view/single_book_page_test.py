@@ -20,9 +20,12 @@ class BookPage(unittest.TestCase):
         self.assertEqual("Book1", book_title)
 
     def test_book_page_buttons(self):
-        self.driver.find_element_by_link_text('send\nSHARE').text
-        self.driver.find_element_by_link_text('local_library\nFIND IN STORE').text
-        self.driver.find_element_by_link_text('rate_review\nREVIEW THIS BOOK').text
+        share_button = self.driver.find_element_by_link_text('send\nSHARE').text
+        self.assertIsNotNone(share_button)
+        find_store_button = self.driver.find_element_by_link_text('local_library\nFIND IN STORE').text
+        self.assertIsNotNone(find_store_button)
+        review_button = self.driver.find_element_by_link_text('rate_review\nREVIEW THIS BOOK').text
+        self.assertIsNotNone(review_button)
 
 
 if __name__ == "__main__":

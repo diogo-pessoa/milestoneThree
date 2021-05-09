@@ -61,5 +61,13 @@ class LoginPage(unittest.TestCase):
                 (By.TAG_NAME, "h3"), "Register")
         )
 
-        if __name__ == "__main__":
-            unittest.main()
+    def test_profile_without_login_session_redirects_to_login(self):
+        self.driver.get("http://localhost:5000/profile/newuser")
+        WebDriverWait(self.driver, 3).until(
+            expected_conditions.text_to_be_present_in_element(
+                (By.TAG_NAME, "h4"), "Login to execute this operation"),
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()
