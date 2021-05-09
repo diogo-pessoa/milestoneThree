@@ -1,10 +1,12 @@
+from bson import ObjectId
+
 from app import mongo
 from src.bookshelf.book import Book
 
 
 class BookModel(object):
 
-    def find_all_books(self):
+    def find_all(self):
         """
         Returns a list with all Books from Books collections
         :return: list of Book objects from DB
@@ -20,7 +22,7 @@ class BookModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed to get user, {errno}: {strerror}.")
 
-    def find_book_by_title(self, book_name: str):
+    def find_by_title(self, book_name: str):
         """
         Find book by title
         :param book_name: single book_name
@@ -35,11 +37,11 @@ class BookModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed to get user, {errno}: {strerror}.")
 
-    def search_for_book(self, query):
+    def search(self, query):
         """
             Queries Mongo Collection search Index for Book Title or Author
         :param query:
-        :return: List of Book Objects matchint query search or None
+        :return: List of Book Objects matching query search or None
         """
         query_results = []
         try:
@@ -48,6 +50,21 @@ class BookModel(object):
                 for book in search_books_query:
                     query_results.append(Book(book))
                 return query_results
+        except IOError as e:
+            errno, strerror = e.args
+            print(f"ERROR - Failed to get user, {errno}: {strerror}.")
+
+    def find_by_id(self, book_id):
+        """
+            Queries Mongo Collection search Index for Book Title or Author
+        :param book_id:
+        :return:  Book Object
+        """
+        try:
+            book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+            print(book)
+            if book:
+                return Book(book)
         except IOError as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to get user, {errno}: {strerror}.")

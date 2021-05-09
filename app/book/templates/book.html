@@ -7,10 +7,10 @@
         <div class="card brown lighten-5">
             <div class="card-image">
                 {% if book.get_cover_image() %}
-                    <img  class="responsive-img" src="{{ book.get_cover_image()}}">
+                <img class="responsive-img" src="{{ book.get_cover_image()}}">
                 {% else %}
 
-                    <img class="responsive-img" src="{{ url_for('static', filename='/images/book_cover.png')  }}">
+                <img class="responsive-img" src="{{ url_for('static', filename='/images/book_cover.png')  }}">
                 {% endif %}
             </div>
             <ul class="collection">
@@ -22,8 +22,6 @@
                     {% for star in range(0, book_rate) %}
                     <i class="material-icons">star</i>
                     {% endfor %}
-                    {% if not review %}
-                    {%endif%}
                     {%endif%}
                 </li>
                 <li class="collection-item brown lighten-4"><span class="flow-text">Author:</span> {{ book.get_author()
@@ -42,7 +40,7 @@
                     {% if book.get_reviewed() %}
                     <i class="material-icons green-text">check_box</i>
                     {% else %}
-                     <i class="material-icons red-text">report</i>
+                    <i class="material-icons red-text">report</i>
                     {% endif %}
             </ul>
         </div>
@@ -52,11 +50,19 @@
         <div class="card brown darken-1">
             <h3 class="header center white-text">{{ book.get_title() }}</h3>
             <div class="card-content brown lighten-4">
-                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">send</i>share</a>
-                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">rate_review</i>Review
-                    this book</a>
-                <a class="waves-effect waves-light btn-small brown"><i class="material-icons left">local_library</i>Find
+                <!-- Dropdown Structure -->
+                <ul id="dropdown1" class="dropdown-content brown lighten-4" >
+                    <li><a href="#!" class="black-text"><i class="material-icons">rate_review</i>Leave a Review</a></li><h3>{{book.get_id()}}</h3>
+                    <li><a href="{{ url_for( 'book.edit', book_id=book.get_id() ) }}" class="black-text"><i class="material-icons">edit</i>Edit</a></li>
+                </ul>
+                <a class="waves-effect waves-light btn-small brown white-text"><i class="material-icons left">local_library</i>Find
                     in Store</a>
+                <a class="waves-effect waves-light btn-small brown white-text"><i class="material-icons left">send</i>share</a>
+                {% if session.user %}
+                    <a class="dropdown-trigger waves-effect waves-light btn-small brown white-text" data-target="dropdown1">Actions<i class="material-icons right">arrow_drop_down</i></a>
+                {% endif %}
+
+
                 <h5>About This Book</h5>
                 <p>{{ book.get_description() }}</p>
             </div>

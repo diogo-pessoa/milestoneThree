@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col s12 m4 l2">
+        <div class="card brown lighten-5">
+            <form class="col s12" method="POST" action="{{ url_for('book.edit', book_id=book.get_id()) }}">
+                <div class="card-image">
+                    {% if book.get_cover_image() %}
+                    <img class="responsive-img" src="{{ book.get_cover_image()}}">
+                    {% else %}
+                    <img class="responsive-img" src="{{ url_for('static', filename='/images/book_cover.png')  }}">
+                    {% endif %}
+                </div>
+                <ul class="collection">
+                    <li class="collection-item brown lighten-4"><span class="flow-text">Author:</span> {{
+                        book.get_author()
+                        }}
+                    </li>
+                    <li class="collection-item brown lighten-4"><span class="flow-text">Publisher:</span> {{
+                        book.get_publisher() }}
+                    </li>
+                    <li class="collection-item brown lighten-4"><span class="flow-text">Release Date:</span> {{
+                        book.get_release_date() }}
+                    </li>
+                    <li class="collection-item brown lighten-4"><span class="flow-text">Edition:</span> {{
+                        book.get_edition() }}
+                    </li>
+                    <li class="collection-item brown lighten-4"><span class="flow-text">Content moderated:</span>
+                        {% if book.get_reviewed() %}
+                        <i class="material-icons green-text">check_box</i>
+                        {% else %}
+                        <i class="material-icons red-text">report</i>
+                        {% endif %}
+                </ul>
+        </div>
+    </div>
+
+    <div class="col s12 m8 l10">
+        <div class="card brown darken-1">
+            <h3 class="header center white-text">{{ book.get_title() }}</h3>
+            <div class="card-content brown lighten-4">
+
+                <h5>About This Book</h5>
+                <p>{{ book.get_description() }}</p>
+            </div>
+        </div>
+    </div>
+    </form>
+
+</div>
+</div>
+
+</div>
+
+{% endblock %}
