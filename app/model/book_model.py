@@ -34,3 +34,20 @@ class BookModel(object):
         except IOError as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to get user, {errno}: {strerror}.")
+
+    def search_for_book(self, query):
+        """
+            Queries Mongo Collection search Index for Book Title or Author
+        :param query:
+        :return: List of Book Objects matchint query search or None
+        """
+        query_results = []
+        try:
+            search_books_query = mongo.db.books.find({"$text": {"$search": query}})
+            if search_books_query:
+                for book in search_books_query:
+                    query_results.append(Book(book))
+                return query_results
+        except IOError as e:
+            errno, strerror = e.args
+            print(f"ERROR - Failed to get user, {errno}: {strerror}.")

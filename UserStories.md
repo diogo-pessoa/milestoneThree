@@ -46,12 +46,34 @@ Features & User Stories
 
 - As a User I want to have a list with my favorite books, and I want to see that on my profile page
   - Profile Page has a Tab on `Books`, where User get a chance to review all his favorite Books and Rates left
+  
+- As a User I want to search for books without having to create a user.
+  - Books Page link is available on NavBar view does not validate if user is logged in. Any anonymous access can visit the page and query for books.
+  
+- As a user I can search for books
+  - Included Search_bar on top of Books page. 
+    - Added new route [/search](https://github.com/diogo-pessoa/the-bookshelf/blob/master/app/book/views.py)
+    - new Method on [BookModel](https://github.com/diogo-pessoa/the-bookshelf/blob/master/app/model/book_model.py) to query books collection index, based on user input
+    - Added include [search_bar.html](https://github.com/diogo-pessoa/the-bookshelf/blob/master/app/book/templates/search_bar.html) on Books.html template 
+  - Creating collection index:
+    inside the project root directory, start a session on the Python REPL  and run the command list below.
+      note: "when running this the MONGO_URI has to be available to pymongo"
+
+     from app import mongo
+     mongo.db.books.create_index([("title", "text"), ("author", "text")])
+ 
+
+  - **Test** [search_bar_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/search_bar_test.py)
+    `all test are passing`
+    - test_search_bar_text_content - validate the search_bar field content is visible and matches expected value
+    - test_book_page_buttons - validate the search_bar field content is visible and matches expected value
+    - test_search_for_book_1 - Runs functional test on search looking for 'Book1' - expects book to show on page main list
+    - test_search_no_matching_result - Runs functional test on search looking for 'Book1' - expects heading 4 with message alerting for no matches
+    - test_search_by_author - Runs functional test on search looking for author "Jon Doe" - expects list  of books on page body
+  
+  - Implementation is based on the MiniProject(flask) search lesson: [Search Within The Database](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+DCP101+2017_T3/courseware/9e2f12f5584e48acb3c29e9b0d7cc4fe/0d4e3419132440d9b2c0943f80dc54a8/)
 
 ## Features Left to Implement
-
-- As a User I want to search for books without having to create a user.
-
-- As a user I can search for books
 
 - As a user I can Add new books
 
@@ -74,3 +96,5 @@ Features & User Stories
 - **Follow-up** Allow User to Update personal Details
 
 - As a user I want to update my password 
+
+- As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, allowing the to navigate back to the page 
