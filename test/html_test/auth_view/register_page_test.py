@@ -9,7 +9,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 class RegisterPage(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        options = webdriver.FirefoxOptions()
+        options.add_argument('-headless')
+        self.driver = webdriver.Firefox(options=options)
         self.driver.get("http://localhost:5000/register")
 
     def tearDown(self):

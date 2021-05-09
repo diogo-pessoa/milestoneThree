@@ -9,7 +9,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 class ProfilePage(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        options = webdriver.FirefoxOptions()
+        options.add_argument('-headless')
+        self.driver = webdriver.Firefox(options=options)
 
     def tearDown(self) -> None:
         self.driver.close()

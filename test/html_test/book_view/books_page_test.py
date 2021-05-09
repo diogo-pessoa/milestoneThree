@@ -1,4 +1,3 @@
-
 import unittest
 
 from selenium import webdriver
@@ -10,7 +9,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 class BooksPage(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        options = webdriver.FirefoxOptions()
+        options.add_argument('-headless')
+        self.driver = webdriver.Firefox(options=options)
         # Loads Login Page
         self.driver.get("http://localhost:5000/book")
 
