@@ -18,10 +18,10 @@ class ReviewTest(unittest.TestCase):
 
     def test_get_object_dict(self):
         review = self.review[0].get_dict()
-        self.assertEqual("willfarnaby", review['reviewer'])
+        self.assertEqual("Willfarnaby", review['reviewer'])
         self.assertEqual("Book1", review['book'])
         self.assertEqual("Book1", review['book'])
-        self.assertEqual("4", review['rate'])
+        self.assertEqual(4, review['rate'])
 
 if __name__ == "__main__":
     unittest.main()

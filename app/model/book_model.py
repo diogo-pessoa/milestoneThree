@@ -20,7 +20,7 @@ class BookModel(object):
 
         except IOError as e:
             errno, strerror = e.args
-            print(f"ERROR - Failed to get user, {errno}: {strerror}.")
+            print(f"ERROR - Failed get all books from DB, {errno}: {strerror}.")
 
     def find_by_title(self, book_name: str):
         """
@@ -35,7 +35,7 @@ class BookModel(object):
                 return Book(single_book)
         except IOError as e:
             errno, strerror = e.args
-            print(f"ERROR - Failed to get user, {errno}: {strerror}.")
+            print(f"ERROR - Failed to find book by title, {errno}: {strerror}.")
 
     def search(self, query):
         """
@@ -52,7 +52,7 @@ class BookModel(object):
                 return query_results
         except IOError as e:
             errno, strerror = e.args
-            print(f"ERROR - Failed to get user, {errno}: {strerror}.")
+            print(f"ERROR - Search Failed, {errno}: {strerror}.")
 
     def find_by_id(self, book_id):
         """
@@ -62,9 +62,20 @@ class BookModel(object):
         """
         try:
             book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
-            print(book)
             if book:
                 return Book(book)
         except IOError as e:
             errno, strerror = e.args
-            print(f"ERROR - Failed to get user, {errno}: {strerror}.")
+            print(f"ERROR - Failed to find book by id, {errno}: {strerror}.")
+
+    def update_book(self, book_id, book_information):
+        """
+         Push Update book Information to Mongo
+        :return: None
+        """
+        try:
+            new_book_details = Book(book_information)
+            mongo.db.books.update({"_id": ObjectId(book_id)}, new_book_details.get_dict())
+        except Exception as e:
+            errno, strerror = e.args
+            print(f"ERROR - Failed to update book, {errno}: {strerror}.")
