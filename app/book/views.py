@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash, url_for
+from werkzeug.utils import redirect
 
 from app.auth.views import login_required
 from app.model.book_model import BookModel
@@ -18,10 +19,11 @@ def book_list():
 
 @book.route("/book/<book_title>", methods=["GET"])
 def book_page(book_title):
-    single_book = book_model.find_by_title(book_title)
-    book_rate = review_model.get_book_rate_by_title(single_book.get_title())
-    reviews_for_book = review_model.find_all_book_reviews(single_book.get_title())
-    return render_template('book.html', book=single_book, reviews=reviews_for_book, book_rate=book_rate)
+    book = book_model.find_by_title(book_title)
+    #TODO refactoring of get_book_by_title_to_use_book_id
+    book_rate = review_model.get_book_rate_by_title(book.get_formatted_title())
+    reviews_for_book = review_model.find_all_book_reviews(book.get_formatted_title())
+    return render_template('book.html', book=book, reviews=reviews_for_book, book_rate=book_rate)
 
 
 @book.route("/search", methods=["GET", "POST"])
@@ -34,9 +36,11 @@ def search():
 @book.route("/book/edit/<book_id>", methods=["GET", "POST"])
 @login_required
 def edit(book_id):
-    print(book_id)
     book_information = book_model.find_by_id(book_id)
-    print(book_information)
+
     if request.method == "POST":
-        pass
+        book_edit_form = request.form
+        new_book_information = book_model.update_book(book_id, book_edit_form)
+        flash("Book Information Updated")
+        return redirect(url_for('book.book_page', book_title=new_book_information))
     return render_template("edit.html", book=book_information)

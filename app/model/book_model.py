@@ -22,15 +22,15 @@ class BookModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed get all books from DB, {errno}: {strerror}.")
 
-    def find_by_title(self, book_name: str):
+    def find_by_title(self, book_title: str):
         """
         Find book by title
-        :param book_name: single book_name
+        :param book_title: single book_name
         :return: Book object
         """
 
         try:
-            single_book = mongo.db.books.find_one({"title": book_name})
+            single_book = mongo.db.books.find_one({"title": book_title.lower()})
             if single_book:
                 return Book(single_book)
         except IOError as e:
@@ -71,11 +71,13 @@ class BookModel(object):
     def update_book(self, book_id, book_information):
         """
          Push Update book Information to Mongo
-        :return: None
+         Returns book_title_for_url as update can change book title, and we are using book title as part of book url
+        :return: title_for_url in case there's a change.
         """
         try:
             new_book_details = Book(book_information)
             mongo.db.books.update({"_id": ObjectId(book_id)}, new_book_details.get_dict())
+            return new_book_details.get_raw_title()
         except Exception as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to update book, {errno}: {strerror}.")
