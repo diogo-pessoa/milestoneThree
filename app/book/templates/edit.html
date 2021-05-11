@@ -4,54 +4,82 @@
 <div class="row">
 
     <div class="col s12 m4 l2">
-        <div class="card brown lighten-5">
-            <form class="col s12" method="POST" action="{{ url_for('book.edit', book_id=book.get_id()) }}">
-                <div class="card-image">
-                    {% if book.get_cover_image() %}
-                    <img class="responsive-img" src="{{ book.get_cover_image()}}">
-                    {% else %}
-                    <img class="responsive-img" src="{{ url_for('static', filename='/images/book_cover.png')  }}">
-                    {% endif %}
-                </div>
-                <ul class="collection">
-                    <li class="collection-item brown lighten-4"><span class="flow-text">Author:</span> {{
-                        book.get_author()
-                        }}
-                    </li>
-                    <li class="collection-item brown lighten-4"><span class="flow-text">Publisher:</span> {{
-                        book.get_publisher() }}
-                    </li>
-                    <li class="collection-item brown lighten-4"><span class="flow-text">Release Date:</span> {{
-                        book.get_release_date() }}
-                    </li>
-                    <li class="collection-item brown lighten-4"><span class="flow-text">Edition:</span> {{
-                        book.get_edition() }}
-                    </li>
-                    <li class="collection-item brown lighten-4"><span class="flow-text">Content moderated:</span>
-                        {% if book.get_reviewed() %}
-                        <i class="material-icons green-text">check_box</i>
-                        {% else %}
-                        <i class="material-icons red-text">report</i>
-                        {% endif %}
-                </ul>
-        </div>
-    </div>
-
-    <div class="col s12 m8 l10">
-        <div class="card brown darken-1">
-            <h3 class="header center white-text">{{ book.get_title() }}</h3>
-            <div class="card-content brown lighten-4">
-
-                <h5>About This Book</h5>
-                <p>{{ book.get_description() }}</p>
+        <div class="card">
+            <div class="card-image">
+                {% if book.get_cover_image() %}
+                <img class="responsive-img" src="{{ book.get_cover_image()}}">
+                {% else %}
+                <img class="responsive-img" src="{{ url_for('static', filename='/images/book_cover.png')  }}">
+                {% endif %}
             </div>
         </div>
     </div>
-    </form>
+    <div class="col s12 m8 l10">
+        <form class="col s12" method="POST" action="{{ url_for('book.edit', book_id=book.get_id()) }}">
+                <div class="card brown darken-1">
+                    <input id="title" name="title" minlength="5" maxlength="25"
+                           value="{{ book.get_formatted_title() }}" type="text" class="validate white-text title center" required>
+                    <div class="card-content brown lighten-4">
+                        <label for="description" class="black-text"><h5>About This Book</h5></label>
+                        <textarea id="description" name="description" minlength="5"
+                                  maxlength="200" class="materialize-textarea validate black-text" required>{{ book.get_description() }}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="collection">
+                        <li class="collection-item brown lighten-4">
+                            <label for="author" class="black-text"><span class="flow-text">Author:</span></label>
+                            <input id="author" name="author" minlength="5" maxlength="30"
+                                   value="{{ book.get_author() }}" type="text" class="validate" required>
+                        </li>
+                        <li class="collection-item brown lighten-4">
+                            <label for="publisher" class="black-text"><span class="flow-text">Publisher:</span></label>
+                            <input id="publisher" name="publisher" minlength="5" maxlength="15"
+                                   value="{{ book.get_publisher() }}" type="text" class="validate" required>
+                        </li>
 
-</div>
-</div>
+                        </li>
+                        <li class="collection-item brown lighten-4">
+                            <label for="released_date" class="black-text"><span
+                                    class="flow-text">Released date:</span></label>
+                            <input id="released_date" name="released_date" minlength="1" maxlength="5"
+                                   value="{{ book.get_release_date() }}" type="text" class="validate" required>
+                        </li>
+                        <li class="collection-item brown lighten-4">
+                            <label for="edition" class="black-text"><span class="flow-text">Edition:</span></label>
+                            <input id="edition" name="edition" maxlength="3"
+                                   value="{{ book.get_edition() }}" type="text" class="validate" required>
+                        </li>
 
+                        <li class="collection-item brown lighten-4">
+                            <span class="flow-text">Content moderated:</span>
+                            <label>
+                                <input for="reviewed" class="with-gap white" name="reviewed" type="radio" checked value="1"/>
+                                <span class="black-text"><i class="material-icons green-text">check_box</i></span>
+                            </label>
+                            <label>
+                                <input for="reviewed" class="with-gap white" name="reviewed" type="radio" value="0"/>
+                                <span class="black-text"><i class="material-icons red-text">report</i></span>
+                            </label>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <!-- cancel button -->
+                        <a href="{{url_for( 'book.book_page', book_title=book.get_raw_title()) }}"
+                           class="btn-small red white-text text-shadow">
+                            Cancel <i class="fas fa-times-circle right"></i>
+                        </a>
+                        <button type="submit" class="btn-small brown darken-1 white-text text-shadow">
+                            Save book Information <i class="fas fa-edit right"></i>
+                        </button>
+                    </div>
+                </div>
+        </form>
+    </div>
 </div>
 
 {% endblock %}
