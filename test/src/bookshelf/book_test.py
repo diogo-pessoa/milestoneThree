@@ -16,7 +16,7 @@ class ReviewTest(unittest.TestCase):
 
     def test_get_object_dict(self):
         book = self.books[0].get_dict()
-        self.assertEqual("Mock book", book['title'])
+        self.assertEqual("mock-book", book['title'])
         self.assertEqual("Jon Doe", book['author'])
         self.assertTrue(book['reviewed'])
 
@@ -24,11 +24,41 @@ class ReviewTest(unittest.TestCase):
         book = self.books[1].get_dict()
         self.assertFalse(book['reviewed'])
 
-    def test_get_title_for_url(self):
-        book1 = self.books[0].get_title_for_url()
-        book3 = self.books[2].get_title_for_url()
-        self.assertEqual("mockbook", book1)
-        self.assertEqual("mockbook3", book3)
+    def test_raw_title(self):
+        book1 = self.books[0].get_raw_title()
+        book3 = self.books[2].get_raw_title()
+        self.assertEqual("mock-book", book1)
+        self.assertEqual("the-man-who-mistook-his-wife-for-a-hat", book3)
+
+    def test_get_formatted_title(self):
+        book = self.books[0]
+        book2 = self.books[1]
+        self.assertEqual("Mock Book", book.get_formatted_title())
+        self.assertEqual("How To Kill A Mockingbird", book2.get_formatted_title())
+
+    def test_set_title(self):
+        book3 = self.books[2]
+        new_title = "Lord of the flies"
+        book3.set_raw_title(new_title)
+        self.assertEqual("lord-of-the-flies", book3.get_raw_title())
+        self.assertEqual("Lord Of The Flies", book3.get_formatted_title())
+
+    def test_set_title_with_None(self):
+        book3 = self.books[2]
+        new_title = None
+        book3.set_raw_title(new_title)
+        self.assertIsNotNone(book3.get_raw_title())
+
+    def test_set_title_with_empty_value(self):
+        book3 = self.books[2]
+        book3.set_raw_title("")
+        self.assertTrue(len(book3.get_raw_title()) > 0)
+
+    def test_set_title_with_multiple_spaces(self):
+        book3 = self.books[2]
+        book3.set_raw_title("Lord of   the flies")
+        self.assertEqual("Lord Of   The Flies", book3.get_formatted_title())
+
 
 if __name__ == "__main__":
     unittest.main()
