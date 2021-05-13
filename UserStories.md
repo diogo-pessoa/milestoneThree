@@ -59,6 +59,7 @@ Features & User Stories
     inside the project root directory, start a session on the Python REPL  and run the command list below.
       note: "when running this the MONGO_URI has to be available to pymongo"
 
+
      from app import mongo
      mongo.db.books.create_index([("title", "text"), ("author", "text")])
  
@@ -73,11 +74,17 @@ Features & User Stories
   
   - Implementation is based on the MiniProject(flask) search lesson: [Search Within The Database](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+DCP101+2017_T3/courseware/9e2f12f5584e48acb3c29e9b0d7cc4fe/0d4e3419132440d9b2c0943f80dc54a8/)
 
+  - **Work-In-Progress** As a user I can Edit book details
+    - New route book.edit()
+    - New book_model.update_book() With Call to mongoDB to update object by Id
+    - New template edit.html with HTML form
+    - **Test** Added unittest to validate book input and output 
+    - **Test** New selenium test validation check for existing fields and if form fields are loaded on template
+
 ## Features Left to Implement
 
 - As a user I can Add new books
 
-- As a user I can Edit book details
 
 - As a Moderator I can review book information and tag when it is validated
 

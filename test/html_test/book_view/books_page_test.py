@@ -22,7 +22,7 @@ class BooksPage(unittest.TestCase):
         heading = self.driver.find_element_by_tag_name('h3').text
         self.assertEqual("Books", heading)
         book_title = self.driver.find_element_by_class_name('title').text
-        self.assertEqual("Book1", book_title)
+        self.assertEqual("Book 12", book_title)
 
     def test_see_more_link_on_books_list(self):
         self.driver.get("http://localhost:5000/book")

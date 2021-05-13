@@ -30,11 +30,11 @@ class SearchBar(unittest.TestCase):
 
     def test_search_for_book_1(self):
         book_title = self.driver.find_element_by_id("query")
-        book_title.send_keys("book1")
+        book_title.send_keys("Book 12")
         self.driver.find_element_by_tag_name('button').click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.CLASS_NAME, "title"), "Book1")
+                (By.CLASS_NAME, "title"), "Book 12")
         )
 
     def test_search_no_matching_result(self):

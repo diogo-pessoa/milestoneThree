@@ -33,6 +33,8 @@ With the local Application Running and [.flaskenv](https://github.com/diogo-pess
     python -m unittest discover -s test/html_test/book_view -p "*_test.py" -v 
     python -m unittest discover -s test/html_test/user_view -p "*_test.py" -v 
 
+    # TO run all test
+    python -m unittest discover -s test/html_test/*_view -p "*_test.py" -v  
 
 ## UnitTest
 
@@ -127,4 +129,32 @@ extended test to look for tabs on Profile Page Body
   - **Fix** Created new flask decorator that checks if session cookie exists `login_required` If user does not have a session he is redirected to the login page
   - **Test** try to reach endpoint `http://0.0.0.0:5000/profile/willfarnaby` straight though url, with decorator request is redirected to login page. 
   
-- **Bug** `Sign-up` page does not ask user to repeat password. 
+
+- **Bug** New book Edit form is setting causing inconsistency with the Book object returned from Data Storage
+
+that all happens because of the design choice to use the book title on the url. This is intentional to let user navigate to different books by title if he wants. 
+This was caused by an inconsistency on the Book class. when the `book.get_dict()` was called from the `book_model.update_book()` It was returning a poorly formatted string. That caused a cascading effect. Then when the redirect occurred to the single_book page, the `book_model.find_by_title()`.  
+    
+    AttributeError: 'NoneType' object has no attribute 'get_title'
+
+  - ** Fix ** added new method set_raw_title() to format the_title and refined the get_tile() methods.   
+  - **UnitTest** New unittest to test Book title formatting
+    
+    
+    test_get_formatted_title (book_test.ReviewTest) ... ok
+    test_get_object_dict (book_test.ReviewTest) ... ok
+    test_get_reviewed_returns_false (book_test.ReviewTest) ... ok
+    test_raw_title (book_test.ReviewTest) ... ok
+    test_set_title (book_test.ReviewTest) ... ok
+    test_set_title_with_None (book_test.ReviewTest) ... ok
+    test_set_title_with_empty_value (book_test.ReviewTest) ... ok
+    test_set_title_with_multiple_spaces (book_test.ReviewTest) ... ok
+
+
+**TESTING**
+
+-TODO when the Book Title is updated, there's a need to update the title to the reviews
+ - Refactor review to reference book by `ObjectId()` rather than book title (see #TODO in book.views)
+
+- **Bug** `Sign-up` page does not ask user to repeat password.
+-TODO 

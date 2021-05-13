@@ -37,7 +37,7 @@ def login():
             if existing_user.check_password(form_details["password"]):
                 session["user"] = existing_user.get_username()
                 flash("Welcome, {}".format(existing_user.get_first_name()))
-                return redirect(url_for("main.index"))
+                return redirect(url_for("book.book_list"))
             else:
                 # invalid password match
                 flash("Invalid Credentials")
@@ -54,7 +54,7 @@ def logout():
     # remove user from session cookie
     flash("You have been logged out")
     session.pop("user")
-    return redirect(url_for("main.index"))
+    return redirect(url_for("book.book_list"))
 
 
 def login_required(f):
