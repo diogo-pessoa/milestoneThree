@@ -107,7 +107,7 @@ suggests an alternative app structure to exactly to avoid this problem.
           
           OK
 
-
+### Bugs
 
 - [test/html_test/profile_page_test](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/profile_page_test.py)
   
@@ -153,8 +153,31 @@ This was caused by an inconsistency on the Book class. when the `book.get_dict()
 
 **TESTING**
 
--TODO when the Book Title is updated, there's a need to update the title to the reviews
- - Refactor review to reference book by `ObjectId()` rather than book title (see #TODO in book.views)
+-**Update in Review Class Behaviour**
+
+ cause: Initially application used book title to query for related reviews. However with the introduction with the Edit Book functionality, the book title became fluid, hence a new story was created to update this behaviour to use the unique field objectId.
+ notes:  - Refactor review to reference book by `ObjectId()` rather than book title (see #TODO in book.views)
+
+ **Fix**:
+  - Single book page, Book Reviews
+  - Refactoring on Review Class to use `ObjectIds` for both `reviewer` and `Book` fields
+  - Refactoring of tests to reflect new fields
+  - Creating setter for reviewer name based on uniqueID (relying on DB storage)
+  - Refactoring of review_model.py to user User and book IDs
+  - Adding unittests for review Class
+  - Selenium test for review section in book_page
+
+
+### Bugs Reported 
 
 - **Bug** `Sign-up` page does not ask user to repeat password.
--TODO 
+
+- **Bug** Refactoring on Profile.html 
+As we progress and more fields are open for Edit, Application needs to evolve
+
+  
+      profile() - on User view to build list from Book Ids in review
+      reviews = ReviewModel().find_user_reviews(logged_user.get_id())
+          # TODO Bulk query all Books from List and build List for Profile
+          for review in reviews:
+              review.get_book_id()

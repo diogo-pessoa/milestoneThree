@@ -2,7 +2,6 @@ import json
 import unittest
 
 from src.bookshelf.review import Review
-from src.bookshelf.user import User
 
 
 class ReviewTest(unittest.TestCase):
@@ -17,11 +16,24 @@ class ReviewTest(unittest.TestCase):
         self.review = reviews
 
     def test_get_object_dict(self):
+        """
+        Test review __init__ fields are populated properly
+        """
         review = self.review[0].get_dict()
-        self.assertEqual("Willfarnaby", review['reviewer'])
-        self.assertEqual("Book1", review['book'])
-        self.assertEqual("Book1", review['book'])
+        self.assertIsNotNone(review['reviewer_id'])
+        self.assertIsNotNone(review['book_id'])
         self.assertEqual(4, review['rate'])
+
+    def test_set_reviewer(self):
+        """
+        Expect Setter to update reviewer name value
+
+        """
+        review = self.review[0]
+        self.assertEqual("", review.get_reviewer())
+        review.set_reviewer("Name")
+        self.assertEqual("Name", review.get_reviewer())
+
 
 if __name__ == "__main__":
     unittest.main()

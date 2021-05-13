@@ -2,15 +2,15 @@
   {
     "id": "1",
     "feedback": "User liked the book so much he stopped to add some comments",
-    "reviewer": "willfarnaby",
-    "book": "Book1",
+    "reviewer_id": "608f2e4ba54d753c4466305f",
+    "book_id": "60773a16cb838494e13d3652",
     "rate": "4"
   },
   {
     "id": "2",
     "feedback": "User liked the book so much he stopped to add some comments",
-    "reviewer": "willfarnaby",
-    "book": "Book2",
+    "reviewer_id": "607c901da54d752ec8613312",
+    "book_id": "60773a16cb838494e13d3653",
     "rate": "3"
   }
 ]
