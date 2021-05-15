@@ -10,6 +10,13 @@ class Review:
             self.__reviewer_id = ObjectId(review.get('reviewer_id'))
             self.__rate = review.get('rate')
             self.__reviewer = ""
+            self.__book_title = ""
+
+    def set_book_title(self, book_title: str):
+        self.__book_title = book_title
+
+    def set_reviewer_name(self, username: str):
+        self.__reviewer = username
 
     def get_rate(self):
         return int(self.__rate)
@@ -20,11 +27,14 @@ class Review:
     def get_reviewer_id(self):
         return self.__reviewer_id
 
-    def set_reviewer(self, username: str):
-        self.__reviewer = username
+    def get_book_id(self):
+        return self.__book_id
 
     def get_reviewer(self):
         return self.__reviewer
+
+    def get_book_title(self):
+        return self.__book_title
 
     def get_dict(self):
         return {

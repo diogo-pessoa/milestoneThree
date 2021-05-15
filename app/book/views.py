@@ -21,7 +21,7 @@ def book_list():
 def book_page(book_title):
     book = book_model.find_by_title(book_title)
     book_rate = review_model.get_rate_by_book_id(book.get_id())
-    reviews_for_book = review_model.get_by_book_id(book.get_id())
+    reviews_for_book = review_model.find_review_by_book_id(book.get_id())
     return render_template('book.html', book=book, reviews=reviews_for_book, book_rate=book_rate)
 
 

@@ -31,8 +31,18 @@ class ReviewTest(unittest.TestCase):
         """
         review = self.review[0]
         self.assertEqual("", review.get_reviewer())
-        review.set_reviewer("Name")
+        review.set_reviewer_name("Name")
         self.assertEqual("Name", review.get_reviewer())
+
+    def test_set_book_title(self):
+        """
+        Expect to set a book_title on existing review object
+
+        """
+        review = self.review[0]
+        self.assertEqual("", review.get_book_title())
+        review.set_book_title("Book Title")
+        self.assertEqual("Book Title", review.get_book_title())
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('book.book_list') }}">Books</a></li>
                     {% if session.user %}
-                        <li><a href="{{ url_for('user.profile', user=session['user'])}}">Profile</a></li>
+                        <li><a href="{{ url_for('user.profile', username=session['user'])}}">Profile</a></li>
                         <li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
                     {% else %}
                         <li><a href="{{ url_for('auth.login') }}">Login</a></li>
@@ -43,7 +43,7 @@
         <ul class="sidenav brown lighten-4" id="mobile">
             <li><a href="{{ url_for('book.book_list') }}">Books</a></li>
             {% if session.user %}
-                <li><a href="{{ url_for('user.profile', user=session['user'])}}">Profile</a></li>
+                <li><a href="{{ url_for('user.profile', username=session['user'])}}">Profile</a></li>
                 <li><a href="{{ url_for('auth.logout')}}">Log out</a></li>
             {% else %}
                 <li><a href="{{ url_for('auth.login') }}">Login</a></li>

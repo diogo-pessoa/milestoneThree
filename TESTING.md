@@ -173,15 +173,19 @@ This was caused by an inconsistency on the Book class. when the `book.get_dict()
     If field does not match warn user with flash message
   **Test** Added selenium test to test behaviour
 
-### Bugs Reported (backlog) 
 
 - **Bug** Refactoring on Profile.html 
-As we progress and more fields are open for Edit, Application needs to evolve. 
-  Review Model is using Book and user ObjectIds now. 
-
+  The Remodeling of the review table required a refactoring on the profile route. Review table was storing `strings`, now they store ObjectIds. 
+  That is to improve consistency on the stored data. A review can only exist for a book that has an entry on the application. Strings fields were very tolerant and didn't have a relation with the Book collection.
   
-      profile() - on User view to build list from Book Ids in review
-      reviews = ReviewModel().find_user_reviews(logged_user.get_id())
-          # TODO Bulk query all Books from List and build List for Profile
-          for review in reviews:
-              review.get_book_id()
+  - **Fix**
+    Refactor the Review class to support ObjectIds and have setters for a String field. 
+    Now Profile route gets reviews built from stored on Application Collections only.
+    
+  - **Test**
+    - Added Unittest for Review class.
+    - Navigate to Profile page tabs and confirm fields are showing
+    - On Favorite books there's still a need to fix each book rate
+
+### Bugs Reported (backlog) 
+
