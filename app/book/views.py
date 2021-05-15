@@ -11,6 +11,7 @@ book = Blueprint('book', __name__, template_folder='templates')
 review_model = ReviewModel()
 book_model = BookModel()
 
+@book.route('/')
 @book.route('/book')
 def book_list():
     books_list = book_model.find_all()

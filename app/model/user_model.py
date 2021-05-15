@@ -10,7 +10,7 @@ class UserModel(object):
         """
             Queries Mongo users collection filtering by username
         :param name:
-        :return: Object Instance of User Class
+        :return: User() Object Instance of User Class
         """
         try:
             user = mongo.db.users.find_one({"username": name.lower()})
@@ -22,7 +22,7 @@ class UserModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed to get user, {errno}: {strerror}.")
 
-    def find_by_id(self, user_id: ObjectId):
+    def find_by_id(self, user_id: ObjectId()):
         """
             Queries Mongo users collection filtering by _id
         :param user_id: ObjectId
@@ -52,3 +52,17 @@ class UserModel(object):
         except Exception as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to Insert user:, {errno}: {strerror}.")
+
+    def update(self, user: User, user_information_form_content: dict):
+        """
+            Push Update book Information to Mongo
+            Returns book_title_for_url as update can change book title, and we are using book title as part of book url
+            :return: title_for_url in case there's a change.
+        """
+        try:
+            user.update_details(user_information_form_content)
+            print(user.get_dict())
+            mongo.db.users.update({"_id": user.get_id()}, user.get_dict())
+        except Exception as e:
+            errno, strerror = e.args
+            print(f"ERROR - Failed to update book, {errno}: {strerror}.")

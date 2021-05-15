@@ -27,14 +27,16 @@ class ProfilePage(unittest.TestCase):
         username_tested = self.driver.find_element_by_id("username")
         username_tested.send_keys("willfarnaby")
         password_tested = self.driver.find_element_by_id("password")
-        password_tested.send_keys("12345")
+        password_tested.send_keys("123")
         self.driver.find_element_by_tag_name('button').click()
         """Navigate to Profile"""
         self.driver.find_element_by_link_text('Profile').click()
         """Asserts Personal Details Tab"""
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h3"), "Will's space")
+                (By.TAG_NAME, "h3"), "Will's space"),
+            expected_conditions.text_to_be_present_in_element(
+                (By.ID, "username"), "willfarnaby")
         )
 
     if __name__ == "__main__":
