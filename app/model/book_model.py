@@ -81,3 +81,17 @@ class BookModel(object):
         except Exception as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to update book, {errno}: {strerror}.")
+
+    def find_list_by_id(self, user_favorite_book_ids: list):
+        """
+        Takes a list of book_Ids query each appending result to return list
+        :return: Returns list of Book Objects
+        """
+        try:
+            books = []
+            for book_id in user_favorite_book_ids:
+                books.append(self.find_by_id(book_id))
+            return books
+        except Exception as e:
+            errno, strerror = e.args
+            print(f"ERROR - Failed to update book, {errno}: {strerror}.")

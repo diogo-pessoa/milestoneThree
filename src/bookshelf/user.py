@@ -1,3 +1,4 @@
+from bson import ObjectId
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -5,12 +6,16 @@ class User:
 
     def __init__(self, user_info: dict):
         if user_info:
+            self.__id = ObjectId(user_info.get('_id'))
             self.__username = user_info.get('username')
             self.__first_name = user_info.get('first')
             self.__last_name = user_info.get('last')
             self.__password = user_info.get('password')
             self.__moderator = user_info.get('moderator')
             self.__favorite_books = user_info.get('favorite_books')
+
+    def get_id(self):
+        return self.__id
 
     def get_first_name(self):
         if self.__first_name:

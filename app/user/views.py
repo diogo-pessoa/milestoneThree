@@ -15,6 +15,6 @@ def profile(username):
     logged_user = UserModel().find_user_by_name(username)
     reviews = ReviewModel().find_user_reviews(logged_user.get_id())
     user_favorite_books = logged_user.get_favorite_books()
-    books = BookModel().find_books_by_id(user_favorite_books)
+    books = BookModel().find_list_by_id(user_favorite_books)
     # TODO Favorite_books.html missing book_rate
     return render_template("profile.html", user=logged_user, reviews=reviews, books=books)

@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from app import mongo
 from src.bookshelf.user import User
 
@@ -8,10 +10,26 @@ class UserModel(object):
         """
             Queries Mongo users collection filtering by username
         :param name:
-        :return: dict with user information or empty dict
+        :return: Object Instance of User Class
         """
         try:
             user = mongo.db.users.find_one({"username": name.lower()})
+            if user:
+                returned_user = User(user)
+                return returned_user
+
+        except IOError as e:
+            errno, strerror = e.args
+            print(f"ERROR - Failed to get user, {errno}: {strerror}.")
+
+    def find_by_id(self, user_id: ObjectId):
+        """
+            Queries Mongo users collection filtering by _id
+        :param user_id: ObjectId
+        :return: Object Instance of User Class
+        """
+        try:
+            user = mongo.db.users.find_one({"_id": user_id})
             if user:
                 returned_user = User(user)
                 return returned_user

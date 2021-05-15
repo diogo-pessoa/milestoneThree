@@ -10,7 +10,7 @@
     <tbody>
         {% for review in reviews %}
      <tr>
-        <td>{{ review.get_book() }}</td>
+        <td>{{ review.get_book_title() }}</td><td></td>
         <td>{{ review.get_rate() }}</td>
         <td>{{ review.get_feedback() }}</td>
      </tr>
