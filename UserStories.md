@@ -81,10 +81,22 @@ Features & User Stories
     - **Test** Added unittest to validate book input and output 
     - **Test** New selenium test validation check for existing fields and if form fields are loaded on template
 
+- **Follow-up** Allow User to Update personal Details
+  - Added support to post form on profile page allowing user to update his personal information
+    
+  - **Test** Added unittest to User Class method related to update_info form
+
+- As a user I want to update my password
+  -  Added a first path to allow user to update his own password, on Profile page user can submit form to update his information, including password
+    
+- As a user I want to navigate to a book from my favorites list
+ - Added url_for(link) on the template my favorite books, now user can go to the book from his profile page
+
 ## Features Left to Implement
 
 - As a user I can Add new books
 
+-  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
 
 - As a Moderator I can review book information and tag when it is validated
 
@@ -96,12 +108,7 @@ Features & User Stories
 
 - As a User I can edit or delete My own review
 
--  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
+- **Follow-up** from the BOOKS table I want to sort and order books and add pagination
 
-- **Follow-up** from the BOOKS table I want to sort and order books
-
-- **Follow-up** Allow User to Update personal Details
-
-- As a user I want to update my password 
 
 - As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, allowing the to navigate back to the page 
