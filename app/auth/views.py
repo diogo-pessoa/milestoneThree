@@ -12,11 +12,15 @@ def register():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+        repeat_password = request.form.get("repeat_password")
         # TODO validate password
 
-        new_user = UserModel().find_user_by_name(username)
-        if new_user:
+        check_user_exists = UserModel().find_user_by_name(username)
+        if check_user_exists:
             flash("username already in use")
+            return redirect(url_for("auth.register"))
+        elif not password == repeat_password:
+            flash("Passwords do not match ")
             return redirect(url_for("auth.register"))
 
         UserModel().create(username, password)

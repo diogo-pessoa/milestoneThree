@@ -167,13 +167,17 @@ This was caused by an inconsistency on the Book class. when the `book.get_dict()
   - Adding unittests for review Class
   - Selenium test for review section in book_page
 
-
-### Bugs Reported 
-
 - **Bug** `Sign-up` page does not ask user to repeat password.
+  **Fix** added new input field on register form
+    On Register view see if fields match, then create new user. 
+    If field does not match warn user with flash message
+  **Test** Added selenium test to test behaviour
+
+### Bugs Reported (backlog) 
 
 - **Bug** Refactoring on Profile.html 
-As we progress and more fields are open for Edit, Application needs to evolve
+As we progress and more fields are open for Edit, Application needs to evolve. 
+  Review Model is using Book and user ObjectIds now. 
 
   
       profile() - on User view to build list from Book Ids in review
