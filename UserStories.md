@@ -110,5 +110,4 @@ Features & User Stories
 
 - **Follow-up** from the BOOKS table I want to sort and order books and add pagination
 
-
 - As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, allowing the to navigate back to the page 
