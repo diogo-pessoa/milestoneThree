@@ -187,5 +187,5 @@ This was caused by an inconsistency on the Book class. when the `book.get_dict()
     - Navigate to Profile page tabs and confirm fields are showing
     - On Favorite books there's still a need to fix each book rate
 
-### Bugs Reported (backlog) 
+
 

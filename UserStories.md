@@ -92,9 +92,15 @@ Features & User Stories
 - As a user I want to navigate to a book from my favorites list
  - Added url_for(link) on the template my favorite books, now user can go to the book from his profile page
 
-## Features Left to Implement
-
 - As a user I can Add new books
+ - Once user is logged in a dropdown on `Books` element on Navbar is displayed to user. 
+  - That links to Add new book form
+  - **Test** 
+     - Selenium test to confirm links to navbar link to Add new book page works
+     - Selenium test to confirm anonymous user can't open `Add` link, even straight through URL
+     -  Selenium test to validate form fields are showing up screen
+
+## Features Left to Implement
 
 -  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
 
@@ -110,4 +116,14 @@ Features & User Stories
 
 - **Follow-up** from the BOOKS table I want to sort and order books and add pagination
 
-- As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, allowing the to navigate back to the page 
+- As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, with meaningful messaging and allowing the to navigate back to the site. 
+
+- As a user I want to upload Book Covers when Adding and Editing a new book.
+- As a developer I want to limit the file size and type when allowing user to upload images.
+
+### Backlog
+
+These are stories created during the development. To avoid interrupting the current work Just add a brief description the story for later development.
+
+- When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
+
