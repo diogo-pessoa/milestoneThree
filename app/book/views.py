@@ -4,12 +4,12 @@ from werkzeug.utils import redirect
 from app.auth.views import login_required
 from app.model.book_model import BookModel
 from app.model.review_model import ReviewModel
-from app.model.user_model import UserModel
 
 book = Blueprint('book', __name__, template_folder='templates')
 
 review_model = ReviewModel()
 book_model = BookModel()
+
 
 @book.route('/')
 @book.route('/book')
@@ -40,7 +40,20 @@ def edit(book_id):
 
     if request.method == "POST":
         book_edit_form = request.form
-        new_book_information = book_model.update_book(book_id, book_edit_form)
+        edit_book_information = book_model.update_book(book_id, book_edit_form)
         flash("Book Information Updated")
-        return redirect(url_for('book.book_page', book_title=new_book_information))
+        return redirect(url_for('book.book_page', book_title=edit_book_information.get_raw_title()))
     return render_template("edit.html", book=book_information)
+
+
+@book.route("/book/new/", methods=["GET", "POST"])
+@login_required
+def new():
+    if request.method == "POST":
+        new_book_information = request.form
+        book = book_model.create_one(new_book_information)
+        flash(f'{book.get_formatted_title()} created'.format())
+        return redirect(url_for('book.book_page', book_title=book.get_raw_title()))
+    return render_template("new.html")
+
+# TODO write route to delete book

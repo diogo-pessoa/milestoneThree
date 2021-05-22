@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col s12 m4 l2">
+        <div class="card">
+            <div class="card-image">
+                <img class="responsive-img" src="{{ url_for('static', filename='/images/book_cover.png' )  }}">
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m8 l10">
+        <form class="col s12" method="POST" action="{{ url_for('book.new') }}">
+            <div class="row">
+                <div class="card brown darken-1">
+                    <input id="title" name="title" minlength="5" maxlength="25"
+                           value="Book title" type="text" class="validate white-text title center" required>
+                    <div class="card-content brown lighten-4">
+                        <label for="description" class="black-text"><h5>About This Book</h5></label>
+                        <textarea id="description" name="description" minlength="5"
+                                  maxlength="200" class="materialize-textarea validate black-text" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="collection">
+                    <li class="collection-item brown lighten-4">
+                        <label for="author" class="black-text"><span class="flow-text">Author:</span></label>
+                        <input id="author" name="author" minlength="5" maxlength="30"
+                               value="" type="text" class="validate" required>
+                    </li>
+                    <li class="collection-item brown lighten-4">
+                        <label for="publisher" class="black-text"><span class="flow-text">Publisher:</span></label>
+                        <input id="publisher" name="publisher" minlength="5" maxlength="15"
+                               value="" type="text" class="validate" required>
+                    </li>
+
+                    </li>
+                    <li class="collection-item brown lighten-4">
+                        <label for="released_date" class="black-text"><span
+                                class="flow-text">Released date:</span></label>
+                        <input id="released_date" name="released_date" minlength="1" maxlength="5"
+                               value="" type="text" class="validate">
+                    </li>
+                    <li class="collection-item brown lighten-4">
+                        <label for="edition" class="black-text"><span class="flow-text">Edition:</span></label>
+                        <input id="edition" name="edition" maxlength="3"
+                               value="1" type="text" class="validate" required>
+                    </li>
+                    <li class="collection-item brown lighten-4">
+                        <label for="category" class="black-text"><span class="flow-text">Category:</span></label>
+                        <input id="category" name="category" minlength="5" maxlength="15"
+                               value="General" type="text" class="validate" required>
+                    </li>
+                </ul>
+            </div>
+            <!-- submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <!-- cancel button -->
+                    <a href="{{url_for( 'book.new') }}"
+                       class="btn-small red white-text text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
+                    <button type="submit" class="btn-small brown darken-1 white-text text-shadow">
+                        Save book Information <i class="fas fa-edit right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

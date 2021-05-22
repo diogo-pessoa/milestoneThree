@@ -2,8 +2,6 @@ from bson.objectid import ObjectId
 
 
 class Book:
-
-
     __title: str
 
     def __init__(self, book: dict):
@@ -51,7 +49,7 @@ class Book:
         return self.__release_date or "Not Informed"
 
     def is_reviewed(self):
-        if int(self.__reviewed) == 1:
+        if self.__reviewed and int(self.__reviewed) == 1:
             return True
         return False
 
@@ -59,7 +57,7 @@ class Book:
         return self.__edition or "Not Informed"
 
     def get_category(self):
-        return self.__category or "general"
+        return self.__category or "General"
 
     def get_cover_image(self):
         return self.__cover_image

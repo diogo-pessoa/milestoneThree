@@ -16,6 +16,7 @@
     </div>
     <div class="col s12 m8 l10">
         <form class="col s12" method="POST" action="{{ url_for('book.edit', book_id=book.get_id()) }}">
+            <div class="row">
                 <div class="card brown darken-1">
                     <input id="title" name="title" minlength="5" maxlength="25"
                            value="{{ book.get_formatted_title() }}" type="text" class="validate white-text title center" required>
@@ -25,6 +26,7 @@
                                   maxlength="200" class="materialize-textarea validate black-text" required>{{ book.get_description() }}</textarea>
                     </div>
                 </div>
+            </div>
                 <div class="row">
                     <ul class="collection">
                         <li class="collection-item brown lighten-4">
@@ -50,19 +52,11 @@
                             <input id="edition" name="edition" maxlength="3"
                                    value="{{ book.get_edition() }}" type="text" class="validate" required>
                         </li>
-
                         <li class="collection-item brown lighten-4">
-                            <span class="flow-text">Content moderated:</span>
-                            <label>
-                                <input for="reviewed" class="with-gap white" name="reviewed" type="radio" checked value="1"/>
-                                <span class="black-text"><i class="material-icons green-text">check_box</i></span>
-                            </label>
-                            <label>
-                                <input for="reviewed" class="with-gap white" name="reviewed" type="radio" value="0"/>
-                                <span class="black-text"><i class="material-icons red-text">report</i></span>
-                            </label>
-                        </li>
-
+                        <label for="category" class="black-text"><span class="flow-text">Category:</span></label>
+                        <input id="category" name="category" minlength="5" maxlength="15"
+                               value="{{book.get_category()}}" type="text" class="validate" required>
+                    </li>
                     </ul>
                 </div>
                 <!-- submit button -->

@@ -68,6 +68,20 @@ class BookModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed to find book by id, {errno}: {strerror}.")
 
+    def find_list_by_id(self, user_favorite_book_ids: list):
+        """
+        Takes a list of book_Ids query each appending result to return list
+        :return: Returns list of Book Objects
+        """
+        try:
+            books = []
+            for book_id in user_favorite_book_ids:
+                books.append(self.find_by_id(book_id))
+            return books
+        except Exception as e:
+            errno, strerror = e.args
+            print(f"ERROR - Failed to update book, {errno}: {strerror}.")
+
     def update_book(self, book_id, book_information):
         """
          Push Update book Information to Mongo
@@ -82,16 +96,20 @@ class BookModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed to update book, {errno}: {strerror}.")
 
-    def find_list_by_id(self, user_favorite_book_ids: list):
+
+    def create_one(self, new_book_information):
         """
-        Takes a list of book_Ids query each appending result to return list
-        :return: Returns list of Book Objects
+         Create new book from book Object
+         Returns book_title for url, in order to allow for page redirect
+        :return: title_for_url
         """
         try:
-            books = []
-            for book_id in user_favorite_book_ids:
-                books.append(self.find_by_id(book_id))
-            return books
+            #TODO check if book already exists.
+            # return link if it does
+            new_book_details = Book(new_book_information)
+            book = mongo.db.books.insert(new_book_details.get_dict())
+            print(book)
+            return new_book_details
         except Exception as e:
             errno, strerror = e.args
             print(f"ERROR - Failed to update book, {errno}: {strerror}.")

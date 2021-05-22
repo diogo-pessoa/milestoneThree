@@ -34,7 +34,7 @@
                         <li><a href="{{url_for('book.book_list')}}" class="black-text"><i
                                 class="material-icons">search</i>Search</a>
                         </li>
-                        <li><a href="" class="black-text"><i
+                        <li><a href="{{url_for('book.new')}}" class="black-text"><i
                                 class="material-icons">add</i>Add</a></li>
                     </ul>
                 </li>
@@ -54,13 +54,13 @@
 
         {% if session.user %}
         <li>
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown-navbar">Dropdown<i class="material-icons right">arrow_drop_down</i></a>
         </li>
-        <ul id='dropdown1' class='dropdown-content brown lighten-4'>
+        <ul id='dropdown-navbar' class='dropdown-content brown lighten-4'>
             <li><a href="{{url_for('book.book_list')}}" class="black-text"><i
                     class="material-icons">search</i>Search</a>
             </li>
-            <li><a href="" class="black-text"><i
+            <li><a href="{{url_for('book.new')}}" class="black-text"><i
                     class="material-icons">add</i>Add</a></li>
         </ul>
         </li>
