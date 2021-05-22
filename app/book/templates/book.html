@@ -36,12 +36,6 @@
                 <li class="collection-item brown lighten-4"><span class="flow-text">Edition:</span> {{
                     book.get_edition() }}
                 </li>
-                <li class="collection-item brown lighten-4"><span class="flow-text">Content moderated:</span>
-                    {% if book.is_reviewed() %}
-                    <i class="material-icons green-text">check_box</i>
-                    {% else %}
-                    <i class="material-icons red-text">report</i>
-                    {% endif %}
             </ul>
         </div>
     </div>

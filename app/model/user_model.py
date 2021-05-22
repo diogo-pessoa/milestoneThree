@@ -61,7 +61,6 @@ class UserModel(object):
         """
         try:
             user.update_details(user_information_form_content)
-            print(user.get_dict())
             mongo.db.users.update({"_id": user.get_id()}, user.get_dict())
         except Exception as e:
             errno, strerror = e.args
