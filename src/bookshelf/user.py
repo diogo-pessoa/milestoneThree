@@ -10,7 +10,7 @@ class User:
             self.__username = user_info.get('username')
             self.__first_name = user_info.get('first')
             self.__last_name = user_info.get('last')
-            self.__password = user_info.get('password')
+            self.__set_password(user_info.get('password'))
             self.__moderator = user_info.get('moderator')
             self.__favorite_books = user_info.get('favorite_books')
 
@@ -49,20 +49,18 @@ class User:
         return False
 
     def __set_password(self, new_password):
-        self.__password = self.hash_password(new_password)
+        if new_password:
+            self.__password = generate_password_hash(new_password)
 
     def check_password(self, password_given: str):
         return check_password_hash(self.__password, password_given)
-
-    def hash_password(self, password):
-        return generate_password_hash(password)
 
     def get_dict(self):
         return {
             "username": self.get_username(),
             "first": self.get_first_name(),
             "last": self.get_last_name(),
-            "password": self.hash_password(self.__password),
+            "password": self.__password,
             "moderator": self.is_moderator(),
             "favorite_books": self.get_favorite_books()
         }

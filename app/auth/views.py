@@ -3,6 +3,7 @@ from functools import wraps
 from flask import Blueprint, request, flash, redirect, url_for, render_template, session
 
 from app.model.user_model import UserModel
+from src.bookshelf.manage_users.manage_users import ManageUsers
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
@@ -10,19 +11,8 @@ auth = Blueprint('auth', __name__, template_folder='templates')
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        repeat_password = request.form.get("repeat_password")
-        check_user_exists = UserModel().find_user_by_name(username)
-        if check_user_exists:
-            flash("username already in use")
-            return redirect(url_for("auth.register"))
-        elif not password == repeat_password:
-            flash("Passwords do not match ")
-            return redirect(url_for("auth.register"))
-
-        UserModel().create(username, password)
-        flash("Registration Successful!")
+        register_message = ManageUsers().register(request.form)
+        flash(register_message)
     return render_template("register.html")
 
 

@@ -9,8 +9,9 @@
                 <!-- user field -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="username" name="username" type="text" class="validate" required>
+                        <input id="username" name="username" minlength="6" maxlength="12" type="text" class="validate" pattern="[a-z\d]+" required>
                         <label for="username">Username</label>
+                        <span class="helper-text" data-error="check username chars only lowercase letters and numbers and no spaces" data-success="valid username">username must be lowercase with no spaces</span>
                     </div>
                 </div>
                 <!-- password field -->
