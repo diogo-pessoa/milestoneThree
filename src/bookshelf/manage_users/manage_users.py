@@ -4,34 +4,48 @@ from src.bookshelf.user import User
 
 class ManageUsers:
 
-    def register(self, user_information: dict):
-        """
+    def get_user(self, username):
+        user = UserModel().find_user_by_name(username)
+        if user:
+            return User(user)
 
-        :param user_information:
-        :return: dict with flash_message
+    def create_user(self, new_user: User):
+        return UserModel().create(new_user)
+
+    def register(self, username: str, password: str, repeat_password: str):
         """
-        repeat_password = user_information.get("repeat_password")
-        # Instance of User
+            Register new user if user is new and passwords match
+        :param username:
+        :param password:
+        :param repeat_password:
+        :return:
+        """
+        response = {
+            "flash_message": "Invalid Credentials"
+        }
+
         new_user = User({
-            "username": user_information.get("username"),
-            "password": user_information.get("password"),
+            "username": username,
+            "password": password,
         })
         # Check if User exists
-        is_existing_user = UserModel().find_user_by_name(new_user.get_username())
-        new_user.hash_user_password()
-        if is_existing_user:
-            register_message = "username already in use"
-        elif not new_user.check_password(repeat_password):
-            register_message = "Passwords do not match"
-        else:
-            # create user
-            create_user = UserModel().create(new_user)
-            # TODO make it clearer create User worked and default return is None
-            if not create_user:
-                register_message = "Registration Successful!"
+        is_existing_user = self.get_user(new_user.get_username())
+
+        if is_existing_user and is_existing_user.get_username() == username:
+            response["flash_message"] = "username already in use"
+
+        elif password == repeat_password:
+            # hashing user password before storing in DB
+            new_user.hash_password()
+            create = self.create_user(new_user)  # returns None if create works
+            if create:
+                response["flash_message"] = "There was a problem when trying to create this user, Try Again!"
             else:
-                register_message = "There was a problem when trying to create this user, Try Again!"
-        return register_message
+                response["flash_message"] = "Registration Successful!"
+        else:
+            response["flash_message"] = "Passwords do not match"
+
+        return response["flash_message"]
 
     def login(self, username: str, password: str):
         """
@@ -43,10 +57,10 @@ class ManageUsers:
             "flash_message": "Invalid Credentials"
         }
 
-        existing_user = UserModel().find_user_by_name(username)
+        existing_user = self.get_user(username)
         if existing_user:
-            user = User(existing_user)
-            if user.check_password(password):
-                response['session'] = user.get_username()
-                response['flash_message'] = "Welcome, {}".format(user.get_first_name())
+
+            if existing_user.check_password(password):
+                response['session'] = existing_user.get_username()
+                response['flash_message'] = "Welcome, {}".format(existing_user.get_first_name())
         return response

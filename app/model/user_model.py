@@ -48,16 +48,15 @@ class UserModel(object):
             mongo.db.users.insert_one(new_user.get_dict())
         except Exception as e:
             print(f"ERROR - Failed to Insert new user: {e}.")
+            return "Error"
+
 
     def update(self, user: User, user_information_form_content: dict):
         """
-            Push Update book Information to Mongo
-            Returns book_title_for_url as update can change book title, and we are using book title as part of book url
-            :return: title_for_url in case there's a change.
+            Push Update user details to DB
         """
         try:
             user.update_details(user_information_form_content)
             mongo.db.users.update({"_id": user.get_id()}, user.get_dict())
         except Exception as e:
-            errno, strerror = e.args
-            print(f"ERROR - Failed to update book, {errno}: {strerror}.")
+            return f"ERROR - Failed to update user information, {e}."

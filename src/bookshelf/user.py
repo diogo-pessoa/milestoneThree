@@ -48,7 +48,7 @@ class User:
             return True
         return False
 
-    def hash_user_password(self):
+    def hash_password(self):
         if self.__password:
             generate_password_hash(self.__password)
 

@@ -37,7 +37,9 @@ With the local Application Running and [.flaskenv](https://github.com/diogo-pess
     python -m unittest discover -s test/html_test/*_view -p "*_test.py" -v  
 
 ## UnitTest
-
+    
+    # make sure to export the .flaskenv variable. The pymongo model, relies on app and mongo. 
+    # The test pre-loads these in order to mock the call to the  method that invokes Application  Models 
     python -m unittest discover -s test/src/bookshelf -p "*_test.py" -v
 
 
@@ -187,5 +189,17 @@ This was caused by an inconsistency on the Book class. when the `book.get_dict()
     - Navigate to Profile page tabs and confirm fields are showing
     - On Favorite books there's still a need to fix each book rate
 
+## Refactoring
 
+In order to improve the ability to test and the compartmentalization of the code a new class `ManageUsers` was created all the logic from routes login and register was moved to this class. This allowed to write unittests for each method separately.
+
+ - Benefits:
+   - predictable behaviour
+   - flask views are only handling flask specifics
+   - Further testing 
+   - single responsibility for each Class
+ - new Class [ManageUsers](src/bookshelf/manage_users/manage_users.py)
+ - **Test**
+   - [Register](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/register_test.py)
+   - [Login](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/login_test.py)
 

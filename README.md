@@ -78,6 +78,7 @@ For User Stories and Features
     - [geckodriver](https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path)
     - [selenium](https://selenium-python.readthedocs.io/locating-elements.html#locating-elements)
     - [unittest](https://docs.python.org/3/library/unittest.html)
+    - [MagicMock](https://docs.python.org/3/library/unittest.mock.html)
 - Deployment
   - [heroku](http://heroku.com)
 - Data Storage
@@ -119,3 +120,6 @@ Once you have your local environment setup follow the steps on the Testing docum
 Ideas in app structure and data management inspired by the miguel Grinberg's [flask mega-tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 
 - [login_required decorator](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
+
+- [get_config_function_for_unittesting](https://stackoverflow.com/questions/56029111/how-do-i-mock-pymongo-for-testing-with-a-flask-app)
+  - Useful for setting up unittest framework in order to Mock MongoPy calls. Once TestConfig is loaded and imported to test. I was able to user `MagicMock` to return mock values from database calls

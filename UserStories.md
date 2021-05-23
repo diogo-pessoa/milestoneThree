@@ -127,3 +127,5 @@ These are stories created during the development. To avoid interrupting the curr
 
 - When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
 
+- When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
+

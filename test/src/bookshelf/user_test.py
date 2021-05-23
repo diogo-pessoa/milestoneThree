@@ -38,24 +38,11 @@ class UserTest(unittest.TestCase):
         self.assertEqual("willfarnaby", user_repr['username'])
         self.assertFalse(user_repr['moderator'])
 
-    def test_update_details(self):
-        user_repr = self.user
-        updated_information = {
-            'first_name': 'Will',
-            'last_name': 'Farna'
-        }
-
-        user_repr.update_details(updated_information)
-        self.assertEqual(updated_information.get('first_name'), self.user.get_first_name())
-        self.assertEqual(updated_information.get('last_name'), self.user.get_last_name())
-
-    def test_update_password(self):
-        user_repr = self.user
-        updated_information = {
-            'password': '123qwe',
-            'repeat_password': '123qwe'}
-        user_repr.update_details(updated_information)
-        self.assertTrue(user_repr.check_password('123qwe'))
+    def test_hash_and_check_password(self):
+        given_password = "randomHashed Pass"
+        new_user = User({"username": "new_user", "password": "randomHashed Pass"})
+        new_user.hash_password()
+        self.assertTrue(self.user.check_password(given_password))
 
 
 if __name__ == "__main__":
