@@ -31,7 +31,6 @@ class UserTest(unittest.TestCase):
 
     def test_check_password(self):
         given_password = "randomHashed Pass"
-        self.user.__set_password(given_password)
         self.assertTrue(self.user.check_password(given_password))
 
     def test_get_dict(self):
@@ -55,18 +54,6 @@ class UserTest(unittest.TestCase):
         updated_information = {
             'password': '123qwe',
             'repeat_password': '123qwe'}
-        user_repr.update_details(updated_information)
-        self.assertTrue(user_repr.check_password('123qwe'))
-
-    def test_update_password_raise_exception(self):
-        """
-        In case passwords do not match, it is critical to raise exception
-
-        """
-        user_repr = self.user
-        updated_information = {
-            'password': '123qwe',
-            'repeat_password': '123qw'}
         user_repr.update_details(updated_information)
         self.assertTrue(user_repr.check_password('123qwe'))
 

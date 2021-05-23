@@ -2,16 +2,17 @@ from functools import wraps
 
 from flask import Blueprint, request, flash, redirect, url_for, render_template, session
 
-from app.model.user_model import UserModel
 from src.bookshelf.manage_users.manage_users import ManageUsers
 
 auth = Blueprint('auth', __name__, template_folder='templates')
+
+manage_users = ManageUsers()
 
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        register_message = ManageUsers().register(request.form)
+        register_message = manage_users.register(request.form)
         flash(register_message)
     return render_template("register.html")
 
@@ -19,24 +20,12 @@ def register():
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        form_details = {"username": request.form.get("username"),
-                        "password": request.form.get("password")
-                        }
-        # check if username exists
-        existing_user = UserModel().find_user_by_name(form_details['username'])
-        if existing_user:
-            # ensure hashed password matches user input
-            if existing_user.check_password(form_details["password"]):
-                session["user"] = existing_user.get_username()
-                flash("Welcome, {}".format(existing_user.get_first_name()))
-                return redirect(url_for("book.book_list"))
-            else:
-                # invalid password match
-                flash("Invalid Credentials")
-                return redirect(url_for("auth.login"))
+        user_login = manage_users.login(request.form.get("username"), request.form.get("password"))
+        flash(user_login["flash_message"])
+        if user_login.get('session'):
+            session["user"] = user_login.get('session')
+            return redirect(url_for("book.book_list"))
         else:
-            # username doesn't exist
-            flash("Invalid Credentials")
             return redirect(url_for("auth.login"))
     return render_template("login.html")
 

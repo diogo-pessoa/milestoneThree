@@ -10,7 +10,7 @@ class User:
             self.__username = user_info.get('username')
             self.__first_name = user_info.get('first')
             self.__last_name = user_info.get('last')
-            self.__set_password(user_info.get('password'))
+            self.__password = user_info.get('password')
             self.__moderator = user_info.get('moderator')
             self.__favorite_books = user_info.get('favorite_books')
 
@@ -48,9 +48,9 @@ class User:
             return True
         return False
 
-    def __set_password(self, new_password):
-        if new_password:
-            self.__password = generate_password_hash(new_password)
+    def hash_user_password(self):
+        if self.__password:
+            generate_password_hash(self.__password)
 
     def check_password(self, password_given: str):
         return check_password_hash(self.__password, password_given)
@@ -65,19 +65,19 @@ class User:
             "favorite_books": self.get_favorite_books()
         }
 
-    def update_details(self, user_details: dict):
-        """
-        Updates user information from input dict
-        :param user_details: {first_name, last_name, password, repeat_password}
-        :return: None
-        """
-
-        for key, value in user_details.items():
-            if key == 'first_name' and value != self.get_first_name():
-                self.__set_first_name(value)
-            if key == 'last_name' and value != self.get_last_name():
-                self.__set_last_name(value)
-            if key == 'password':
-                # TODO Raise exception in case passwords don't match
-                if value == user_details['repeat_password']:
-                    self.__set_password(value)
+    # def update_details(self, user_details: dict):
+    #     """
+    #     Updates user information from input dict
+    #     :param user_details: {first_name, last_name, password, repeat_password}
+    #     :return: None
+    #     """
+    #
+    #     for key, value in user_details.items():
+    #         if key == 'first_name' and value != self.get_first_name():
+    #             self.__set_first_name(value)
+    #         if key == 'last_name' and value != self.get_last_name():
+    #             self.__set_last_name(value)
+    #         if key == 'password':
+    #             # TODO Raise exception in case passwords don't match
+    #             if value == user_details['repeat_password']:
+    #                 self.hash_user_password(value)
