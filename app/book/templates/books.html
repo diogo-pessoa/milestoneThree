@@ -23,6 +23,11 @@
             {% endfor %}
         {% else %}
                 <h4 class="center">No books found for this search.</h4>
+                {% if session.user %}
+                    <p class="center flow-text">Want to share this book with others? <a href="{{ url_for( 'book.new' ) }}">Create new book</a></p>
+                {% else %}
+                    <p class="center flow-text"><a href="{{ url_for( 'auth.register' ) }}">Register Now</a> to create and share the books you like</p>
+                {% endif %}
         {% endif %}
         </ul>
     </div>

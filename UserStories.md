@@ -104,6 +104,8 @@ Features & User Stories
 
 -  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
 
+-  As a user I want tag book as favorites, so I can see then later in my Profile Page
+
 - As a Moderator I can review book information and tag when it is validated
 
 - As a Moderator I can delete books

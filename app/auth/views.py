@@ -19,6 +19,7 @@ def register():
             return redirect(url_for('auth.login'))
         else:
             return render_template("register.html")
+    return render_template("register.html")
 
 
 @auth.route("/login", methods=["GET", "POST"])
