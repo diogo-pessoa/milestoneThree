@@ -29,7 +29,7 @@ class UpdateUsersTest(unittest.TestCase):
             'first_name': 'Will',
             'last_name': 'Farna'
         }
-        self.manage_users.__update_user_information = MagicMock(return_value=None)
+        self.manage_users.update_user_information = MagicMock(return_value=None)
         update_details = self.manage_users.update_details(user, updated_information_from_form)
         self.assertEqual(update_details["flash_message"], "Information Updated successfully")
 
@@ -56,7 +56,7 @@ class UpdateUsersTest(unittest.TestCase):
             'password': 'Will',
             'repeat_password': 'Will'
         }
-        self.manage_users.__update_user_information = MagicMock(return_value=None)
+        self.manage_users.update_user_information = MagicMock(return_value=None)
         update_details = self.manage_users.update_details(user, updated_information_from_form)
         self.assertEqual(update_details["flash_message"], "Information Updated successfully")
 
@@ -72,7 +72,7 @@ class UpdateUsersTest(unittest.TestCase):
             'first_name': 'Will',
             'last_name': 'Farna'
         }
-        self.manage_users.__update_user_information = MagicMock(return_value="Error")
-        update_details = self.manage_users.__update_details(user, updated_information_from_form)
+        self.manage_users.update_user_information = MagicMock(return_value="Error")
+        update_details = self.manage_users.update_details(user, updated_information_from_form)
         self.assertEqual(update_details["flash_message"],
                          "Something went wrong whe trying to update information, Try Again.")
