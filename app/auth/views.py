@@ -15,7 +15,10 @@ def register():
         register_message = manage_users.register(request.form.get("username"), request.form.get("password"),
                                                  request.form.get("repeat_password"))
         flash(register_message)
-    return render_template("register.html")
+        if register_message == "Registration Successful!":
+            return redirect(url_for('auth.login'))
+        else:
+            return render_template("register.html")
 
 
 @auth.route("/login", methods=["GET", "POST"])

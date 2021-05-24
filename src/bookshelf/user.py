@@ -23,14 +23,14 @@ class User:
         else:
             return self.__username
 
-    def __set_first_name(self, first_name):
+    def set_first_name(self, first_name):
         self.__first_name = first_name
 
     def get_last_name(self):
         if self.__last_name:
             return self.__last_name.capitalize()
 
-    def __set_last_name(self, last_name):
+    def set_last_name(self, last_name):
         self.__last_name = last_name
 
     def get_username(self):
@@ -48,9 +48,13 @@ class User:
             return True
         return False
 
+    def update_user_password(self, new_password):
+        if new_password:
+            self.__password = generate_password_hash(self.__password)
+
     def hash_password(self):
         if self.__password:
-            generate_password_hash(self.__password)
+            self.__password = generate_password_hash(self.__password)
 
     def check_password(self, password_given: str):
         return check_password_hash(self.__password, password_given)
@@ -64,20 +68,3 @@ class User:
             "moderator": self.is_moderator(),
             "favorite_books": self.get_favorite_books()
         }
-
-    # def update_details(self, user_details: dict):
-    #     """
-    #     Updates user information from input dict
-    #     :param user_details: {first_name, last_name, password, repeat_password}
-    #     :return: None
-    #     """
-    #
-    #     for key, value in user_details.items():
-    #         if key == 'first_name' and value != self.get_first_name():
-    #             self.__set_first_name(value)
-    #         if key == 'last_name' and value != self.get_last_name():
-    #             self.__set_last_name(value)
-    #         if key == 'password':
-    #             # TODO Raise exception in case passwords don't match
-    #             if value == user_details['repeat_password']:
-    #                 self.hash_user_password(value)

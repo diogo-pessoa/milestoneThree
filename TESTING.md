@@ -18,7 +18,7 @@ and run a mongo restore as described below.
 ```
 
 
-    mongorestore --uri mongodb+srv://milestoneUser:<PASSWORD>@cluster0.09hrz.mongodb.net 
+     mongorestore --host=localhost:27017 --password=example --username=root
      
 
 ### Selenium tests 

@@ -4,12 +4,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     """
-
+        flask Config
     """
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     MONGO_URI = os.environ.get('MONGO_URI')
-    MONGO_DBNAME = os.environ.get('MONGOALCHEMY_DATABASE')
-
 
 class TestConfig(object):
     """
@@ -17,6 +15,5 @@ class TestConfig(object):
     """
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     MONGO_URI = os.environ.get('MONGO_URI')
-    MONGO_DBNAME = os.environ.get('MONGOALCHEMY_DATABASE')
     TESTING = True
 

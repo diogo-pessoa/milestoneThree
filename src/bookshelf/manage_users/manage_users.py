@@ -4,13 +4,19 @@ from src.bookshelf.user import User
 
 class ManageUsers:
 
+    def __init__(self):
+        self.user_model = UserModel()
+
     def get_user(self, username):
-        user = UserModel().find_user_by_name(username)
+        user = self.user_model.find_user_by_name(username)
         if user:
             return User(user)
 
     def create_user(self, new_user: User):
-        return UserModel().create(new_user)
+        return self.user_model.create(new_user)
+
+    def update_user_information(self, update_information):
+        return self.user_model.update(update_information)
 
     def register(self, username: str, password: str, repeat_password: str):
         """
@@ -63,4 +69,30 @@ class ManageUsers:
             if existing_user.check_password(password):
                 response['session'] = existing_user.get_username()
                 response['flash_message'] = "Welcome, {}".format(existing_user.get_first_name())
+        return response
+
+    def update_details(self, logged_user, new_information):
+        """
+        Updates user information from new_information dict
+        :param logged_user: current user Object
+        :param new_information: {first_name, last_name, password, repeat_password}
+        :return: flash_message
+        """
+        response = {"flash_message": ""}
+        for key, value in new_information.items():
+            if key == 'first_name' and value != logged_user.get_first_name():
+                logged_user.set_first_name(value)
+            if key == 'last_name' and value != logged_user.get_last_name():
+                logged_user.set_last_name(value)
+            if key == 'password':
+                if value == new_information['repeat_password']:
+                    logged_user.update_user_password(value)
+                else:
+                    response["flash_message"] = "Password do not match, couldn't update information"
+                    return response
+        return_status = self.update_user_information(logged_user)
+        if return_status:
+            response["flash_message"] = "Something went wrong whe trying to update information, Try Again."
+        else:
+            response["flash_message"] = "Information Updated successfully"
         return response

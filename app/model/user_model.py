@@ -50,13 +50,12 @@ class UserModel(object):
             print(f"ERROR - Failed to Insert new user: {e}.")
             return "Error"
 
-
-    def update(self, user: User, user_information_form_content: dict):
+    def update(self, updated_user_details: User):
         """
-            Push Update user details to DB
+            Push Update new details to DB
         """
         try:
-            user.update_details(user_information_form_content)
-            mongo.db.users.update({"_id": user.get_id()}, user.get_dict())
+            mongo.db.users.update({"_id": updated_user_details.get_id()}, updated_user_details.get_dict())
         except Exception as e:
-            return f"ERROR - Failed to update user information, {e}."
+            print(f"ERROR - Failed to update user information, {e}.")
+            return "Error"

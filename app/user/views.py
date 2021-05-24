@@ -4,18 +4,20 @@ from werkzeug.utils import redirect
 from app.auth.views import login_required
 from app.model.book_model import BookModel
 from app.model.review_model import ReviewModel
-from app.model.user_model import UserModel
+from src.bookshelf.manage_users.manage_users import ManageUsers
 
 user = Blueprint('user', __name__, template_folder='templates')
+
+manage_users = ManageUsers()
 
 
 @user.route("/profile/<username>", methods=["GET", "POST"])
 @login_required
 def profile(username):
-    logged_user = UserModel().find_user_by_name(username)
+    logged_user = manage_users.get_user(username)
     if request.method == "POST":
-        UserModel().update(logged_user, request.form)
-        flash("User Information Updated")
+        update = manage_users.update_details(logged_user, request.form)
+        flash(update["flash_message"])
         return redirect(url_for('user.profile', username=logged_user.get_username()))
 
     reviews = ReviewModel().find_user_reviews(logged_user.get_id())
