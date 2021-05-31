@@ -3,19 +3,39 @@ from src.bookshelf.user import User
 
 
 class ManageUsers:
+    """
+        Manages Bookshelf users operations and handling of user information updates
+    """
 
     def __init__(self):
         self.user_model = UserModel()
 
-    def get_user(self, username):
+    def get_user(self, username: str):
+        """
+            queries data storage and return User() instance
+            :param: username: str
+            :return: User() Object with data from data storage
+        """
         user = self.user_model.find_user_by_name(username)
         if user:
             return User(user)
 
     def create_user(self, new_user: User):
+        """
+            Proxy method call for create operation for dataStorage class.
+            That simplifies the abstraction. single place to change if the model driver (Mongo,SQL) changes.
+            :param username: User()
+            :return: None or Error String
+        """
         return self.user_model.create(new_user)
 
-    def update_user_information(self, update_information):
+    def update_user_information(self, update_information: User):
+        """
+            Proxy method call for create operation for dataStorage class.
+            That simplifies the abstraction. single place to change if the model driver (Mongo,SQL) changes.
+            :param update_information: User()
+            :return: None or Error String
+        """
         return self.user_model.update(update_information)
 
     def register(self, username: str, password: str, repeat_password: str):
