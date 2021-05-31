@@ -105,7 +105,7 @@ class BookModel(object):
         """
         try:
             #TODO check if book already exists.
-            # return link if it does
+            # return link if and keep on form page there's an existing book
             new_book_details = Book(new_book_information)
             book = mongo.db.books.insert(new_book_details.get_dict())
             print(book)

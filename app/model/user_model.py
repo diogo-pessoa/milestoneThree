@@ -33,9 +33,7 @@ class UserModel(object):
             if user:
                 returned_user = User(user)
                 return returned_user
-
         except IOError as e:
-
             print(f"ERROR - Failed to get user, {e}.")
 
     def create(self, new_user: User):

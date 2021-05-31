@@ -1,5 +1,7 @@
 import statistics
 
+from bson import ObjectId
+
 from app import mongo
 from app.model.book_model import BookModel
 from app.model.user_model import UserModel
@@ -40,7 +42,7 @@ class ReviewModel(object):
         """
         reviews_response = []
         book_reviews = mongo.db.reviews.find({"book_id": book_id})
-        #TODO Refactoring needed on simplify or split into separate function
+        # TODO Refactoring needed on simplify or split into separate function
         for review in book_reviews:
             review = Review(review)
             user = UserModel().find_by_id(review.get_reviewer_id())
@@ -62,3 +64,24 @@ class ReviewModel(object):
         if len(book_rate) == 0:
             return 0
         return round(statistics.mean(book_rate))
+
+    def find_reviews(self, object_id: ObjectId, attribute_name: str):
+        """
+        Searches data storage for reviews filtered by either user_id or book_id
+        :param object_id: filter criteria to build list of reviews
+        :param attribute_name: book_id or user_id
+        :return: list(Review()) or `Error`
+        """
+        try:
+            if attribute_name == "users":
+                attribute_key = 'reviewer_id'
+            elif attribute_name == "books":
+                attribute_key = 'book_id'
+            else:
+                raise Exception('ERROR - Missing attribute_name')
+            reviews_from_db = mongo.db.reviews.find({attribute_key: object_id})
+            if reviews_from_db:
+                return reviews_from_db
+        except IOError as e:
+            print(f'ERROR - Failed to get reviews: {e}.')
+            return "Error"
