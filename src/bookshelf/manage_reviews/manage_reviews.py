@@ -1,6 +1,6 @@
-from app.model.book_model import BookModel
+import statistics
+
 from app.model.review_model import ReviewModel
-from src.bookshelf.manage_users.manage_users import ManageUsers
 from src.bookshelf.review import Review
 
 
@@ -14,45 +14,41 @@ class ManageReviews:
         Queries Data Storage for reviews, Supports either book_id or reviewer_id
         :param object_id:
         :param field_name: book_id or reviewer_id to specify which is the Id being passed to the query
-        :return: dict of reviews
+        :return: dict of reviews or None
         """
-        reviews = []
-        for review in self.review_model.find_reviews(object_id, field_name):
-            reviews.append(Review(review))
-        return reviews
+        if field_name == 'reviewer_id' or field_name == 'book_id':
+            reviews = []
+            reviews_from_storage = self.review_model.find_reviews(object_id, field_name)
+            for review in reviews_from_storage:
+                reviews.append(Review(review))
+            if reviews:
+                return reviews
+        else:
+            raise Exception(f'field_name has to be either reviewer_id or book_id. Received: {field_name}')
 
-    def get_by_user(self, user_id: str):
-        """
-            queries data storage and return
-            :param: username: str
-            :return: list of Review instances
-        """
-        user_name = ManageUsers().get_by_id(user_id)
-        user_name = user_name.get_first_name()
-        user_reviews = []
-        collection_name = 'users'
-        reviews_from_db = self.get_reviews(user_id, collection_name)
-        if reviews_from_db:
-            for review in reviews_from_db:
-                single_review = review
-                # Query_book_title_by_id
-                # TODO move to private method
-                book_in_list = BookModel().find_by_id(single_review.get_book_id())
-                # Set attributes value to review
-                single_review.set_book_title(book_in_list.get_formatted_title())
-                single_review.set_reviewer_name(user_name)
-                user_reviews.append(single_review)
-        return user_reviews
+    # reviews_response = []
+    # book_reviews = mongo.db.reviews.find({"book_id": book_id})
+    # # TODO Refactoring move logic to ManageReviews
+    # for review in book_reviews:
+    #     review = Review(review)
+    #     user = UserModel().find_by_id(review.get_reviewer_id())
+    #     review.set_reviewer_name(user.get_first_name())
+    #     reviews_response.append(review)
+    # return reviews_response
 
-    def get_reviews_by_book(self, book_id):
+    def get_rate_by_book_id(self, book_id):
         """
-            queries data storage and return User() instance
-            :param: username: str
-            :return: User() Object with data from data storage
+            Calculates book average rate from all reviews
+        :param book_id:
+        :return: int() rounded rate average or 0
         """
-        collection_name = 'books'
-        return self.review_model.find_reviews(book_id, collection_name)
+        book_rate = []
+        book_reviews = self.get_reviews(book_id, "book_id")
+        for review in book_reviews:
+            review = review
+            book_rate.append(review.get_rate())
+        if len(book_rate) == 0:
+            return 0
+        return round(statistics.mean(book_rate))
 
-    # def create_new(self, book_id: ObjectId, user_id: ObjectId, book_rate: int, book_review: str, ):
-    #     pass
-    #     # TODO return flash message
+

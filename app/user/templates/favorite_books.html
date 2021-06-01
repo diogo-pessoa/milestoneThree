@@ -3,7 +3,6 @@
     <tr>
         <th>Title</th>
         <th>Author</th>
-        <th>Rate</th>
     </tr>
     </thead>
 
@@ -13,7 +12,6 @@
          <td><a href="{{url_for( 'book.book_page', book_title=book.get_raw_title()) }}"
                   class="waves-effect waves-light black-text">{{book.get_formatted_title()}}</a></td>
         <td>{{book.get_author()}}</td>
-        <td>0</td>
      </tr>
     {% endfor %}
     </tbody>

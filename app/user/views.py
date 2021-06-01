@@ -20,7 +20,7 @@ def profile(username):
         update = manage_users.update_details(logged_user, request.form)
         flash(update["flash_message"])
         return redirect(url_for('user.profile', username=logged_user.get_username()))
-    reviews = manage_reviews.get_by_user(logged_user.get_id())
+    reviews = manage_reviews.get_reviews(logged_user.get_id(), 'reviewer_id')
     user_favorite_books = logged_user.get_favorite_books()
     books = BookModel().find_list_by_id(user_favorite_books)
     # TODO Favorite_books.html missing book_rate

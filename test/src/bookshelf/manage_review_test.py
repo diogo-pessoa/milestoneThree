@@ -13,15 +13,19 @@ app, mongo = get_app_with_config(TestConfig)
 class NewReviewTest(unittest.TestCase):
 
     def setUp(self):
+        # Mock of Review Query
         review_json = open('../../data/review.json')
         # review_json = open('test/data/review.json')
-        self.review_from_query = json.load(review_json)
-        review_json.close()
+        review_from_query = json.load(review_json)
+        reviews = []
         self.manage_reviews = ManageReviews()
-        self.manage_reviews.get_user = MagicMock(return_value=Review(self.review_from_query[0]))
-        self.manage_reviews.get_reviews_by_book = MagicMock(return_value=Review(self.review_from_query[0]))
+        for review in review_from_query:
+            reviews.append(Review(review))
+        self.manage_reviews.get_reviews = MagicMock(return_value=reviews)
 
-    def test_create_new(self):
-        new_review = self.manage_reviews.create_new('60773a16cb838494e13d3652', '608f2e4ba54d753c4466305f', 3,
-                                                    "awesome books")
-        self.assertIsNotNone(new_review)
+    def test_get_rate_by_book_id(self):
+        """
+          expect to get the average rate of books returned from DB
+        """
+        book_rates = self.manage_reviews.get_rate_by_book_id('qwdsmnf1jh1231')
+        self.assertEqual(4, book_rates)
