@@ -3,12 +3,13 @@ from werkzeug.utils import redirect
 
 from app.auth.views import login_required
 from app.model.book_model import BookModel
-from app.model.review_model import ReviewModel
+from src.bookshelf.manage_reviews.manage_reviews import ManageReviews
 from src.bookshelf.manage_users.manage_users import ManageUsers
 
 user = Blueprint('user', __name__, template_folder='templates')
 
 manage_users = ManageUsers()
+manage_reviews = ManageReviews()
 
 
 @user.route("/profile/<username>", methods=["GET", "POST"])
@@ -19,8 +20,7 @@ def profile(username):
         update = manage_users.update_details(logged_user, request.form)
         flash(update["flash_message"])
         return redirect(url_for('user.profile', username=logged_user.get_username()))
-
-    reviews = ReviewModel().find_user_reviews(logged_user.get_id())
+    reviews = manage_reviews.get_by_user(logged_user.get_id())
     user_favorite_books = logged_user.get_favorite_books()
     books = BookModel().find_list_by_id(user_favorite_books)
     # TODO Favorite_books.html missing book_rate

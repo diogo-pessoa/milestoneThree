@@ -20,6 +20,12 @@ class ManageUsers:
         if user:
             return User(user)
 
+    # TODO Refactor merge get_user and get_by_id into one.
+    def get_by_id(self, id):
+        user = self.user_model.find_by_id(id)
+        if user:
+            return User(user)
+
     def create_user(self, new_user: User):
         """
             Proxy method call for create operation for dataStorage class.

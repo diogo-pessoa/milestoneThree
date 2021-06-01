@@ -6,6 +6,7 @@ from src.bookshelf.user import User
 
 class UserModel(object):
 
+#TODO merge find method into one
     def find_user_by_name(self, name: str):
         """
             Queries Mongo users collection filtering by username
@@ -29,16 +30,15 @@ class UserModel(object):
         :return: Object Instance of User Class
         """
         try:
-            user = mongo.db.users.find_one({"_id": user_id})
-            if user:
-                returned_user = User(user)
-                return returned_user
+            return mongo.db.users.find_one({"_id": user_id})
+
         except IOError as e:
             print(f"ERROR - Failed to get user, {e}.")
 
-    def create(self, new_user: User):
+    def create(self, new_user):
         """
         Create New object in users collection
+        # TODO move to dict
         :param new_user: UserObject
         :return: None or Error
         """
@@ -48,7 +48,7 @@ class UserModel(object):
             print(f"ERROR - Failed to Insert new user: {e}.")
             return "Error"
 
-    def update(self, updated_user_details: User):
+    def update(self, updated_user_details: dict):
         """
             Push Update new details to DB
         """
