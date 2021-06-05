@@ -82,7 +82,7 @@ class BookModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed to update book, {errno}: {strerror}.")
 
-    def update_book(self, book_id, book_information):
+    def update(self, book_id, book_information):
         """
          Push Update book Information to Mongo
          Returns book_title_for_url as update can change book title, and we are using book title as part of book url
@@ -96,20 +96,25 @@ class BookModel(object):
             errno, strerror = e.args
             print(f"ERROR - Failed to update book, {errno}: {strerror}.")
 
-
-    def create_one(self, new_book_information):
+    @staticmethod
+    def create_one(new_book_information: dict):
         """
-         Create new book from book Object
-         Returns book_title for url, in order to allow for page redirect
-        :return: title_for_url
+         Create new book from book dict with book information
         """
         try:
-            #TODO check if book already exists.
-            # return link if and keep on form page there's an existing book
-            new_book_details = Book(new_book_information)
-            book = mongo.db.books.insert(new_book_details.get_dict())
-            print(book)
-            return new_book_details
-        except Exception as e:
-            errno, strerror = e.args
-            print(f"ERROR - Failed to update book, {errno}: {strerror}.")
+            mongo.db.books.insert(new_book_information)
+        except IOError as e:
+            raise Exception(f"ERROR - Failed to update book, {e}.")
+
+    @staticmethod
+    def find_books(object_id: str, attribute_name: str):
+        """
+        Searches data storage for Book filtered by attribute_name
+        :param object_id:
+        :param attribute_name:
+        :return: list(Review()) or `Error`
+        """
+        try:
+            mongo.db.books.find({attribute_name: object_id})
+        except IOError as e:
+            raise Exception(f'ERROR - Failed to get reviews: {e}.')

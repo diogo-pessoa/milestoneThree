@@ -68,8 +68,7 @@ class ManageReviews(ManageReviewSuper):
     def delete_by_review_by_id(self, review_id: str):
         """
         Checks reviewer_id matches user_id then request object deletion
-        :param user_id:
-        :param review_id:
+        :param review_id: str
         :return: response: dict
         """
         response = {
@@ -82,9 +81,9 @@ class ManageReviews(ManageReviewSuper):
 
     def add_new_review(self, review_information: dict):
         """
-
-        :param review_information: {}
-        :return: response with create result
+            Adds new review from dict with information passed from web form
+            :param review_information: {}
+            :return: response with create result
         """
         response = {
             "flash_message": "Review created successfully."
