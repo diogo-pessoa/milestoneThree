@@ -6,12 +6,11 @@ from app.model.review_model import ReviewModel
 from src.bookshelf.review import Review
 
 
-class ManageReviews:
-
+class ManageReviewSuper:
     def __init__(self):
         self.review_model = ReviewModel()
 
-    def get_reviews(self, object_id: str, field_name: str):
+    def get_many(self, object_id: str, field_name: str):
         """
         Queries Data Storage for reviews, Supports either book_id or reviewer_id
         :param object_id:
@@ -28,21 +27,24 @@ class ManageReviews:
         else:
             raise Exception(f'field_name has to be either reviewer_id or book_id. Received: {field_name}')
 
-    # reviews_response = []
-    # book_reviews = mongo.db.reviews.find({"book_id": book_id})
-    # # TODO Refactoring move logic to ManageReviews
-    # for review in book_reviews:
-    #     review = Review(review)
-    #     user = UserModel().find_by_id(review.get_reviewer_id())
-    #     review.set_reviewer_name(user.get_first_name())
-    #     reviews_response.append(review)
-    # return reviews_response
+    def create(self, review: Review):
+        """
+            Wrapper call for data storage Class
+        :param review:
+        :return: None
+        """
+        create = self.review_model.create_review(review.get_dict())
+        if not create:
+            return create
 
-    def delete_review(self, review_id: str):
+
+class ManageReviews(ManageReviewSuper):
+
+    def delete(self, review_id: str):
         """
             Proxy delete request to allow for mock response
         :param review_id: ObjectId
-        :return: None or "Error"
+        :return: None
         """
         delete = self.review_model.delete_review_by_id(ObjectId(review_id))
         if not delete:
@@ -55,7 +57,7 @@ class ManageReviews:
         :return: int() rounded rate average or 0
         """
         book_rate = []
-        book_reviews = self.get_reviews(book_id, "book_id")
+        book_reviews = self.get_many(book_id, "book_id")
         for review in book_reviews:
             review = review
             book_rate.append(review.get_rate())
@@ -73,7 +75,23 @@ class ManageReviews:
         response = {
             'flash_message': "Review deleted successfully."
         }
-        delete_review = self.delete_review(review_id)
+        delete_review = self.delete(review_id)
         if delete_review is not None:
             response['flash_message'] = "Could Not delete review, Try Again"
+        return response
+
+    def add_new_review(self, review_information: dict):
+        """
+
+        :param review_information: {}
+        :return: response with create result
+        """
+        response = {
+            "flash_message": "Review created successfully."
+        }
+
+        review = Review(review_information)
+        create_review = self.create(review)
+        if create_review is not None:
+            response['flash_message'] = "Could Not create review, Try Again"
         return response

@@ -22,7 +22,7 @@ class ReviewTest(unittest.TestCase):
         review = self.review[0].get_dict()
         self.assertIsNotNone(review['reviewer_id'])
         self.assertIsNotNone(review['book_id'])
-        self.assertEqual(4, review['rate'])
+        self.assertEqual(5, review['rate'])
 
     def test_set_reviewer(self):
         """

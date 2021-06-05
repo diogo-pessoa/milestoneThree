@@ -8,20 +8,20 @@ from src.bookshelf.manage_users.manage_users import ManageUsers
 
 user = Blueprint('user', __name__, template_folder='templates')
 
-manage_users = ManageUsers()
-manage_reviews = ManageReviews()
+users = ManageUsers()
+reviews = ManageReviews()
 
 
 @user.route("/profile/<username>", methods=["GET", "POST"])
 @login_required
 def profile(username):
-    logged_user = manage_users.get_user(username)
+    logged_user = users.get_user(username)
     if request.method == "POST":
-        update = manage_users.update_details(logged_user, request.form)
-        flash(update["flash_message"])
+        user_update = users.update_details(logged_user, request.form)
+        flash(user_update["flash_message"])
         return redirect(url_for('user.profile', username=logged_user.get_username()))
-    reviews = manage_reviews.get_reviews(logged_user.get_id(), 'reviewer_id')
     user_favorite_books = logged_user.get_favorite_books()
-    books = BookModel().find_list_by_id(user_favorite_books)
     # TODO Favorite_books.html missing book_rate
-    return render_template("profile.html", user=logged_user, reviews=reviews, books=books)
+    return render_template("profile.html", user=logged_user,
+                           reviews=reviews.get_many(logged_user.get_id(), 'reviewer_id'),
+                           books=BookModel().find_list_by_id(user_favorite_books))

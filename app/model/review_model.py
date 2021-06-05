@@ -24,3 +24,14 @@ class ReviewModel(object):
             mongo.db.reviews.delete_one(review_id)
         except IOError as e:
             raise Exception(f'ERROR - Failed to get reviews: {e}.')
+
+    @staticmethod
+    def create_review(review: dict):
+        """
+            Write new Review object to Data Storage
+            :return: None
+        """
+        try:
+            mongo.db.reviews.insert(review)
+        except IOError as e:
+            raise Exception(f"ERROR - {e}")
