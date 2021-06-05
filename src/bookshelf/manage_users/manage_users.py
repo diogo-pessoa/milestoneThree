@@ -1,14 +1,24 @@
+from app.model.bookshelf_model import BookshelfModel
 from app.model.user_model import UserModel
 from src.bookshelf.user import User
 
 
-class ManageUsers:
+class ManageUsersSuper(object):
+    """
+        Super Class wrapping DataStorage calls for user documents
+    """
+
+    def __init__(self):
+        self.model = BookshelfModel('users')
+
+
+class ManageUsers(ManageUsersSuper):
     """
         Manages Bookshelf users operations and handling of user information updates
     """
 
     def __init__(self):
-        self.user_model = UserModel()
+        super().__init__()
 
     def get_user(self, username: str):
         """
@@ -22,7 +32,7 @@ class ManageUsers:
 
     # TODO Refactor merge get_user and get_by_id into one.
     def get_by_id(self, id):
-        user = self.user_model.find_by_id(id)
+        user = self.model.find_by_id(id)
         if user:
             return User(user)
 
