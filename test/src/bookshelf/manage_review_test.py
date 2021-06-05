@@ -10,7 +10,7 @@ from src.bookshelf.review import Review
 app, mongo = get_app_with_config(TestConfig)
 
 
-class NewReviewTest(unittest.TestCase):
+class ManageReviewTest(unittest.TestCase):
 
     def setUp(self):
         review_json = open('test/data/review.json')
@@ -34,7 +34,7 @@ class NewReviewTest(unittest.TestCase):
         Expect to return flash_message is object is deleted
         """
         self.manage_reviews.delete = MagicMock(return_value=None)
-        delete_review = self.manage_reviews.delete_by_review_by_id('607c901da54d752ec8613324')
+        delete_review = self.manage_reviews.delete_review_by_id('607c901da54d752ec8613324')
         self.assertEqual("Review deleted successfully.", delete_review['flash_message'])
 
     def test_create_new_review(self):
@@ -42,7 +42,9 @@ class NewReviewTest(unittest.TestCase):
             Expect to return flash_message when new review is created
         """
         self.manage_reviews.create = MagicMock(return_value=None)
-        create_review = self.manage_reviews.add_new_review(self.review_from_query[0])
+        user_input_dict = self.review_from_query[0]
+        create_review = self.manage_reviews.add_new_review(user_input_dict['book_id'], user_input_dict['reviewer_id'],
+                                                           user_input_dict['rate'], user_input_dict['feedback'])
         self.assertEqual("Review created successfully.", create_review['flash_message'])
 
     def test_create_new_review_create_fails(self):
@@ -50,5 +52,7 @@ class NewReviewTest(unittest.TestCase):
             Expect to return flash_message with error if create response is not None
         """
         self.manage_reviews.create = MagicMock(return_value="Error")
-        create_review = self.manage_reviews.add_new_review(self.review_from_query[0])
+        user_input_dict = self.review_from_query[0]
+        create_review = self.manage_reviews.add_new_review(user_input_dict['book_id'], user_input_dict['reviewer_id'],
+                                                           user_input_dict['rate'], user_input_dict['feedback'])
         self.assertEqual("Could Not create review, Try Again", create_review['flash_message'])
