@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from app import mongo
 
 
@@ -12,7 +14,13 @@ class ReviewModel(object):
         :return: list(Review()) or `Error`
         """
         try:
-            return mongo.db.reviews.find({attribute_name: object_id})
+            mongo.db.reviews.find({attribute_name: object_id})
         except IOError as e:
-            print(f'ERROR - Failed to get reviews: {e}.')
-            return "Error"
+            raise Exception(f'ERROR - Failed to get reviews: {e}.')
+
+    @staticmethod
+    def delete_review_by_id(review_id: ObjectId):
+        try:
+            mongo.db.reviews.delete_one(review_id)
+        except IOError as e:
+            raise Exception(f'ERROR - Failed to get reviews: {e}.')

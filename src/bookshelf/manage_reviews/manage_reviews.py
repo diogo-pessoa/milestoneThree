@@ -1,5 +1,7 @@
 import statistics
 
+from bson import ObjectId
+
 from app.model.review_model import ReviewModel
 from src.bookshelf.review import Review
 
@@ -36,9 +38,19 @@ class ManageReviews:
     #     reviews_response.append(review)
     # return reviews_response
 
+    def delete_review(self, review_id: str):
+        """
+            Proxy delete request to allow for mock response
+        :param review_id: ObjectId
+        :return: None or "Error"
+        """
+        delete = self.review_model.delete_review_by_id(ObjectId(review_id))
+        if not delete:
+            return delete
+
     def get_rate_by_book_id(self, book_id):
         """
-            Calculates book average rate from all reviews
+            Calculates book average rate from all reviews book received
         :param book_id:
         :return: int() rounded rate average or 0
         """
@@ -51,4 +63,17 @@ class ManageReviews:
             return 0
         return round(statistics.mean(book_rate))
 
-
+    def delete_by_review_by_id(self, review_id: str):
+        """
+        Checks reviewer_id matches user_id then request object deletion
+        :param user_id:
+        :param review_id:
+        :return: response: dict
+        """
+        response = {
+            'flash_message': "Review deleted successfully."
+        }
+        delete_review = self.delete_review(review_id)
+        if delete_review is not None:
+            response['flash_message'] = "Could Not delete review, Try Again"
+        return response

@@ -29,3 +29,8 @@ class NewReviewTest(unittest.TestCase):
         """
         book_rates = self.manage_reviews.get_rate_by_book_id('qwdsmnf1jh1231')
         self.assertEqual(4, book_rates)
+
+    def test_delete_review_by_id_ok(self):
+        self.manage_reviews.delete_review = MagicMock(return_value=None)
+        delete_review = self.manage_reviews.delete_by_review_by_id('607c901da54d752ec8613324')
+        self.assertEqual("Review deleted successfully.", delete_review['flash_message'])
