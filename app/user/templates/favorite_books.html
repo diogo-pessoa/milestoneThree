@@ -9,7 +9,7 @@
     <tbody>
      {% for book in books %}
      <tr>
-         <td><a href="{{url_for( 'book.book_page', book_title=book.get_raw_title()) }}"
+         <td><a href="{{url_for( 'book.book_page', book_title=book.get_title_for_url()) }}"
                   class="waves-effect waves-light black-text">{{book.get_formatted_title()}}</a></td>
         <td>{{book.get_author()}}</td>
      </tr>

@@ -12,7 +12,8 @@ manage_users = ManageUsers()
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        register_message = manage_users.register(request.form.get("username"), request.form.get("password"),
+        register_message = manage_users.register(request.form.get("username"),
+                                                 request.form.get("password"),
                                                  request.form.get("repeat_password"))
         flash(register_message)
         if register_message == "Registration Successful!":

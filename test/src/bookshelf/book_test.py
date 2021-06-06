@@ -39,24 +39,24 @@ class ReviewTest(unittest.TestCase):
     def test_set_title(self):
         book3 = self.books[2]
         new_title = "Lord of the flies"
-        book3.set_raw_title(new_title)
+        book3.set_title_for_url(new_title)
         self.assertEqual("lord-of-the-flies", book3.get_title_for_url())
         self.assertEqual("Lord Of The Flies", book3.get_formatted_title())
 
     def test_set_title_with_None(self):
         book3 = self.books[2]
         new_title = None
-        book3.set_raw_title(new_title)
+        book3.set_title_for_url(new_title)
         self.assertIsNotNone(book3.get_title_for_url())
 
     def test_set_title_with_empty_value(self):
         book3 = self.books[2]
-        book3.set_raw_title("")
+        book3.set_title_for_url("")
         self.assertTrue(len(book3.get_title_for_url()) > 0)
 
     def test_set_title_with_multiple_spaces(self):
         book3 = self.books[2]
-        book3.set_raw_title("Lord of   the flies")
+        book3.set_title_for_url("Lord of   the flies")
         self.assertEqual("Lord Of   The Flies", book3.get_formatted_title())
 
 

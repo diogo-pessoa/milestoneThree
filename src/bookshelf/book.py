@@ -6,8 +6,8 @@ class Book:
 
     def __init__(self, book: dict):
         if book:
-            self.__id = ObjectId(book.get('_id'))
-            self.set_raw_title(book.get('title'))
+            self.__id = book.get('_id')
+            self.set_title_for_url(book.get('title'))
             self.__reviewed = book.get("reviewed")
             self.__author = book.get('author')
             self.__publisher = book.get('publisher')
@@ -27,7 +27,7 @@ class Book:
             title.append(word.capitalize())
         return " ".join(title)
 
-    def set_raw_title(self, title):
+    def set_title_for_url(self, title):
         """
             Update book title with input value is not empty
         :param title:
@@ -36,7 +36,7 @@ class Book:
         if title:
             self.__title = title.replace(" ", "-").lower()
 
-    def get_raw_title(self):
+    def get_title_for_url(self):
         return self.__title
 
     def get_author(self):
@@ -67,7 +67,7 @@ class Book:
 
     def get_dict(self):
         return {
-            "title": self.get_raw_title(),
+            "title": self.get_title_for_url(),
             "author": self.get_author(),
             "publisher": self.get_publisher(),
             "released_date": self.get_release_date(),

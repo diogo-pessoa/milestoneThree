@@ -1,5 +1,4 @@
 from app.model.bookshelf_model import BookshelfModel
-from app.model.user_model import UserModel
 from src.bookshelf.user import User
 
 
@@ -11,26 +10,17 @@ class ManageUsersSuper(object):
     def __init__(self):
         self.model = BookshelfModel('users')
 
-
-class ManageUsers(ManageUsersSuper):
-    """
-        Manages Bookshelf users operations and handling of user information updates
-    """
-
-    def __init__(self):
-        super().__init__()
-
     def get_user(self, username: str):
         """
             queries data storage and return User() instance
             :param: username: str
             :return: User() Object with data from data storage
         """
-        user = self.user_model.find_user_by_name(username)
-        if user:
-            return User(user)
+        users = self.model.find_by_field_name_and_value(username, 'username')
+        for user in users:
+            if user:
+                return User(user)
 
-    # TODO Refactor merge get_user and get_by_id into one.
     def get_by_id(self, id):
         user = self.model.find_by_id(id)
         if user:
@@ -43,7 +33,7 @@ class ManageUsers(ManageUsersSuper):
             :param username: User()
             :return: None or Error String
         """
-        return self.user_model.create(new_user)
+        return self.model.create_one(new_user.get_dict())
 
     def update_user_information(self, update_information: User):
         """
@@ -52,7 +42,16 @@ class ManageUsers(ManageUsersSuper):
             :param update_information: User()
             :return: None or Error String
         """
-        return self.user_model.update(update_information)
+        return self.model.update(update_information.get_id(), update_information.get_dict())
+
+
+class ManageUsers(ManageUsersSuper):
+    """
+        Manages Bookshelf users operations and handling of user information updates
+    """
+
+    def __init__(self):
+        super().__init__()
 
     def register(self, username: str, password: str, repeat_password: str):
         """

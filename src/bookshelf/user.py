@@ -6,7 +6,7 @@ class User:
 
     def __init__(self, user_info: dict):
         if user_info:
-            self.__id = ObjectId(user_info.get('_id'))
+            self.__id = user_info.get('_id')
             self.__username = user_info.get('username')
             self.__first_name = user_info.get('first')
             self.__last_name = user_info.get('last')
@@ -48,7 +48,7 @@ class User:
             return True
         return False
 
-    def update_user_password(self, new_password):
+    def update_user_password(self, new_password: str):
         if new_password:
             self.__password = generate_password_hash(self.__password)
 

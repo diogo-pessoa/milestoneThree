@@ -76,3 +76,13 @@ class BookshelfModel(object):
             return mongo.db[self.collection_name].find({field_name: value})
         except IOError as e:
             raise Exception(f'ERROR - Failed to get document: {e}.')
+
+    def find_all(self):
+        """
+        Returns a list with all documents in collection
+        :return: list of Book objects from DB
+        """
+        try:
+            return mongo.db[self.collection_name].find()
+        except IOError as e:
+            raise Exception(f'ERROR - Failed to get document: {e}.')
