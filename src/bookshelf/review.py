@@ -5,12 +5,16 @@ class Review:
 
     def __init__(self, review: dict):
         if review:
+            self.__id = review.get('_id')
             self.__feedback = review.get('feedback')
-            self.__book_id = ObjectId(review.get('book_id'))
+            self.__book_id = review.get('book_id')
             self.__reviewer_id = ObjectId(review.get('reviewer_id'))
             self.__rate = review.get('rate')
             self.__reviewer = ""
             self.__book_title = ""
+
+    def get_id(self):
+        return self.__id
 
     def set_book_title(self, book_title: str):
         self.__book_title = book_title

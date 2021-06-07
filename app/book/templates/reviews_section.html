@@ -1,80 +1,94 @@
-<ul class="collection brown lighten-4" xmlns="http://www.w3.org/1999/html">
-    {% if book_rate == 0 %}
-    <h5 id="no_review" class="center"> No Reviews yet :/</h5>
-    {% else %}
-    <h5 class="center">See what others think about this book</h5>
-    {% for review in reviews %}
-    <li class="collection-item brown lighten-5">
-        <!-- Leave_review form  -->
-        <div id="leave_review">
-            <form class="col s12" method="POST" action="{{ url_for('review.add', book_title=book.get_raw_title()) }}">
-                <div class="col s6 input-field">
-                    <i class="material-icons left">account_box</i><span
-                        class="flow-text">{{ session.user }}</span>
-                </div>
-                <div class="col s6 input-field black-text flow-text">
-                    <span><label class="black-text flow-text">Your Rate:</label></span>
-                    <br>
-                        <span><label>
-                                <input name="book_rate" type="radio" value="1" />
+<!-- Leave_review form  -->
+{% if session.user %}
+<ul id="leave_review" class="col s12 brown darken-1 collapsible">
+    <li>
+        <div class="collapsible-header brown darken-1 white-text"><i class="material-icons">rate_review</i>Leave tour Review.</div>
+    <div class="collapsible-body brown lighten-4">
+        <form class="" method="POST"
+          action="{{ url_for('review.add', book_title=book.get_title_for_url()) }}">
+        <div class="col s6 input-field">
+            <i class="material-icons left">account_box</i><span
+                class="flow-text">{{ session.user }}</span>
+        </div>
+        <div class="col s6 input-field black-text flow-text">
+            <span><label class="black-text flow-text">Your Rate:</label></span>
+            <br>
+            <span><label>
+                                <input name="book_rate" type="radio" value="1" required/>
                                 <span>don't recommend it</span>
                             </label></span>
-                        <span><label>
-                                <input name="book_rate" type="radio" value="2" />
+            <span><label>
+                                <input name="book_rate" type="radio" value="2"/>
                                 <span>didn't finish</span>
                             </label></span>
-                        <span><label>
-                                <input name="book_rate" type="radio" value="3" />
+            <span><label>
+                                <input name="book_rate" type="radio" value="3"/>
                                 <span>Okay</span>
                             </label></span>
-                        <span><label>
-                                <input name="book_rate" type="radio" value="4" />
+            <span><label>
+                                <input name="book_rate" type="radio" value="4"/>
                                 <span>Great</span>
                             </label></span>
-                        <span><label>
-                                <input name="book_rate" type="radio" value="5" />
+            <span><label>
+                                <input name="book_rate" type="radio" value="5"/>
                                 <span>Excellent</span>
                             </label></span>
+        </div>
+
+        <div class="col l12">
+            <label for="book_review" class="black-text flow-text">What do you think about this book?</label>
+            <blockquote>
+                        <textarea id="book_review" name="book_review" minlength="5"
+                                  maxlength="200" class="materialize-textarea validate black-text" required></textarea>
+            </blockquote>
+        </div>
+        <div class="row">
+            <div class="col s12 center-align">
+                <!-- cancel button -->
+                <a id="cancel_review"
+                   class="btn-small red white-text text-shadow">
+                    Cancel <i class="fas fa-times-circle right"></i>
+                </a>
+                <button type="submit" class="btn-small brown darken-1 white-text text-shadow">
+                    Submit review <i class="fas fa-edit right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+    </li>
+
+</ul>
+{% endif  %}
+    <ul class="col s12 collection brown lighten-4 collapsible" xmlns="http://www.w3.org/1999/html">
+        {% if book_rate == 0 %}
+        <h5 id="no_review" class="center"> No Reviews yet :/</h5>
+        {% else %}
+        <h5 class="center">See what others think about this book</h5>
+        {% for review in reviews %}
+        <li class="collection-item brown lighten-5">
+            <div class="row">
+                {% if session.user %}
+                <a href="{{ url_for('review.delete', review_id=review.get_id() ) }}" class="btn-floating btn-small waves-effect waves-light red right"><i class="material-icons">delete</i></a>
+                {% endif %}
+                <div class="col s6">
+                    <i class="material-icons left">account_box</i><span
+                        class="flow-text">{{ review.get_reviewer() }}</span>
+                </div>
+                <div class="col s6">
+                    <span class="title ">Review:</span><br>
+                    {% for star in range(0,review.get_rate()) %}
+                    <i class="material-icons">star</i>
+                    {% endfor %}
                 </div>
 
                 <div class="col l12">
-                    <label for="book_review" class="black-text flow-text">What do you think about this book?</label>
-                    <blockquote>
-                        <textarea id="book_review" name="book_review" minlength="5"
-                                  maxlength="200" class="materialize-textarea validate black-text" required></textarea>
-                    </blockquote>
+                    <blockquote class="brown lighten-4"> {{ review.get_feedback() }}</blockquote>
                 </div>
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <!-- cancel button -->
-                        <a id="cancel_review"
-                           class="btn-small red white-text text-shadow">
-                            Cancel <i class="fas fa-times-circle right"></i>
-                        </a>
-                        <button type="submit" class="btn-small brown darken-1 white-text text-shadow">
-                            Submit review <i class="fas fa-edit right"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col s6">
-                <i class="material-icons left">account_box</i><span class="flow-text">{{ review.get_reviewer() }}</span>
             </div>
-            <div class="col s6">
-                <span class="title ">Review:</span><br>
-                {% for star in range(0,review.get_rate()) %}
-                <i class="material-icons">star</i>
-                {% endfor %}
-            </div>
+        </li>
+        {% endfor %}
+        {%endif%}
+    </ul>
 
-            <div class="col l12">
-                <blockquote class="brown lighten-4"> {{ review.get_feedback() }}</blockquote>
-            </div>
-        </div>
-    </li>
-    {% endfor %}
-    {%endif%}
-</ul>
 

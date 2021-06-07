@@ -49,7 +49,7 @@ class BookshelfModel(object):
         :return: None
         """
         try:
-            mongo.db[self.collection_name].delete_one(document_id)
+            mongo.db[self.collection_name].delete_one({'_id': document_id})
         except IOError as e:
             raise Exception(f'ERROR - Failed to delete document: {e}.')
 
@@ -66,14 +66,14 @@ class BookshelfModel(object):
 
     def find_by_field_name_and_value(self, value: str, field_name: str):
         """
-        Looks for objects based on field name and content
+        Query for single document based on field name and content
         ex: reviewer_id: "hashed value"
         :param value: str
         :param field_name: str
         :return: dict: single json document
         """
         try:
-            return mongo.db[self.collection_name].find({field_name: value})
+            return mongo.db[self.collection_name].find_one({field_name: value})
         except IOError as e:
             raise Exception(f'ERROR - Failed to get document: {e}.')
 
@@ -84,5 +84,18 @@ class BookshelfModel(object):
         """
         try:
             return mongo.db[self.collection_name].find()
+        except IOError as e:
+            raise Exception(f'ERROR - Failed to get document: {e}.')
+
+    def find_many_by_field_name_and_value(self, value: str, field_name: str):
+        """
+        Query for single documents based on field name and content
+        ex: reviewer_id: "hashed value"
+        :param value: str
+        :param field_name: str
+        :return: dict: json document
+        """
+        try:
+            return mongo.db[self.collection_name].find({field_name: value})
         except IOError as e:
             raise Exception(f'ERROR - Failed to get document: {e}.')
