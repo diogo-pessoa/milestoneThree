@@ -158,7 +158,7 @@ class ManageReviews(ManageReviewSuper):
                     if user_name:
                         review.set_reviewer_name(user_name.get_first_name())
                     else:
-                        review.set_reviewer_name("Not a user anymore")
+                        review.set_reviewer_name("Anonymous")
                     reviews.append(review)
                     print(review)
                 return reviews

@@ -20,10 +20,10 @@ def book_list():
 
 @book.route("/book/<book_title>", methods=["GET"])
 def book_page(book_title):
-    book = books.get_by_title(book_title)
-    book_rate = reviews.get_rate_by_book_id(book.get_id())
-    reviews_for_book = reviews.get_many(book.get_id(), 'book_id')
-    return render_template('book.html', book=book, reviews=reviews_for_book, book_rate=book_rate)
+    book_in_page = books.get_by_title(book_title)
+    book_rate = reviews.get_rate_by_book_id(book_in_page.get_id())
+    reviews_for_book = reviews.get_reviews(book_in_page.get_id(), 'book_id')
+    return render_template('book.html', book=book_in_page, reviews=reviews_for_book, book_rate=book_rate)
 
 
 @book.route("/search", methods=["GET", "POST"])

@@ -47,11 +47,9 @@ class ManageBooksSuper(object):
         """
             Queries Data Storage for Book based on attribute_name
             :param object_id: str
-            :param field_name: str
             :return: book: Book
         """
-        response = []
-        book = Book(self.model.find_by_field_name_and_value(value, 'book_title'))
+        book = Book(self.model.find_by_field_name_and_value(value, 'title'))
         if book:
             return book
 
@@ -68,13 +66,13 @@ class ManageBooksSuper(object):
                 query_results.append(Book(book))
             return query_results
 
-    def get_one_by_id(self, object_id: ObjectId):
+    def get_one_by_id(self, object_id: str):
         """
             Queries Data Storage for Book based on attribute_name
             :param object_id: object_id
             :return: book: Book
         """
-        book = Book(self.model.find_by_id(object_id))
+        book = Book(self.model.find_by_id(ObjectId(object_id)))
         if book:
             return book
 
@@ -84,6 +82,7 @@ class ManageBooksSuper(object):
         for book in books:
             response.append(Book(book))
         return response
+
 
 class ManageBooks(ManageBooksSuper):
 
@@ -151,7 +150,7 @@ class ManageBooks(ManageBooksSuper):
         books = []
         book = None
         for book_id in ids:
-            book = self.get_one_by_id(ObjectId(book_id))
+            book = self.get_one_by_id(book_id)
             books.append(book)
         if book:
             return books

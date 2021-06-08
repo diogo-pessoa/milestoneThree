@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from app.model.bookshelf_model import BookshelfModel
 from src.bookshelf.user import User
 
@@ -16,13 +18,17 @@ class ManageUsersSuper(object):
             :param: username: str
             :return: User() Object with data from data storage
         """
-        users = self.model.find_by_field_name_and_value(username, 'username')
-        for user in users:
-            if user:
-                return User(user)
+        user = self.model.find_by_field_name_and_value(username, 'username')
+        if user:
+            return User(user)
 
-    def get_by_id(self, id):
-        user = self.model.find_by_id(id)
+    def get_by_id(self, user_id: str):
+        """
+        Get user Instance by Id
+        :param user_id:
+        :return: single User Instance
+        """
+        user = self.model.find_by_id(ObjectId(user_id))
         if user:
             return User(user)
 
@@ -30,6 +36,7 @@ class ManageUsersSuper(object):
         """
             Proxy method call for create operation for dataStorage class.
             That simplifies the abstraction. single place to change if the model driver (Mongo,SQL) changes.
+            :param new_user:
             :param username: User()
             :return: None or Error String
         """

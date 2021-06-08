@@ -43,7 +43,7 @@ class ManageBooksTest(unittest.TestCase):
         self.books.get_one_by_id = MagicMock(return_value=self.books_object_list[0])
         book_id = '60773a16cb838494e13d3652'
         book = self.books.get_one_by_id(book_id)
-        self.assertEqual(ObjectId(book_id), book.get_id())
+        self.assertEqual(book_id, book.get_id())
 
     def test_update_book(self):
         """
