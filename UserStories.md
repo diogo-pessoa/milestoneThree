@@ -105,36 +105,40 @@ Features & User Stories
       - User login is required both on the `/delete` endpoint and to see the Action button.
       - current implementation allows for any User to remove a book. 
       - **Test**  
-        - Manual test to create and remove a book. 
-          # TODO in progress
+        - Manual test to create and remove a book.
         - Automated Test `Manage_books_actions.py` - creates and delete a book as a logged user. 
+    
+-  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
+    - Added a link `create a new book` to template when no book is returned on search.
 
 ## Features Left to Implement
 
--  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
-
--  As a user I want tag book as favorites, so I can see then later in my Profile Page
-
-- As a Moderator I can review book information and tag when it is validated
-
 - As a User I can rate and Review Books.
+
+-  As a user, I want tag book as favorites, so I can see then later in my Profile Page
 
 - As a User, I can share/recommend this book to a friend.
 
-- As a User I can edit or delete My own review
+- As a User, I can edit or delete My own review
 
-- **Follow-up** from the BOOKS table I want to sort and order books and add pagination
 
 - As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, with meaningful messaging and allowing the to navigate back to the site. 
 
 - As a user I want to upload Book Covers when Adding and Editing a new book.
+  
 - As a developer I want to limit the file size and type when allowing user to upload images.
+
+- As a developer, I want only allowed users to delete books.
 
 ### Backlog
 
 These are stories created during the development. To avoid interrupting the current work Just add a brief description the story for later development.
 
+- from the BOOKS table I want to sort and order books and add pagination
+  
 - When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
 
 - When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
+
+- **BUG** When using add book on sidebar, application is returning exception
 

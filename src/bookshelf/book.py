@@ -1,6 +1,3 @@
-from bson.objectid import ObjectId
-
-
 class Book:
     __title: str
 
