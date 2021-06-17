@@ -45,9 +45,16 @@
             <h3 class="header center white-text">{{ book.get_formatted_title() }}</h3>
             <div class="card-content brown lighten-4">
                 <!-- Dropdown Structure -->
-                <ul id="dropdown1" class="dropdown-content brown lighten-4">
+                <ul id="dropdown1" class="dropdown-content brown lighten-3">
                     <li><a href="{{ url_for( 'book.edit', book_id=book.get_id() ) }}" class="black-text"><i
                             class="material-icons">edit</i>Edit</a></li>
+                    <li>
+                        <form action="{{ url_for( 'book.delete', book_id=book.get_id() ) }}" method="POST">
+                            <button class="brown lighten-2 black-text waves-effect waves-light"><i
+                                    class="material-icons">delete</i>Remove Book
+                            </button>
+                        </form>
+                    </li>
                 </ul>
                 <a class="waves-effect waves-light btn-small brown white-text"><i class="material-icons left">local_library</i>Find
                     in Store</a>

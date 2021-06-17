@@ -2,7 +2,7 @@
 {% if session.user %}
 <ul id="leave_review" class="col s12 brown darken-1 collapsible">
     <li>
-        <div class="collapsible-header brown darken-1 white-text"><i class="material-icons">rate_review</i>Leave tour Review.</div>
+        <div class="collapsible-header brown darken-1 white-text">Leave tour Review.<i class="material-icons">rate_review</i></div>
     <div class="collapsible-body brown lighten-4">
         <form class="" method="POST"
           action="{{ url_for('review.add', book_title=book.get_title_for_url()) }}">

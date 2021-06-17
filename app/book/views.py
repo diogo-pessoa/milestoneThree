@@ -56,4 +56,11 @@ def new():
         return redirect(url_for('book.book_page', book_title=create_response['book_url_title']))
     return render_template("new.html")
 
-# TODO write route to delete book
+
+@book.route("/book/delete/<book_id>", methods=["POST"])
+@login_required
+def delete(book_id):
+    if request.method == "POST":
+        books.delete(book_id)
+        flash('Book Removed')
+        return redirect(url_for('book.book_list'))

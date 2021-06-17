@@ -3,11 +3,11 @@ Features & User Stories
 
 ## Features
 
-- As a Developer I want the site to have a responsive interface with a sensible colorScheme
-  - Using Materilize framework with a brown color-scheme listed
+- As a Developer, I want the site to have a responsive interface with a sensible colorScheme
+  - Using the 'Materialize' framework with a brown color-scheme listed
     on [UX section of README](https://github.com/diogo-pessoa/the-bookshelf#ux)
 
-- As a Developer I want a Navigation Bar on the top of the page.
+- As a Developer, I want a Navigation Bar on the top of the page.
 - Using materialize there's new responsive NavBar to base.html template, That is also a sidebar on base.html for smaller
   screen
 
@@ -28,7 +28,7 @@ Features & User Stories
   - mongo.db.user.insert(), moved to model.User object
   - **Test** Added new register_page_test, loads register page, fill and submit form
   
-- As a Developer I want to run tests before every commit to make sure new features don't cause regression
+- As a Developer, I want to run tests before every commit to make sure new features don't cause regression
   - Added a pre-commit hook which executes both UnitTest and Selenium(integration) suites
   - `cat .git/hooks/pre-commit`
     
@@ -38,7 +38,7 @@ Features & User Stories
             python -m unittest discover -s test/html_test -p "*_test.py" -v
       fi
 
-- As a User I want to Check My Personal Details on my profile Page
+- As a User, I want to Check My Personal Details on my profile Page
   - Profile Page has a Tab on `Books`, where User get a chance to review all his favorite Books and Rates left
 
 - As a User I have a profile page with my details and reviews I left.
@@ -68,15 +68,15 @@ Features & User Stories
     `all test are passing`
     - test_search_bar_text_content - validate the search_bar field content is visible and matches expected value
     - test_book_page_buttons - validate the search_bar field content is visible and matches expected value
-    - test_search_for_book_1 - Runs functional test on search looking for 'Book1' - expects book to show on page main list
+    - test_search_for_book_1 - Runs functional test on search looking for 'Book1' - expects the book to show on page main list
     - test_search_no_matching_result - Runs functional test on search looking for 'Book1' - expects heading 4 with message alerting for no matches
-    - test_search_by_author - Runs functional test on search looking for author "Jon Doe" - expects list  of books on page body
+    - test_search_by_author - Runs functional test on search looking for an author "Jon Doe" - expects list  of books on page body
   
   - Implementation is based on the MiniProject(flask) search lesson: [Search Within The Database](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+DCP101+2017_T3/courseware/9e2f12f5584e48acb3c29e9b0d7cc4fe/0d4e3419132440d9b2c0943f80dc54a8/)
 
   - **Work-In-Progress** As a user I can Edit book details
     - New route book.edit()
-    - New book_model.update_book() With Call to mongoDB to update object by Id
+    - New book_model.update_book() With Call to mongoDB to update object by id
     - New template edit.html with HTML form
     - **Test** Added unittest to validate book input and output 
     - **Test** New selenium test validation check for existing fields and if form fields are loaded on template
@@ -86,19 +86,28 @@ Features & User Stories
     
   - **Test** Added unittest to User Class method related to update_info form
 
-- As a user I want to update my password
+- As a user, I want to update my password
   -  Added a first path to allow user to update his own password, on Profile page user can submit form to update his information, including password
     
-- As a user I want to navigate to a book from my favorites list
+- As a user, I want to navigate to a book from my favorites list
  - Added url_for(link) on the template my favorite books, now user can go to the book from his profile page
 
-- As a user I can Add new books
+- As a user, I can Add new books
  - Once user is logged in a dropdown on `Books` element on Navbar is displayed to user. 
   - That links to Add new book form
   - **Test** 
      - Selenium test to confirm links to navbar link to Add new book page works
      - Selenium test to confirm anonymous user can't open `Add` link, even straight through URL
      -  Selenium test to validate form fields are showing up screen
+
+- As a logged in User I can delete books
+    - Added remove option on Action Button inside book page.
+      - User login is required both on the `/delete` endpoint and to see the Action button.
+      - current implementation allows for any User to remove a book. 
+      - **Test**  
+        - Manual test to create and remove a book. 
+          # TODO in progress
+        - Automated Test `Manage_books_actions.py` - creates and delete a book as a logged user. 
 
 ## Features Left to Implement
 
@@ -108,11 +117,9 @@ Features & User Stories
 
 - As a Moderator I can review book information and tag when it is validated
 
-- As a Moderator I can delete books
-
 - As a User I can rate and Review Books.
 
-- As a User I can share/recommend this book to a friend
+- As a User, I can share/recommend this book to a friend.
 
 - As a User I can edit or delete My own review
 

@@ -43,13 +43,13 @@ class ManageBooksSuper(object):
         if not delete:
             return delete
 
-    def get_by_title(self, value: str):
+    def get_by_title(self, title: str):
         """
             Queries Data Storage for Book based on attribute_name
-            :param object_id: str
+            :param title: str
             :return: book: Book
         """
-        book = Book(self.model.find_by_field_name_and_value(value, 'title'))
+        book = Book(self.model.find_by_field_name_and_value(title, 'title'))
         if book:
             return book
 
@@ -120,9 +120,7 @@ class ManageBooks(ManageBooksSuper):
             "flash_message": "",
             "book_title": ""
         }
-        book = Book(new_book_details)
 
-        # TODO Get Book by id needed for update
         book = Book(new_book_details)
         create_book = self.update(ObjectId(book_id), book.get_dict())
         if create_book is not None:

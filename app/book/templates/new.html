@@ -13,11 +13,14 @@
     <div class="col s12 m8 l10">
         <form class="col s12" method="POST" action="{{ url_for('book.new') }}">
             <div class="row">
-                <div class="card brown darken-1">
-                    <input id="title" name="title" minlength="5" maxlength="25"
-                           value="Book title" type="text" class="validate white-text title center" required>
+                <div class="card brown lighten-4">
                     <div class="card-content brown lighten-4">
-                        <label for="description" class="black-text"><h5>About This Book</h5></label>
+                        <label for="title" class="black-text"><span class="flow-text">Book Title</span></label>
+                        <input id="title" name="title" minlength="5" maxlength="25"
+                           value="" type="text" class=" validate center black-text" required>
+                    </div>
+                    <div class="card-content brown lighten-4">
+                        <label for="description" class="black-text"><span class="flow-text">About This Book</span></label>
                         <textarea id="description" name="description" minlength="5"
                                   maxlength="200" class="materialize-textarea validate black-text" required></textarea>
                     </div>
@@ -33,7 +36,7 @@
                     <li class="collection-item brown lighten-4">
                         <label for="publisher" class="black-text"><span class="flow-text">Publisher:</span></label>
                         <input id="publisher" name="publisher" minlength="5" maxlength="15"
-                               value="" type="text" class="validate" required>
+                               value="" type="text" class="validate">
                     </li>
 
                     </li>
