@@ -17,12 +17,14 @@ books = ManageBooks()
 @login_required
 def profile(username):
     logged_user = users.get_user(username)
+    user_favorite_books = logged_user.get_favorite_books()
+    book_list = books.get_many_by_id(user_favorite_books) or []
+
     if request.method == "POST":
         user_update = users.update_details(logged_user, request.form)
         flash(user_update["flash_message"])
         return redirect(url_for('user.profile', username=logged_user.get_username()))
-    user_favorite_books = logged_user.get_favorite_books()
-    book_list = books.get_many_by_id(user_favorite_books)
+
     return render_template("profile.html", user=logged_user,
                            reviews=reviews.get_many(logged_user.get_id(), 'reviewer_id'),
                            books=book_list)
@@ -37,3 +39,13 @@ def add_to_favorites(book_id):
         favorite_message = users.add_to_favorite_books(book_id, logged_user)
         flash(favorite_message)
         return redirect(url_for('book.book_page', book_title=book.get_title_for_url()))
+
+
+@user.route("/delete_favorite/<book_id>", methods=["GET", "DELETE"])
+@login_required
+def remove_from_favorites(book_id):
+        logged_user = session['user']
+        book = books.get_one_by_id(book_id)
+        favorite_message = users.remove_from_favorite_books(book_id, logged_user)
+        flash(favorite_message)
+        return redirect(url_for('user.profile',  username=logged_user))
