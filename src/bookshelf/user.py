@@ -1,4 +1,3 @@
-from bson import ObjectId
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -58,6 +57,12 @@ class User:
 
     def check_password(self, password_given: str):
         return check_password_hash(self.__password, password_given)
+
+    def add_to_favorite_books(self, book_id: str):
+        self.__favorite_books.append(book_id)
+
+    # def remote_from_favorite_books(self, book_id: str):
+    #     self.__favorite_books.pop(book_id)
 
     def get_dict(self):
         return {

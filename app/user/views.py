@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, flash, request
+from flask import Blueprint, render_template, url_for, flash, request, session
 from werkzeug.utils import redirect
 
 from app.auth.views import login_required
@@ -26,3 +26,14 @@ def profile(username):
     return render_template("profile.html", user=logged_user,
                            reviews=reviews.get_many(logged_user.get_id(), 'reviewer_id'),
                            books=book_list)
+
+
+@user.route("/add_to_favorites/<book_id>", methods=["POST"])
+@login_required
+def add_to_favorites(book_id):
+    if request.method == "POST":
+        logged_user = session['user']
+        book = books.get_one_by_id(book_id)
+        favorite_message = users.add_to_favorite_books(book_id, logged_user)
+        flash(favorite_message)
+        return redirect(url_for('book.book_page', book_title=book.get_title_for_url()))

@@ -138,3 +138,19 @@ class ManageUsers(ManageUsersSuper):
         else:
             response["flash_message"] = "Information Updated successfully"
         return response
+
+    def add_to_favorite_books(self, book_id: str, logged_user: str):
+        """
+
+        :param book_id: str
+        :param logged_user: str
+        :return: None
+        """
+        user = self.get_user(logged_user)
+        favorites_list = user.get_favorite_books()
+        if book_id not in favorites_list:
+            user.add_to_favorite_books(book_id)
+            self.update_user_information(user)
+            return f'Added to your Favorites list.'
+        else:
+            return f'Already in your favorites'

@@ -62,6 +62,11 @@
                                     class="material-icons">delete</i> Remove Book
                             </button>
                         </form>
+                        <form action="{{ url_for( 'user.add_to_favorites', book_id=book.get_id() ) }}" method="POST">
+                            <button class="white-text btn-small brown"><i
+                                    class="material-icons">star</i> Add to My favorites
+                            </button>
+                        </form>
                         <a href="{{ url_for( 'book.edit', book_id=book.get_id() ) }}"
                            class="white-text btn-small brown"><i class="material-icons">edit</i>Edit</a>
                         {% endif %}
