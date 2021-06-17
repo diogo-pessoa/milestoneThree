@@ -22,6 +22,9 @@ class ManageReviewTest(unittest.TestCase):
             reviews.append(Review(review))
         self.manage_reviews.get_many = MagicMock(return_value=reviews)
 
+        # Adding a return for get_by_id as help for tests
+        self.manage_reviews.get_by_id = MagicMock(return_value=reviews[0])
+
     def test_get_rate_by_book_id(self):
         """
           expect to get the average rate of books returned from DB

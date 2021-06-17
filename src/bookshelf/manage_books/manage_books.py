@@ -126,7 +126,7 @@ class ManageBooks(ManageBooksSuper):
         if create_book is not None:
             response['flash_message'] = "Could Not Add book, Try Again"
         else:
-            response['flash_message'] = f'{book.get_formatted_title()} added!'
+            response['flash_message'] = f'{book.get_formatted_title()} updated!'
             response['book_url_title'] = book.get_title_for_url()
         return response
 

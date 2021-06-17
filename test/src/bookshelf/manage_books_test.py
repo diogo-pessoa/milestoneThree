@@ -54,4 +54,4 @@ class ManageBooksTest(unittest.TestCase):
         self.books.update = MagicMock(return_value=None) # success on update
         update_book = self.books.update_details(book_id, self.books_from_json[0])
         #TODO expected to fail still in progress
-        self.assertEqual("Mock Book update correctly!", update_book['flash_message'])
+        self.assertEqual("Mock Book updated!", update_book['flash_message'])
