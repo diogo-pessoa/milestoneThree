@@ -61,8 +61,8 @@ class User:
     def add_to_favorite_books(self, book_id: str):
         self.__favorite_books.append(book_id)
 
-    def remove_from_favorites(self, book_id: str):
-        self.__favorite_books.remove(book_id)
+    # def remote_from_favorite_books(self, book_id: str):
+    #     self.__favorite_books.pop(book_id)
 
     def get_dict(self):
         return {

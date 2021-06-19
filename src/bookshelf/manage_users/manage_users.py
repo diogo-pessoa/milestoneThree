@@ -141,7 +141,7 @@ class ManageUsers(ManageUsersSuper):
 
     def add_to_favorite_books(self, book_id: str, logged_user: str):
         """
-        Add a new book Id to user favorites books list
+
         :param book_id: str
         :param logged_user: str
         :return: None
@@ -154,17 +154,3 @@ class ManageUsers(ManageUsersSuper):
             return f'Added to your Favorites list.'
         else:
             return f'Already in your favorites'
-
-    def remove_from_favorite_books(self, book_id: str, logged_user: str):
-        """
-        Add a new book Id to user favorites books list
-        :param book_id: str
-        :param logged_user: str
-        :return: None
-        """
-        user = self.get_user(logged_user)
-        favorites_list = user.get_favorite_books()
-        if book_id in favorites_list:
-            user.remove_from_favorites(book_id)
-            self.update_user_information(user)
-            return f'removed book from favorites'
