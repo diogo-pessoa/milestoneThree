@@ -40,8 +40,7 @@ class ManageReviewSuper:
             reviews_from_storage = self.model.find_many_by_field_name_and_value(object_id, field_name)
             for review in reviews_from_storage:
                 reviews.append(Review(review))
-            if reviews:
-                return reviews
+            return reviews
         else:
             raise Exception(f'field_name has to be either reviewer_id or book_id. Received: {field_name}')
 
