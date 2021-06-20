@@ -17,14 +17,16 @@ books = ManageBooks()
 @login_required
 def profile(username):
     logged_user = users.get_user(username)
+    user_favorite_books = logged_user.get_favorite_books()
+    book_list = books.get_many_by_id(user_favorite_books)
+    user_reviews = reviews.get_many(logged_user.get_id(), 'reviewer_id')
+
     if request.method == "POST":
         user_update = users.update_details(logged_user, request.form)
         flash(user_update["flash_message"])
         return redirect(url_for('user.profile', username=logged_user.get_username()))
-    user_favorite_books = logged_user.get_favorite_books()
-    book_list = books.get_many_by_id(user_favorite_books)
     return render_template("profile.html", user=logged_user,
-                           reviews=reviews.get_many(logged_user.get_id(), 'reviewer_id'),
+                           reviews=user_reviews,
                            books=book_list)
 
 

@@ -150,5 +150,4 @@ class ManageBooks(ManageBooksSuper):
         for book_id in ids:
             book = self.get_one_by_id(book_id)
             books.append(book)
-        if book:
-            return books
+        return books
