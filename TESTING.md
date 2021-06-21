@@ -190,16 +190,28 @@ This was caused by an inconsistency on the Book class. when the `book.get_dict()
     - On Favorite books there's still a need to fix each book rate
 
 ## Refactoring
-
-In order to improve the ability to test and the compartmentalization of the code a new class `ManageUsers` was created all the logic from routes login and register was moved to this class. This allowed to write unittests for each method separately.
+- **Done**
+In order to improve the ability to test and the compartmentalization of the code a new class `ManageUsers` was created all the logic from routes login and register was moved to this class. This allowed writing unittests for each method separately.
 
  - Benefits:
    - predictable behaviour
    - flask views are only handling flask specifics
    - Further testing 
-   - single responsibility for each Class
- - new Class [ManageUsers](src/bookshelf/manage_users/manage_users.py)
+   - single responsibility for each Class and component
+    - Flask only interacts with Application classes
+    - Each SuperClass is handling the integration with the mongo model. If I ever decided for a different data storage type, It's possible to update the class to inherit  from a new Super class (which would in turn replace the current Pymongo implementation). 
+  
+ - new Class [ManageUsers](https://github.com/diogo-pessoa/the-bookshelf/blob/master/src/bookshelf/manage_users/manage_users.py)
  - **Test**
    - [Register](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/register_test.py)
    - [Login](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/login_test.py)
+  -  [ManageUsersTest](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/manage_users_test.py)
 
+ - new Class [ManageBooks](https://github.com/diogo-pessoa/the-bookshelf/blob/master/src/bookshelf/manage_books/manage_books.py)
+ - **Test**
+   - [Books](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/manage_books_test.py)
+  
+- new Class [ManageReviews](https://github.com/diogo-pessoa/the-bookshelf/blob/master/src/bookshelf/manage_reviews/manage_reviews.py)
+ - **Test**
+   - [Reviews](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/manage_review_test.py)
+  

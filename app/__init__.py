@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_pymongo import PyMongo
 
 from config import Config
@@ -24,3 +24,15 @@ app.register_blueprint(review)
 app.register_blueprint(user)
 app.register_blueprint(book)
 app.register_blueprint(landing)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    error_message = "Page Not Found"
+    return render_template('error_page.html', message=error_message), 404
+
+
+@app.errorhandler(500)
+def page_not_found(e):
+    error_message = "This was not supposed to happen"
+    return render_template('error_page.html', message=error_message), 500

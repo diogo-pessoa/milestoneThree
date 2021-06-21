@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="center"> Sorry, {{ message }}</h2>
+  <p class="flow-text center"><a href="{{ url_for('landing.index') }}">go back to site</a>
+{% endblock %}

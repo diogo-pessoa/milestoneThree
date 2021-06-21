@@ -113,7 +113,9 @@ Once you have your local environment setup follow the steps on the Testing docum
 
 #### Images:
 
-[default_book_cover_image](https://pixabay.com/vectors/book-cover-education-layout-page-307045/) from [pixabay](https://pixabay.com/) 
+[default_book_cover_image](https://pixabay.com/vectors/book-cover-education-layout-page-307045/) from [pixabay](https://pixabay.com/)
+
+[landing_page image](https://pixabay.com/photos/book-books-bookshelf-read-67049/) from [pixabay](https://pixabay.com/)
 
 ### Acknowledgements
 

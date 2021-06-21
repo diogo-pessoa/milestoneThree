@@ -110,32 +110,47 @@ Features & User Stories
     
 -  As a user if a search doesn't return a book, I want a quick link to create this new book entry.
     - Added a link `create a new book` to template when no book is returned on search.
+    
+- As a User I can rate and Review Books.
+- As a User, I can delete My own review.
+  - When a logged user navigates to a book page, the collapsible `leave your review` is available. User can Leave a comment and a rate for the book.
+  - User can delete his own review.
+  - Anonymous users can oly view reviews 
+  - **Test** Selenium navigation test [review_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/review/review_test.py)
+    
+- As a user, I want to have a quick navigation link to buy this book online.
+  - New Buy button redirects to Amazon Store with search for book.
+  - **Test** Manual navigation to confirm, when click on `Buy Now` it opens on a separate tab
 
+-  As a user, I want tag book as favorites, so I can see then later in my Profile Page.
+-  As a user, I want to remove books from my favorite from my profile page.
+    - New button on book page allows user to include book in my favorites.
+      Flashes message to user confirming book was added to favorites, unless book is already on list. 
+    - Added button to profile page to delete books from favorites list. 
+        - **Test** from profile page click on delete on `My Favorites`.
+    
+- As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, with meaningful messaging and allowing the to navigate back to the site. 
+  - Added new template for error pages
+    - with a handler for 404 and 500 errors
+    
 ## Features Left to Implement
 
-- As a User I can rate and Review Books.
-
--  As a user, I want tag book as favorites, so I can see then later in my Profile Page
 
 - As a User, I can share/recommend this book to a friend.
 
-- As a User, I can edit or delete My own review
+- As a developer, I want only allowed users(Admins) to delete/edit books.
 
-
-- As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, with meaningful messaging and allowing the to navigate back to the site. 
 
 - As a user I want to upload Book Covers when Adding and Editing a new book.
   
 - As a developer I want to limit the file size and type when allowing user to upload images.
 
-- As a developer, I want only allowed users to delete books.
+- For the BOOKS table I want to sort and order books and add pagination
 
 ### Backlog
 
 These are stories created during the development. To avoid interrupting the current work Just add a brief description the story for later development.
 
-- from the BOOKS table I want to sort and order books and add pagination
-  
 - When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
 
 - When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
