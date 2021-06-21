@@ -26,7 +26,7 @@ class Book:
 
     def set_title_for_url(self, title):
         """
-            Update book title with input value is not empty
+            Update book title with input when value is not empty
         :param title:
         :return: None
         """

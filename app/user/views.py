@@ -20,7 +20,6 @@ def profile(username):
     user_favorite_books = logged_user.get_favorite_books()
     book_list = books.get_many_by_id(user_favorite_books)
     user_reviews = reviews.get_many(logged_user.get_id(), 'reviewer_id')
-
     if request.method == "POST":
         user_update = users.update_details(logged_user, request.form)
         flash(user_update["flash_message"])

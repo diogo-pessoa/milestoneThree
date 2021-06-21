@@ -17,8 +17,10 @@ from app.auth.views import auth
 from app.review.views import review
 from app.user.views import user
 from app.book.views import book
+from app.landing.views import landing
 
 app.register_blueprint(auth)
 app.register_blueprint(review)
 app.register_blueprint(user)
 app.register_blueprint(book)
+app.register_blueprint(landing)

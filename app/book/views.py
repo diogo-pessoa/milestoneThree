@@ -11,7 +11,6 @@ reviews = ManageReviews()
 books = ManageBooks()
 
 
-@book.route('/')
 @book.route('/book')
 def book_list():
     # TODO get paginate list of books
