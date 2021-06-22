@@ -132,28 +132,33 @@ Features & User Stories
 - As a Developer I want to present a friendly 404 (Not found) or Error Page when the user hits a problem on the page, with meaningful messaging and allowing the to navigate back to the site. 
   - Added new template for error pages
     - with a handler for 404 and 500 errors
+    reference: [flask_documentation](https://flask-doc.readthedocs.io/en/latest/patterns/errorpages.html)
+      
+- When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
+   - After review, it will be allowed to created duplicate books, It will be the role of the site Admin to confirm a book is a duplicate or not. It is hard to programmatically judge what is a duplicate a book has many attributes with Strings in different length and content. An object can be logically different, but still be carrying information to caracterize as a duplicate book.
+    
+- As a developer, I want only allowed users(Admins) to delete/edit books.
+  - Activated the use of the is_moderator attribute on the user object. for Edit and Delete Buttons.
+  - **follow-up** Story If a where a user may want to delete/Edit a book he created by mistake. To make it possible I'm creating an attribute `created_by` on the book Object. Then a user can delete its own creations 
+  
+  - The proposed fix, added a new field created_by on book object and check if logged user is either a `moderator` or the user that submitted the new book, in which he's allowed to delete or edit this new entry. 
+  - Check:
+    {% if logged_user.is_moderator() or (book.get_created_by() == logged_user.get_username()) %}
+
+- **Bug ** Delete review button based  on the username is showing for everyone
+  - update if statement to compare User Ids
+    {% if review.get_reviewer_id() == logged_user.get_id() %}    
     
 ## Features Left to Implement
 
-
 - As a User, I can share/recommend this book to a friend.
 
-- As a developer, I want only allowed users(Admins) to delete/edit books.
+## future desired features. 
 
+1. As a user I want to upload Book Covers when Adding and Editing a new book.
+  1.1 As a developer I want to limit the file size and type when allowing user to upload images.
 
-- As a user I want to upload Book Covers when Adding and Editing a new book.
-  
-- As a developer I want to limit the file size and type when allowing user to upload images.
+2. For the BOOKS list page I want to sort and order books on the table and add pagination.
 
-- For the BOOKS table I want to sort and order books and add pagination
-
-### Backlog
-
-These are stories created during the development. To avoid interrupting the current work Just add a brief description the story for later development.
-
-- When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
-
-- When Creating a new book, `book.create_one()` does not check if book already exists. Story to create check to validate at least if Title is not the same when other fields match.
-
-- **BUG** When using add book on sidebar, application is returning exception
+3. Create a reset password Form. Currently, if a user forgets his password there's no way to reset password before login
 

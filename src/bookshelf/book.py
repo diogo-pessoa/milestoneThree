@@ -9,11 +9,11 @@ class Book:
             self.__author = book.get('author')
             self.__publisher = book.get('publisher')
             self.__release_date = book.get("released_date")
-
             self.__edition = book.get("edition")
             self.__category = book.get("category")
             self.__cover_image = book.get("cover_image")
             self.__description = book.get("description")
+            self.__created_by = book.get("created_by")
 
     def get_id(self):
         return self.__id
@@ -62,6 +62,9 @@ class Book:
     def get_description(self):
         return self.__description or "empty"
 
+    def get_created_by(self):
+        return self.__created_by
+
     def get_dict(self):
         return {
             "title": self.get_title_for_url(),
@@ -72,5 +75,6 @@ class Book:
             "edition": self.get_edition(),
             "category": self.get_category(),
             "cover_image": self.get_cover_image(),
-            "description": self.get_description()
+            "description": self.get_description(),
+            "created_by": self.get_created_by()
         }

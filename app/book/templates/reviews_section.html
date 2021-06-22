@@ -70,7 +70,7 @@
     {% for review in reviews %}
     <li class="collection-item brown lighten-5">
         <div class="row">
-            {% if session.user == username %}
+            {% if review.get_reviewer_id() == logged_user.get_id() %}
             <a id="delete_review" href="{{ url_for('review.delete', review_id=review.get_id() ) }}"
                class="btn-floating btn-small waves-effect waves-light red right"><i
                     class="material-icons">delete</i></a>

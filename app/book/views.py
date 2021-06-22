@@ -28,7 +28,7 @@ def book_page(book_title):
         logged_user = users.get_user(session['user'])
 
     return render_template('book.html', book=book_in_page, reviews=reviews_for_book, book_rate=book_rate,
-                           is_moderator=logged_user.is_moderator(), username=logged_user.get_username())
+                           logged_user=logged_user)
 
 
 @book.route("/search", methods=["GET", "POST"])

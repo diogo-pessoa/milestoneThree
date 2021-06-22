@@ -62,7 +62,7 @@
                                     class="small material-icons">star</i> Add to My favorites
                             </button>
                         </form>
-                        {% if is_moderator %}
+                        {% if logged_user.is_moderator() or (book.get_created_by() == logged_user.get_username()) %}
                         <a class="dropdown-trigger white-text btn-small brown" data-target="dropdown-nav-book-page">Actions<i
                                 class="material-icons right">arrow_drop_down</i></a>
                         <ul id="dropdown-nav-book-page" class="dropdown-content brown lighten-4">

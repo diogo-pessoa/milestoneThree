@@ -53,8 +53,13 @@
                     </li>
                     <li class="collection-item brown lighten-4">
                         <label for="category" class="black-text"><span class="flow-text">Category:</span></label>
-                        <input id="category" name="category" minlength="5" maxlength="15"
+                        <input id="category" name="category" minlength="5" maxlength="30"
                                value="General" type="text" class="validate" required>
+                    </li>
+                    <li class="collection-item brown lighten-4">
+                        <label for="created_by" class="black-text"><span class="">Submitted By:</span></label>
+                        <input id="created_by" name="created_by"
+                               value="{{ session.user }}" type="text" class="disabled" disabled>
                     </li>
                 </ul>
             </div>
