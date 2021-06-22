@@ -1,7 +1,7 @@
 The Bookshelf
 ---
 
-The Bookshelf site: [visit here](https://the-bookshelf-milestone-three.herokuapp.com/).
+The Bookshelf site: [visit here](https://my-digital-bookshelf.herokuapp.com/).
 
 A project to review books you read, leave reviews, rate your best reads. Share your favourite choices.
 

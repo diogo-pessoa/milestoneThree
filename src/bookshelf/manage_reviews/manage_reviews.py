@@ -4,6 +4,7 @@ from bson import ObjectId
 
 from app.model.bookshelf_model import BookshelfModel
 from src.bookshelf.book import Book
+from src.bookshelf.manage_books.manage_books import ManageBooks
 from src.bookshelf.manage_users.manage_users import ManageUsers
 from src.bookshelf.review import Review
 from src.bookshelf.user import User
@@ -39,7 +40,11 @@ class ManageReviewSuper:
             reviews = []
             reviews_from_storage = self.model.find_many_by_field_name_and_value(object_id, field_name)
             for review in reviews_from_storage:
-                reviews.append(Review(review))
+                single_review = Review(review)
+                book_title = ManageBooks().get_one_by_id(single_review.get_book_id()).get_formatted_title()
+                single_review.set_book_title(book_title)
+                reviews.append(single_review)
+
             return reviews
         else:
             raise Exception(f'field_name has to be either reviewer_id or book_id. Received: {field_name}')
