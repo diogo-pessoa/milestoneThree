@@ -50,12 +50,23 @@
                         <h4>About This Book:</h4>
                         <p class="flow-text">{{ book.get_description() }}</p>
                     </div>
+                    <div class=""><a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                           class="btn-small twitter-share-button" data-show-count="false">Tweet</a></div>
+                        <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
+                             data-layout="button" data-size="small"><a target="_blank"
+                                                                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                                                                       class="fb-xfbml-parse-ignore">Share</a></div>
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous"
+                                src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0"
+                                nonce="SjkvTEMZ"></script>
+                        <script async
+                                src="https://platform.twitter.com/widgets.js"
+                                charset="utf-8"></script>
                     <div class="card horizontal brown white-text">
                         <a href="https://www.amazon.co.uk/s?tag=faketag&k={{ book.get_formatted_title() }}"
                            target="_blank" class="white-text btn-small brown"><i
                                 class="small material-icons ">local_library</i> Buy Now</a>
-                        <a href="#" class="white-text btn-small brown"><i
-                                class="small material-icons">send</i> share</a>
                         {% if session.user %}
                         <form action="{{ url_for( 'user.add_to_favorites', book_id=book.get_id() ) }}" method="POST">
                             <button class="white-text btn-small brown"><i

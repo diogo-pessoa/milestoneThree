@@ -147,18 +147,21 @@ Features & User Stories
 
 - **Bug ** Delete review button based  on the username is showing for everyone
   - update if statement to compare User Ids
-    {% if review.get_reviewer_id() == logged_user.get_id() %}    
+    {% if review.get_reviewer_id() == logged_user.get_id() %}
     
-## Features Left to Implement
-
 - As a User, I can share/recommend this book to a friend.
-
+  - Using social networks integrations for sharing purposes
+    - [facebook share button](https://developers.facebook.com/docs/plugins/share-button/)
+    - [twitter share button](https://help.twitter.com/en/using-twitter/add-twitter-share-button)
+    - **Test** each button open on a new tab or pop-up window for sharing. 
+        - Shared link works
+    
 ## future desired features. 
 
-1. As a user I want to upload Book Covers when Adding and Editing a new book.
+1. As a user, I want to upload Book Covers, both for Edit and Adding a Book.
   1.1 As a developer I want to limit the file size and type when allowing user to upload images.
 
-2. For the BOOKS list page I want to sort and order books on the table and add pagination.
+2. For the Books list page(Returning all books currently), I want to sort and order books on the table and add pagination.
 
 3. Create a reset password Form. Currently, if a user forgets his password there's no way to reset password before login
 
