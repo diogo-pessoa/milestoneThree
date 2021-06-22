@@ -1,19 +1,20 @@
-from flask import Blueprint, render_template, request, flash, url_for
+from flask import Blueprint, render_template, request, flash, url_for, session
 from werkzeug.utils import redirect
 
 from app.auth.views import login_required
 from src.bookshelf.manage_books.manage_books import ManageBooks
 from src.bookshelf.manage_reviews.manage_reviews import ManageReviews
+from src.bookshelf.manage_users.manage_users import ManageUsers
 
 book = Blueprint('book', __name__, template_folder='templates')
 
 reviews = ManageReviews()
 books = ManageBooks()
+users = ManageUsers()
 
 
 @book.route('/book')
 def book_list():
-    # TODO get paginate list of books
     return render_template('books.html', books=books.get_all())
 
 
@@ -22,7 +23,12 @@ def book_page(book_title):
     book_in_page = books.get_by_title(book_title)
     book_rate = reviews.get_rate_by_book_id(book_in_page.get_id())
     reviews_for_book = reviews.get_reviews(book_in_page.get_id(), 'book_id')
-    return render_template('book.html', book=book_in_page, reviews=reviews_for_book, book_rate=book_rate)
+    logged_user = None
+    if 'user' in session:
+        logged_user = users.get_user(session['user'])
+
+    return render_template('book.html', book=book_in_page, reviews=reviews_for_book, book_rate=book_rate,
+                           is_moderator=logged_user.is_moderator(), username=logged_user.get_username())
 
 
 @book.route("/search", methods=["GET", "POST"])

@@ -54,9 +54,16 @@
 
         {% if session.user %}
         <li>
-        <li><a class="dropdown-trigger waves-effect black-text" data-target="dropdown-nav-main">Books<i
-                            class="material-icons right">arrow_drop_down</i></a>
+        <li><a class="dropdown-trigger waves-effect black-text" data-target="dropdown-nav-sidebar">Books<i
+                class="material-icons right">arrow_drop_down</i></a>
         </li>
+        <ul id="dropdown-nav-sidebar" class="dropdown-content brown lighten-4">
+            <li><a href="{{url_for('book.book_list')}}" class="black-text"><i
+                    class="material-icons">search</i>Search</a>
+            </li>
+            <li><a href="{{url_for('book.new')}}" class="black-text"><i
+                    class="material-icons">add</i>Add</a></li>
+        </ul>
         <li><a href="{{ url_for('user.profile', username=session['user'])}}">Profile</a></li>
         <li><a href="{{ url_for('auth.logout')}}">Log out</a></li>
         {% else %}

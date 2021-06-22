@@ -57,18 +57,27 @@
                         <a href="#" class="white-text btn-small brown"><i
                                 class="small material-icons">send</i> share</a>
                         {% if session.user %}
-                        <form action="{{ url_for( 'book.delete', book_id=book.get_id() ) }}" method="POST">
-                            <button class="white-text btn-small brown"><i
-                                    class="material-icons">delete</i> Remove Book
-                            </button>
-                        </form>
                         <form action="{{ url_for( 'user.add_to_favorites', book_id=book.get_id() ) }}" method="POST">
                             <button class="white-text btn-small brown"><i
-                                    class="material-icons">star</i> Add to My favorites
+                                    class="small material-icons">star</i> Add to My favorites
                             </button>
                         </form>
-                        <a href="{{ url_for( 'book.edit', book_id=book.get_id() ) }}"
-                           class="white-text btn-small brown"><i class="material-icons">edit</i>Edit</a>
+                        {% if is_moderator %}
+                        <a class="dropdown-trigger white-text btn-small brown" data-target="dropdown-nav-book-page">Actions<i
+                                class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="dropdown-nav-book-page" class="dropdown-content brown lighten-4">
+                            <li><a href="{{ url_for( 'book.edit', book_id=book.get_id() ) }}"
+                                   class="black-text brown lighten-4"><i class="material-icons">edit</i>Edit</a></li>
+                            <li>
+                                <form action="{{ url_for( 'book.delete', book_id=book.get_id() ) }}" method="POST">
+                                    <button class="brown lighten-4"><i
+                                            class="material-icons">delete</i> Remove Book
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+
+                        {% endif %}
                         {% endif %}
                     </div>
                 </div>
