@@ -1,0 +1,6 @@
+language: python
+  - 3.9
+  install: pip install -r requirements_dev.txt
+  script:
+    - python -m unittest discover -s test/src/bookshelf/ -p "*_test.py"  -v
+    - python -m unittest discover -s test/html_test/*_view -p "*_test.py"
