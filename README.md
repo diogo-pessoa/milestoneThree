@@ -1,5 +1,6 @@
 The Bookshelf
 ---
+[![Build Status](https://travis-ci.com/diogo-pessoa/the-bookshelf.svg?branch=master)](https://travis-ci.com/diogo-pessoa/the-bookshelf)
 
 The Bookshelf site: [visit here](https://my-digital-bookshelf.herokuapp.com/).
 
@@ -66,6 +67,7 @@ For User Stories and Features
       - Python http micro framework
     - [Flask_blueprints](https://flask.palletsprojects.com/en/1.1.x/blueprints/)
       - to improve code organization, by build a more module structure on the project
+    - [Gunicorn on Heroku](https://devcenter.heroku.com/articles/python-gunicorn) 
     - [venv](https://docs.python.org/3/library/venv.html)
         - For a clean local development environment
 - Front-End
@@ -79,6 +81,7 @@ For User Stories and Features
     - [selenium](https://selenium-python.readthedocs.io/locating-elements.html#locating-elements)
     - [unittest](https://docs.python.org/3/library/unittest.html)
     - [MagicMock](https://docs.python.org/3/library/unittest.mock.html)
+    - [TravisCI](https://travis-ci.com/dashboard)
 - Deployment
   - [heroku](http://heroku.com)
 - Data Storage
