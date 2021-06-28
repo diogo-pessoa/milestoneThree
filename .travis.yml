@@ -2,11 +2,22 @@ language: python
 python:
   - "3.9"
 # command to install dependencies
+
+addons:
+  firefox: latest
 install:
-    pip install -r requirements_dev.txt
-# command to run tests
+  - wget -N https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz -P ~/
+  - pip install -r requirements_dev.txt
+
 env:
   - MONGO_URI="mongodb://test:test@localhost:27017/thebookshelf"
+
+# command to run tests
 script:
   - python -m unittest discover -s test/src/bookshelf/ -p "*_test.py"  -v
+  - tar -xzf ~/geckodriver-v0.26.0-linux64.tar.gz -C ~/
+  - rm ~/geckodriver-v0.26.0-linux64.tar.gz
+  - sudo mv -f ~/geckodriver /usr/local/share
+  - sudo chmod +x /usr/local/share/geckodriver
+  - sudo ln -s /usr/local/share/geckodriver /usr/local/bin/geckodriver
   - python -m unittest discover -s test/html_test/*_view -p "*_test.py" -v
