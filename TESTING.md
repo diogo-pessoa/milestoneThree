@@ -1,40 +1,36 @@
 Tests
 ---
 
-## Technologies used:
+## Technologies used for testing:
 
+- [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/)
+- [geckodriver](https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path)
+- [selenium](https://selenium-python.readthedocs.io/locating-elements.html#locating-elements)
+- [unittest](https://docs.python.org/3/library/unittest.html)
+- [MagicMock](https://docs.python.org/3/library/unittest.mock.html)
+- [TravisCI](https://travis-ci.com/dashboard)
+- [heroku](http://heroku.com)
+- [MongoDb](https://www.mongodb.com/) 
+- [mongo local docker image](https://hub.docker.com/_/mongo/)
+- [mongoTools(Dump/Restore)](https://docs.mongodb.com/database-tools/mongorestore/)
 
-### database for Test
+### database for local Testing
 
-All Integration tests(selenium Tests), were written based on collections on [/dump](https://github.com/diogo-pessoa/the-bookshelf/blob/master/dump) folder. If you are running this for the first time, Install mongo `database-tools` [installation_doc](https://docs.mongodb.com/database-tools/installation/installation/) 
+All Integration tests(selenium Tests), Are using the [Staging environment](https://the-bookshelf-milestone-three.herokuapp.com) on deployed on heroku.
+ 
 
-and run a mongo restore as described below. 
+### Staging tests (Unittests and Selenium tests) 
 
-
-
-```
- creates a new database or adds data to an existing database. By default, mongorestore reads the database dump in the dump/ sub-directory 
- of the current directory; to restore from a different directory, pass in the path to the directory as a final argument.
-```
-
-
-     mongorestore --host=localhost:27017 --password=example --username=root
-     
-
-### Selenium tests 
-
-With the local Application Running and [.flaskenv](https://github.com/diogo-pessoa/the-bookshelf/blob/master/flaskenv.sample) setting the proper credentials see [local Development](https://github.com/diogo-pessoa/the-bookshelf/blob/master/TESTING.md##local-development) to setup flask locally 
+These tests are executed against the staging environment running at [heroku staging](https://the-bookshelf-milestone-three.herokuapp.com/). 
+It runs with a fake dataset and upon merging to master, a [travis-ci job](https://travis-ci.com/diogo-pessoa/the-bookshelf) is executed. At the moment the release to Production is manual. 
     
-    
-    flask run
-    # to test each view individually
-    python -m unittest discover -s test/html_test/main -p "*_test.py" -v 
-    python -m unittest discover -s test/html_test/auth_view -p "*_test.py" -v 
-    python -m unittest discover -s test/html_test/book_view -p "*_test.py" -v 
-    python -m unittest discover -s test/html_test/user_view -p "*_test.py" -v 
+    - [.travis.yml](https://github.com/diogo-pessoa/the-bookshelf/blob/master/.travis.yml)
 
-    # TO run all test
-    python -m unittest discover -s test/html_test/*_view -p "*_test.py" -v  
+_**Test Scripts:**_ 
+
+    script:
+        - python -m unittest discover -s test/src/bookshelf/ -p "*_test.py"  -v
+        - python -m unittest discover -s test/html_test/*_view -p "*_test.py" -v
 
 ## UnitTest
     
@@ -42,8 +38,7 @@ With the local Application Running and [.flaskenv](https://github.com/diogo-pess
     # The test pre-loads these in order to mock the call to the  method that invokes Application  Models 
     python -m unittest discover -s test/src/bookshelf -p "*_test.py" -v
 
-
-## Tests
+## Tests, bugs and Fixes 
     
 - Pymongo 
 

@@ -18,7 +18,7 @@ class ReviewActions(unittest.TestCase):
 
     def setUp(self):
         options = webdriver.FirefoxOptions()
-        options.add_argument('')
+        options.add_argument('-headless')
         self.driver = webdriver.Firefox(options=options)
         # Loads Login Page
 
@@ -26,7 +26,7 @@ class ReviewActions(unittest.TestCase):
         self.driver.close()
 
     def login(self):
-        self.driver.get("http://0.0.0.0:5000/login")
+        self.driver.get("https://the-bookshelf-milestone-three.herokuapp.com/login")
         username_tested = self.driver.find_element_by_id("username")
         username_tested.send_keys("willfarnaby")
         password_tested = self.driver.find_element_by_id("password")

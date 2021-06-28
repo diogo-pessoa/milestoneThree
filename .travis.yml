@@ -9,4 +9,4 @@ env:
   - MONGO_URI="mongodb://test:test@localhost:27017/thebookshelf"
 script:
   - python -m unittest discover -s test/src/bookshelf/ -p "*_test.py"  -v
-  - python -m unittest discover -s test/html_test/*_view -p "*_test.py"
+  - python -m unittest discover -s test/html_test/*_view -p "*_test.py" -v
