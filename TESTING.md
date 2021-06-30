@@ -183,6 +183,12 @@ This was caused by an inconsistency on the Book class. when the `book.get_dict()
     - Added Unittest for Review class.
     - Navigate to Profile page tabs and confirm fields are showing
     - On Favorite books there's still a need to fix each book rate
+    
+  - **Test**
+    - Needed to set up geckodriver on travisCI to run the Selenium tests.  
+      Followed a really nice walk-through I found [here](https://dev.to/erikwhiting88/install-browsers-and-webdrivers-in-travisci-n76)
+      
+    
 
 ## Refactoring
 - **Done**

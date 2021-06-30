@@ -165,3 +165,5 @@ Features & User Stories
 
 3. Create a reset password Form. Currently, if a user forgets his password there's no way to reset password before login
 
+4. There's a login function being re-used across the html_test, As a developer I want to re-use the function applying th DRY. Left this as a desired feature in favor of delivering project
+

@@ -10,7 +10,7 @@ class SearchBar(unittest.TestCase):
 
     def setUp(self):
         options = webdriver.FirefoxOptions()
-        options.add_argument('')
+        options.add_argument('-headless')
         self.driver = webdriver.Firefox(options=options)
         self.driver.get("https://the-bookshelf-milestone-three.herokuapp.com/book")
 
@@ -89,6 +89,14 @@ class SearchBar(unittest.TestCase):
             expected_conditions.text_to_be_present_in_element(
                 (By.TAG_NAME, "p"), "By Jon Doe")
         )
+
+    def test_books_details_link(self):
+        """
+            Checks book list page for elements, then click on link to book.
+
+        """
+        book_title = self.driver.find_element_by_class_name('title').text
+        self.assertEqual("How To Kill A Mockingbird", book_title)
 
 
 if __name__ == "__main__":
