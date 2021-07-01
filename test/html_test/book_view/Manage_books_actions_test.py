@@ -18,7 +18,7 @@ class ManageBooksActionsTest(unittest.TestCase):
 
     def setUp(self):
         options = webdriver.FirefoxOptions()
-        options.add_argument('')
+        options.add_argument('-headless')
         self.driver = webdriver.Firefox(options=options)
 
     def tearDown(self):
@@ -73,18 +73,7 @@ class ManageBooksActionsTest(unittest.TestCase):
                 (By.TAG_NAME, "h4"), "New Book added!")
         )
 
-    def test_delete_book(self):
-        """
-            Search for book, navigate to book_page, use page buttons to remove book
-        """
-        # needs to be logged in to remove a book
-        self.login()
-        # search for new book
-        title = self.driver.find_element_by_id('query')
-        title.send_keys('new book')
-        # navigate to book page
-        self.driver.find_element_by_link_text('Book Detailsinfo_outline').click()
-
+        # Delete Book
         self.driver.find_element_by_link_text('ACTIONS\narrow_drop_down').click()
         buttons = self.driver.find_elements_by_tag_name('button')
         buttons[1].click()

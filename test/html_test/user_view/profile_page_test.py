@@ -12,8 +12,9 @@ class ProfilePage(unittest.TestCase):
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
         self.driver = webdriver.Firefox(options=options)
-        self.driver.get("http://localhost:5000/login")
-        """Fills Login Form"""
+
+    def login(self):
+        self.driver.get("https://the-bookshelf-milestone-three.herokuapp.com/login")
         username_tested = self.driver.find_element_by_id("username")
         username_tested.send_keys("willfarnaby")
         password_tested = self.driver.find_element_by_id("password")
@@ -25,30 +26,29 @@ class ProfilePage(unittest.TestCase):
 
     def test_Profile_page_navigation(self):
         """
-          Profile is hidden unless user is logged in
+          Navigates to Profile page, confirm user information is loaded on Tabs
 
-          :return:
         """
-        """Navigate to Profile"""
+        # Login
+        self.login()
+        # navigate to user profile
         self.driver.find_element_by_link_text('Profile').click()
-        """Asserts Personal Details Tab"""
-        WebDriverWait(self.driver, 3).until(
-            expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h3"), "Will's space"),
-            expected_conditions.text_to_be_present_in_element(
-                (By.ID, "username"), "willfarnaby")
-        )
-
-    def test_books_link_profile_page(self):
-        """Navigate to Profile"""
-        self.driver.find_element_by_link_text('Profile').click()
+        # Checks for title and Tabs
+        page_title = self.driver.find_element_by_tag_name("h3").text
+        self.assertEqual("Will's space", page_title)
+        # Asserts Personal Details Tab
+        username_in_form = self.driver.find_element_by_id("username").get_property('value')
+        self.assertEqual("willfarnaby", username_in_form)
+        # Assert Reviews tabs is visible
+        review_tab = self.driver.find_element_by_link_text('REVIEWS')
+        self.assertIsNotNone(review_tab)
+        # Asserts books favorites is there and link works
         self.driver.find_element_by_link_text('MY FAVORITES').click()
-        self.driver.find_element_by_link_text('Book 12').click()
+        self.driver.find_element_by_link_text('Modern Operating Systems').click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "h3"), "Book 12")
+                (By.TAG_NAME, "h3"), "Modern Operating Systems")
         )
-
 
     if __name__ == "__main__":
         unittest.main()

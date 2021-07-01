@@ -37,11 +37,11 @@ class SearchBar(unittest.TestCase):
 
     def test_search_for_book(self):
         book_title = self.driver.find_element_by_id("query")
-        book_title.send_keys("How To Kill A Mockingbird")
+        book_title.send_keys("Modern Operating Systems")
         self.driver.find_element_by_tag_name('button').click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.CLASS_NAME, "title"), "How To Kill A Mockingbird")
+                (By.CLASS_NAME, "title"), "Modern Operating Systems")
         )
 
     def test_search_no_matching_result(self):
@@ -83,20 +83,12 @@ class SearchBar(unittest.TestCase):
             response should show results for authors matching query
         """
         book_title = self.driver.find_element_by_id("query")
-        book_title.send_keys("Jon Doe")
+        book_title.send_keys("Andrew Tanenbaum")
         self.driver.find_element_by_tag_name('button').click()
         WebDriverWait(self.driver, 3).until(
             expected_conditions.text_to_be_present_in_element(
-                (By.TAG_NAME, "p"), "By Jon Doe")
+                (By.TAG_NAME, "p"), "By Andrew Tanenbaum, Herbert Bos")
         )
-
-    def test_books_details_link(self):
-        """
-            Checks book list page for elements, then click on link to book.
-
-        """
-        book_title = self.driver.find_element_by_class_name('title').text
-        self.assertEqual("How To Kill A Mockingbird", book_title)
 
 
 if __name__ == "__main__":

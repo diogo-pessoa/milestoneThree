@@ -9,39 +9,31 @@ class BookPage(unittest.TestCase):
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
         self.driver = webdriver.Firefox(options=options)
-        # Loads Login Page
-        self.driver.get("http://localhost:5000/book/book--12")
+        self.driver.get("https://the-bookshelf-milestone-three.herokuapp.com/book/modern-operating-systems")
 
     def tearDown(self):
         self.driver.close()
 
-    def test_book_page_title(self):
+    def test_book_page_title_description(self):
         book_title = self.driver.find_element_by_tag_name('h3').text
-        self.assertEqual("Book 12", book_title)
+        about_book = self.driver.find_element_by_tag_name('p').text
+        self.assertEqual("Modern Operating Systems", book_title)
+        self.assertIn("Modern Operating Systems", about_book)
 
-    def test_book_page_buttons(self):
-        share_button = self.driver.find_element_by_link_text('send\nSHARE').text
-        self.assertIsNotNone(share_button)
-        find_store_button = self.driver.find_element_by_link_text('local_library\nFIND IN STORE').text
-        self.assertIsNotNone(find_store_button)
+    def test_book_page_buy_now_button(self):
+        """
+            check if buy now button still shows for not logged in user
 
-    def test_review_section(self):
         """
-        Book 12 Has one review on test DB, expect to show reviews
-        Looks for element in review card
-        :return:
-        """
-        user_comment = self.driver.find_element_by_tag_name('blockquote')
-        self.assertIsNotNone(user_comment)
+
+        buy_now = self.driver.find_element_by_link_text('local_library BUY NOW')
+        self.assertIsNotNone(buy_now)
 
     def test_review_section_for_book_with_no_reviews(self):
         """
         Book has no reviews, expects to show no review message
-        :return:
         """
-        self.driver.get("http://0.0.0.0:5000/book/how-to-kill-a-mockingbird")
         no_review_heading = self.driver.find_element_by_id('no_review').text
-
         self.assertEqual("No Reviews yet :/", no_review_heading)
 
 
