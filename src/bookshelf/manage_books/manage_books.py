@@ -72,9 +72,9 @@ class ManageBooksSuper(object):
             :param object_id: object_id
             :return: book: Book
         """
-        book = Book(self.model.find_by_id(ObjectId(object_id)))
+        book = self.model.find_by_id(ObjectId(object_id))
         if book:
-            return book
+            return Book(book)
 
     def get_all(self):
         response = []
@@ -146,8 +146,8 @@ class ManageBooks(ManageBooksSuper):
 
     def get_many_by_id(self, ids: list):
         books = []
-        book = None
         for book_id in ids:
             book = self.get_one_by_id(book_id)
-            books.append(book)
+            if book:
+                books.append(book)
         return books

@@ -216,3 +216,10 @@ In order to improve the ability to test and the compartmentalization of the code
  - **Test**
    - [Reviews](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/src/bookshelf/manage_review_test.py)
   
+
+- get_many_by_id_fix for profile page
+    - profile page depends on a list of books to build the `MY_FAVORITES` tab. 
+    - I've adjusted the `manage_books.get_many_by_id` to append only books found in DB. If User had a favorites that is now removed from the database, that will be ignored bye the list. 
+    - **FIX** only instantiate book object with model.find_by_id() return not None. 
+    
+ 
