@@ -45,24 +45,28 @@
         <div class="row">
             <div class="col s12">
                 <h3 class="header center black-text card-title">{{ book.get_formatted_title() }}</h3>
-                <div class="card brown lighten-4">
-                    <div class="card-content">
-                        <h4>About This Book:</h4>
-                        <p class="flow-text">{{ book.get_description() }}</p>
-                    </div>
-                    <div class=""><a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                <div class="row">
+                    <div class="col right">
+                    <div class="col"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
                            class="btn-small twitter-share-button" data-show-count="false">Tweet</a></div>
-                        <div class="fb-share-button" data-href="https://my-digital-bookshelf.herokuapp.com/book/{{book.get_title_for_url()}}"
+                        <div class="fb-share-button right" data-href="https://my-digital-bookshelf.herokuapp.com/book/{{book.get_title_for_url()}}"
                              data-layout="button" data-size="small"><a target="_blank"
                                                                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                                                                        class="fb-xfbml-parse-ignore">Share</a></div>
-                        <div id="fb-root"></div>
+                        <div class="right" id="fb-root"></div>
                         <script async defer crossorigin="anonymous"
                                 src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0"
                                 nonce="SjkvTEMZ"></script>
                         <script async
                                 src="https://platform.twitter.com/widgets.js"
                                 charset="utf-8"></script>
+                        </div>
+                </div>
+                <div class="card brown lighten-4">
+                    <div class="card-content">
+                        <h4>About This Book:</h4>
+                        <p class="flow-text">{{ book.get_description() }}</p>
+                    </div>
                     <div class="card horizontal brown white-text">
                         <a href="https://www.amazon.co.uk/s?tag=faketag&k={{ book.get_formatted_title() }}"
                            target="_blank" class="white-text btn-small brown"><i
