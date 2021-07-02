@@ -28,7 +28,7 @@
                         <label for="description" class="black-text"><span
                                 class="flow-text">About This Book</span></label>
                         <textarea id="description" name="description" minlength="5"
-                                  maxlength="600" class="materialize-textarea validate black-text"
+                                  maxlength="800" class="materialize-textarea validate black-text"
                                   required>{{ book.get_description() }}</textarea>
                     </div>
                 </div>
@@ -36,13 +36,13 @@
             <div class="row">
                 <ul class="collection">
                     <li class="collection-item brown lighten-4">
-                        <label for="author" class="black-text"><span class="flow-text">Author:</span></label>
-                        <input id="author" name="author" minlength="5" maxlength="30"
+                        <label for="author" class="black-text"><span class="flow-text">Author(s):</span></label>
+                        <input id="author" name="author" minlength="5" maxlength="80"
                                value="{{ book.get_author() }}" type="text" class="validate" required>
                     </li>
                     <li class="collection-item brown lighten-4">
                         <label for="publisher" class="black-text"><span class="flow-text">Publisher:</span></label>
-                        <input id="publisher" name="publisher" minlength="5" maxlength="15"
+                        <input id="publisher" name="publisher" minlength="5" maxlength="50"
                                value="{{ book.get_publisher() }}" type="text" class="validate" required>
                     </li>
 
