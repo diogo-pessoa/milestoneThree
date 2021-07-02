@@ -61,7 +61,8 @@ Features & User Stories
 
 
      from app import mongo
-     mongo.db.books.create_index([("title", "text"), ("author", "text")])
+     
+     mongo.db.books.create_index([("title", "text"), ("author", "text"), ("category", "text")])
  
 
   - **Test** [search_bar_test.py](https://github.com/diogo-pessoa/the-bookshelf/blob/master/test/html_test/search_bar_test.py)
@@ -72,7 +73,10 @@ Features & User Stories
     - test_search_no_matching_result - Runs functional test on search looking for 'Book1' - expects heading 4 with message alerting for no matches
     - test_search_by_author - Runs functional test on search looking for an author "Jon Doe" - expects list  of books on page body
   
-  - Implementation is based on the MiniProject(flask) search lesson: [Search Within The Database](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+DCP101+2017_T3/courseware/9e2f12f5584e48acb3c29e9b0d7cc4fe/0d4e3419132440d9b2c0943f80dc54a8/)
+  - Implementation is based on the MiniProject(flask) search lesson: [Search Within The Database](https://github.com/Code-Institute-Solutions/TaskManagerAuth/blob/main/08-SearchingWithinTheDatabase/01-text_index_searching/textIndexCommands.md)
+    
+
+
 
   - **Work-In-Progress** As a user I can Edit book details
     - New route book.edit()

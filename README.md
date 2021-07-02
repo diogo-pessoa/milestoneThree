@@ -4,16 +4,16 @@ The Bookshelf
 
 The Bookshelf site: [visit here](https://my-digital-bookshelf.herokuapp.com/).
 
-A project to review books you read, leave reviews, rate your best reads. Share your favourite choices.
+## Description
 
-#### Description
+A project to review books you read, leave reviews, rate your best reads. Have a list of favorites books, share the best books with friends.
 
 
 ## UX
 
 ### color Scheme & Typography 
 
-Using Materilize for a responsive front-end. 
+Using Materilizecss for a responsive front-end. 
 
 - Color Scheme from [materializecss color Scheme](https://materializecss.com/color.html)
 
@@ -50,7 +50,7 @@ Using Materilize for a responsive front-end.
 
 For User Stories and Features 
 
-- [FEATURES.md](/UserStories.md)
+- [UserStories.md](/UserStories.md)
 
 ## Technologies Used 
 
@@ -100,15 +100,15 @@ For User Stories and Features
     
 ## Deployment 
     
-[DEPLOY.md](https://github.com/diogo-pessoa/the-bookshelf/blob/master/DEPLOY.md)
+- [Deployment guide](https://github.com/diogo-pessoa/the-bookshelf/blob/master/DEPLOY.md)
 
 ## local development
-
+ - [Local developement guide.md](https://github.com/diogo-pessoa/the-bookshelf/blob/master/LOCAL_DEV_ENV.md)
 ## Testing
 
 Once you have your local environment setup follow the steps on the Testing document to run tests frequently and avoid regression.
 
-- [TESTING.md](https://github.com/diogo-pessoa/the-bookshelf/blob/master/TESTING.md)
+- [Testing and Bug Fixes](https://github.com/diogo-pessoa/the-bookshelf/blob/master/TESTING.md)
 
 ## Credits 
 

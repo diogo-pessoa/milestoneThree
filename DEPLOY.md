@@ -2,6 +2,8 @@ App is deployed using heroku.
 
 I have linked the github repository to The heroku and enabled automatic deploys. Hence, when a commit reaches master. It will automatically release a new version. 
 
+Guide used as a base for this deployment document [Gunicorn on Heroku](https://devcenter.heroku.com/articles/python-gunicorn) 
+
 #### Steps:
 - `Login` to heroku [login](https://id.heroku.com/login)
 - On `Landing Page`  click on create a new app [image](https://github.com/diogo-pessoa/the-bookshelf/blob/master/readme-content/heroku-deploy/createNewApp.png)

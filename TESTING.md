@@ -1,6 +1,8 @@
 Tests
 ---
 
+This Document describes all tests used in this application, All tests are executed on TravisCI once the code is committed to master. However, the developer has the option to set up a local environment and run all tests against the local installation, read [Local developement guide.md](https://github.com/diogo-pessoa/the-bookshelf/blob/master/LOCAL_DEV_ENV.md)
+
 ## Technologies used for testing:
 
 - [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/)
@@ -33,13 +35,17 @@ _**Test Scripts:**_
         - python -m unittest discover -s test/html_test/*_view -p "*_test.py" -v
 
 ## UnitTest
-    
+
+How to run unittests during your local development     
+
     # make sure to export the .flaskenv variable. The pymongo model, relies on app and mongo. 
     # The test pre-loads these in order to mock the call to the  method that invokes Application  Models 
-    python -m unittest discover -s test/src/bookshelf -p "*_test.py" -v
+    $ export MONGO_URI=mongodb://root:root@localhost:27017/thebookshelf
+    $ python -m unittest discover -s test/src/bookshelf -p "*_test.py" -v
 
 ## Tests, bugs and Fixes 
     
+This Section is broader description on the tests and bugs found during development.
 - Pymongo 
 
 **Error** `The "dnspython" module must be installed to use mongodb+srv:// URIs`
