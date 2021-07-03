@@ -27,7 +27,7 @@ class SearchBar(unittest.TestCase):
 
     def test_search_bar_text_content(self):
         search_bar_text = self.driver.find_element_by_tag_name('label').text
-        self.assertEqual("Type a book title or author Name", search_bar_text)
+        self.assertEqual("Type Title, author Name or Genre", search_bar_text)
 
     def test_book_page_buttons(self):
         reset_button_text = self.driver.find_element_by_link_text('RESET').text
@@ -38,11 +38,9 @@ class SearchBar(unittest.TestCase):
     def test_search_for_book(self):
         book_title = self.driver.find_element_by_id("query")
         book_title.send_keys("Modern Operating Systems")
-        self.driver.find_element_by_tag_name('button').click()
-        WebDriverWait(self.driver, 3).until(
-            expected_conditions.text_to_be_present_in_element(
-                (By.CLASS_NAME, "title"), "Modern Operating Systems")
-        )
+        self.driver.find_element_by_link_text('Modern Operating Systems info_outline').click()
+        heading_three = self.driver.find_element_by_tag_name('h3').text
+        self.assertEqual('Modern Operating Systems', heading_three)
 
     def test_search_no_matching_result(self):
         """

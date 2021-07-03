@@ -9,7 +9,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 class NavBarLinks(unittest.TestCase):
 
     def setUp(self):
+        options = webdriver.FirefoxOptions()
+        options.add_argument('-headless')
+        self.driver = webdriver.Firefox(options=options)
         self.driver = webdriver.Firefox()
+
         self.driver.get("http://localhost:5000")
 
     def tearDown(self):
