@@ -95,7 +95,6 @@ class ManageBooks(ManageBooksSuper):
         :param new_book_details:
         :return:
         """
-        # TODO check for existing book
         response = {
             "flash_message": "",
             "book_url_title": ""
