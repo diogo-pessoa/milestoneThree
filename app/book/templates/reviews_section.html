@@ -2,7 +2,7 @@
 {% if logged_user %}
 <ul id="leave_review" class="col s12 brown darken-1 collapsible">
     <li>
-        <div class="collapsible-header brown darken-1 white-text">Leave tour Review.<i class="material-icons">rate_review</i>
+        <div class="collapsible-header brown darken-1 white-text">Leave your Review.<i class="material-icons">rate_review</i>
         </div>
         <div class="collapsible-body brown lighten-4">
             <form class="" method="POST"
@@ -70,7 +70,7 @@
     {% for review in reviews %}
     <li class="collection-item brown lighten-5">
         <div class="row">
-            {% if review.get_reviewer_id() == logged_user.get_id() %}
+            {% if logged_user and review.get_reviewer_id() == logged_user.get_id() %}
             <a id="delete_review" href="{{ url_for('review.delete', review_id=review.get_id() ) }}"
                class="btn-floating btn-small waves-effect waves-light red right"><i
                     class="material-icons">delete</i></a>
